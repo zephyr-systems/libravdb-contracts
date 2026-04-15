@@ -1,0 +1,467 @@
+syntax = "proto3";
+
+package libravdb.ipc.v1;
+
+import "google/protobuf/struct.proto";
+
+option go_package = "github.com/xDarkicex/libravdb-contracts/libravdb/ipc/v1;ipcv1";
+option java_multiple_files = true;
+option java_package = "com.xdarkicex.libravdb.ipc.v1";
+
+// =============================================================================
+// Transport envelope
+// method: dispatch key (e.g. "insert_text", "compact_session").
+// params: serialized bytes of the method-specific *Request message.
+// result: serialized bytes of the method-specific *Response message.
+// =============================================================================
+
+message RpcRequest {
+  uint64 id = 1;
+  string method = 2;
+  bytes params = 3;
+}
+
+message RpcResponse {
+  uint64 id = 1;
+  bytes result = 2;
+  RpcError error = 3;
+}
+
+message RpcError {
+  string message = 1;
+  int32 code = 2;
+}
+
+// =============================================================================
+// Shared models
+// =============================================================================
+
+// Proto map values cannot be repeated; wrap string slices for exclude_by_collection.
+message StringList {
+  repeated string values = 1;
+}
+
+// Mirrors store.SearchResult (libravdbd/store/libravdb.go).
+message SearchResult {
+  string id = 1;
+  double score = 2;
+  string text = 3;
+  google.protobuf.Struct metadata = 4;
+  uint64 version = 5;
+}
+
+message MarkdownSourceMeta {
+  string source_root = 1;
+  string source_path = 2;
+  string source_kind = 3;
+  string file_hash = 4;
+  int64 source_size = 5;
+  int64 source_mtime_ms = 6;
+  int32 ingest_version = 7;
+  string hash_backend = 8;
+}
+
+message DreamPromotionEntry {
+  string text = 1;
+  double score = 2;
+  int32 recall_count = 3;
+  int32 unique_queries = 4;
+  string section = 5;
+  int32 line = 6;
+  int32 source_line = 7;
+  google.protobuf.Struct metadata = 8;
+}
+
+message AccessCountUpdate {
+  string collection = 1;
+  repeated string ids = 2;
+}
+
+// Kernel message (libravdbd/server/kernel_handlers.go kernelMessage).
+message KernelMessage {
+  string role = 1;
+  string content = 2;
+  string id = 3;
+}
+
+// assemble_context_internal debug is arbitrary JSON in the current daemon.
+message AssembleContextInternalResponse {
+  repeated KernelMessage messages = 1;
+  int32 estimated_tokens = 2;
+  string system_prompt_addition = 3;
+  AssemblyDebug debug = 4;
+}
+
+// Typed debug payload for assemble_context_internal.
+// Mirrors the fields produced by the transport layer's assembleDebugToProto.
+message AssemblyDebug {
+  bool recovery_trigger_fired = 1;
+  bool cross_session_raw_recovery = 2;
+  int32 recovery_reserve_tokens = 3;
+  repeated RecoveryOrderEntry recovery_deduped_order = 4;
+  repeated RecoveryOrderEntry recovery_fitted_order = 5;
+}
+
+message RecoveryOrderEntry {
+  string id = 1;
+  string recovery_scope = 2;
+  double final_score = 3;
+  int32 token_estimate = 4;
+}
+
+// Pointer-backed overrides: optional preserves unset vs zero for Go migration.
+message AssembleConfigOverrides {
+  optional bool use_session_recall_projection = 1;
+  optional bool use_session_summary_search_experiment = 2;
+  optional double token_budget_fraction = 3;
+  optional double authored_hard_budget_fraction = 4;
+  optional double authored_soft_budget_fraction = 5;
+  optional double elevated_guidance_budget_fraction = 6;
+  optional int32 top_k = 7;
+  optional int32 continuity_min_turns = 8;
+  optional int32 continuity_tail_budget_tokens = 9;
+  optional int32 continuity_prior_context_tokens = 10;
+  optional int32 compact_threshold = 11;
+  optional int32 compact_session_token_budget = 12;
+  optional double section7_theta1 = 13;
+  optional double section7_kappa = 14;
+  optional double section7_hop_eta = 15;
+  optional double section7_hop_threshold = 16;
+  optional int32 section7_coarse_top_k = 17;
+  optional int32 section7_second_pass_top_k = 18;
+  optional double section7_authority_recency_lambda = 19;
+  optional double section7_authority_recency_weight = 20;
+  optional double section7_authority_frequency_weight = 21;
+  optional double section7_authority_authored_weight = 22;
+  optional double recovery_floor_score = 23;
+  optional int32 recovery_min_top_k = 24;
+  optional double recovery_min_confidence_mean = 25;
+  optional double recency_lambda_session = 26;
+  optional double recency_lambda_user = 27;
+  optional double recency_lambda_global = 28;
+  optional double ingestion_gate_threshold = 29;
+}
+
+message RankCandidate {
+  string id = 1;
+  string text = 2;
+  double score = 3;
+  google.protobuf.Struct metadata = 4;
+}
+
+// health.Status (libravdbd/health/check.go) — health RPC.
+message HealthResponse {
+  bool ok = 1;
+  string message = 2;
+}
+
+// compact.Result (libravdbd/compact/summarize.go) — compact_session RPC.
+message CompactSessionResponse {
+  bool did_compact = 1;
+  int32 clusters_formed = 2;
+  int32 clusters_declined = 3;
+  int32 turns_removed = 4;
+  string summary_method = 5;
+  double mean_confidence = 6;
+}
+
+// compact.GatingSignals (libravdbd/compact/gate.go) — gating_scalar RPC.
+message GatingScalarResponse {
+  double g = 1;
+  double t = 2;
+  double h = 3;
+  double r = 4;
+  double d = 5;
+  double input_freq = 6;
+  double mem_saturation = 7;
+  double p = 8;
+  double a = 9;
+  double dtech = 10;
+  double gconv = 11;
+  double gtech = 12;
+}
+
+message ExportMemoryRecord {
+  string collection = 1;
+  string id = 2;
+  string text = 3;
+  google.protobuf.Struct metadata = 4;
+}
+
+// =============================================================================
+// RPC payloads — libravdbd/server/rpc.go
+// =============================================================================
+
+message EnsureCollectionsRequest {
+  repeated string collections = 1;
+}
+
+message EnsureCollectionsResponse {
+  bool ok = 1;
+}
+
+message InsertTextRequest {
+  string collection = 1;
+  string id = 2;
+  string text = 3;
+  google.protobuf.Struct metadata = 4;
+}
+
+message InsertTextResponse {
+  bool ok = 1;
+}
+
+message InsertSessionTurnRequest {
+  string session_id = 1;
+  string id = 2;
+  string text = 3;
+  google.protobuf.Struct metadata = 4;
+}
+
+message InsertSessionTurnResponse {
+  bool ok = 1;
+}
+
+message IngestMarkdownDocumentRequest {
+  string source_doc = 1;
+  string text = 2;
+  string tokenizer_id = 3;
+  bool core_doc = 4;
+  MarkdownSourceMeta source_meta = 5;
+}
+
+message IngestMarkdownDocumentResponse {
+  bool ok = 1;
+}
+
+message DeleteAuthoredDocumentRequest {
+  string source_doc = 1;
+}
+
+message DeleteAuthoredDocumentResponse {
+  bool ok = 1;
+}
+
+message PromoteDreamEntriesRequest {
+  string user_id = 1;
+  string source_doc = 2;
+  string source_root = 3;
+  string source_path = 4;
+  string source_kind = 5;
+  string file_hash = 6;
+  int64 source_size = 7;
+  int64 source_mtime_ms = 8;
+  int32 ingest_version = 9;
+  string hash_backend = 10;
+  repeated DreamPromotionEntry entries = 11;
+}
+
+message DreamPromotionResponse {
+  int32 promoted = 1;
+  int32 rejected = 2;
+}
+
+message SearchTextRequest {
+  string collection = 1;
+  string text = 2;
+  int32 k = 3;
+  repeated string exclude_ids = 4;
+}
+
+message SearchTextCollectionsRequest {
+  repeated string collections = 1;
+  string text = 2;
+  int32 k = 3;
+  map<string, StringList> exclude_by_collection = 4;
+}
+
+message SearchTextResponse {
+  repeated SearchResult results = 1;
+}
+
+message ListByMetaRequest {
+  string collection = 1;
+  string key = 2;
+  string value = 3;
+}
+
+message ListCollectionRequest {
+  string collection = 1;
+}
+
+message ExpandSummaryRequest {
+  string session_id = 1;
+  string summary_id = 2;
+  int32 max_depth = 3;
+}
+
+message QueryRawSessionRequest {
+  string session_id = 1;
+  string text = 2;
+  int32 k = 3;
+  repeated string exclude_ids = 4;
+}
+
+message ListLifecycleJournalRequest {
+  string session_id = 1;
+  int32 limit = 2;
+}
+
+message BumpAccessCountsRequest {
+  repeated AccessCountUpdate updates = 1;
+}
+
+message BumpAccessCountsResponse {
+  bool ok = 1;
+}
+
+message DeleteRequest {
+  string collection = 1;
+  string id = 2;
+}
+
+message DeleteResponse {
+  bool ok = 1;
+}
+
+message DeleteBatchRequest {
+  string collection = 1;
+  repeated string ids = 2;
+}
+
+message DeleteBatchResponse {
+  bool ok = 1;
+}
+
+message CompactSessionRequest {
+  string session_id = 1;
+  bool force = 2;
+  int32 target_size = 3;
+  int32 continuity_min_turns = 4;
+  int32 continuity_tail_budget_tokens = 5;
+  int32 continuity_prior_context_tokens = 6;
+}
+
+message GatingScalarRequest {
+  string user_id = 1;
+  string text = 2;
+}
+
+message FlushNamespaceRequest {
+  string user_id = 1;
+  string namespace = 2;
+}
+
+message SessionLifecycleHintRequest {
+  string hook = 1;
+  string reason = 2;
+  string session_file = 3;
+  string session_id = 4;
+  string session_key = 5;
+  string agent_id = 6;
+  string workspace_dir = 7;
+  int32 message_count = 8;
+  int32 duration_ms = 9;
+  bool transcript_archived = 10;
+  string next_session_id = 11;
+  string next_session_key = 12;
+}
+
+message SessionLifecycleHintResponse {
+  bool ok = 1;
+  string hook = 2;
+  string session_id = 3;
+  string reason = 4;
+}
+
+message MemoryStatusResponse {
+  bool ok = 1;
+  string message = 2;
+  int32 turn_count = 3;
+  int32 memory_count = 4;
+  int32 lifecycle_hint_count = 5;
+  double gating_threshold = 6;
+  bool abstractive_ready = 7;
+  string embedding_profile = 8;
+}
+
+message ExportMemoryRequest {
+  string user_id = 1;
+  string namespace = 2;
+}
+
+message ExportMemoryResponse {
+  repeated ExportMemoryRecord records = 1;
+}
+
+message FlushNamespaceResponse {
+  bool ok = 1;
+}
+
+message FlushResponse {
+  bool ok = 1;
+}
+
+// =============================================================================
+// Kernel RPC payloads — libravdbd/server/kernel_handlers.go (methods in rpc.go)
+// =============================================================================
+
+message BootstrapSessionKernelRequest {
+  string session_id = 1;
+  string session_key = 2;
+  string user_id = 3;
+}
+
+message BootstrapSessionKernelResponse {
+  bool ok = 1;
+}
+
+message IngestMessageKernelRequest {
+  string session_id = 1;
+  string session_key = 2;
+  string user_id = 3;
+  KernelMessage message = 4;
+  bool is_heartbeat = 5;
+}
+
+message IngestMessageKernelResponse {
+  bool ok = 1;
+  int32 ingested = 2;
+}
+
+message AfterTurnKernelRequest {
+  string session_id = 1;
+  string session_key = 2;
+  string user_id = 3;
+  repeated KernelMessage messages = 4;
+  int32 pre_prompt_message_count = 5;
+  bool is_heartbeat = 6;
+}
+
+message AfterTurnKernelResponse {
+  bool ok = 1;
+}
+
+message AssembleContextInternalRequest {
+  string session_id = 1;
+  string session_key = 2;
+  string user_id = 3;
+  repeated KernelMessage messages = 4;
+  int32 token_budget = 5;
+  string prompt = 6;
+  bool emit_debug = 7;
+  AssembleConfigOverrides config = 8;
+}
+
+message RankCandidatesRequest {
+  repeated RankCandidate candidates = 1;
+  string query_text = 2;
+  string session_id = 3;
+  string user_id = 4;
+  int32 k1 = 5;
+  int32 k2 = 6;
+}
+
+message RankCandidatesResponse {
+  repeated RankCandidate ranked = 1;
+}
