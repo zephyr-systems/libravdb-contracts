@@ -1,0 +1,33 @@
+{
+  "name": "@xdarkicex/libravdb-contracts",
+  "version": "0.0.1",
+  "description": "LibraVDB IPC protocol types — protobuf-es generated",
+  "type": "module",
+  "main": "./gen/js/libravdb/ipc/v1/rpc_pb.js",
+  "types": "./gen/js/libravdb/ipc/v1/rpc_pb.d.ts",
+  "exports": {
+    ".": {
+      "types": "./gen/js/libravdb/ipc/v1/rpc_pb.d.ts",
+      "import": "./gen/js/libravdb/ipc/v1/rpc_pb.js",
+      "default": "./gen/js/libravdb/ipc/v1/rpc_pb.js"
+    }
+  },
+  "files": [
+    "gen/js/"
+  ],
+  "scripts": {
+    "build": "buf generate && tsc -p tsconfig.json",
+    "generate": "buf generate",
+    "prepack": "pnpm run build"
+  },
+  "dependencies": {
+    "@bufbuild/protobuf": "^1.7.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@bufbuild/protoc-gen-es": "2.10.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
