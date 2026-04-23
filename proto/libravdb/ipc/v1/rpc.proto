@@ -340,6 +340,9 @@ message CompactSessionRequest {
   int32 continuity_min_turns = 4;
   int32 continuity_tail_budget_tokens = 5;
   int32 continuity_prior_context_tokens = 6;
+  // Observed token count at compact-request time.
+  // Lets the daemon gauge prompt pressure and scale compaction aggressiveness.
+  int32 current_token_count = 7;
 }
 
 message GatingScalarRequest {
