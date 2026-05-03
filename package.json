@@ -19,7 +19,7 @@
     "gen/js/"
   ],
   "scripts": {
-    "build": "buf generate && tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.json",
     "generate": "buf generate",
     "prepack": "pnpm run build"
   },
