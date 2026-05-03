@@ -2805,4 +2805,84 @@ export class RankCandidatesResponse extends Message {
         return proto3.util.equals(RankCandidatesResponse, a, b);
     }
 }
+/**
+ * @generated from message libravdb.ipc.v1.RebuildIndexRequest
+ */
+export class RebuildIndexRequest extends Message {
+    /**
+     * @generated from field: string namespace = 1;
+     */
+    namespace = "";
+    /**
+     * @generated from field: repeated string collections = 2;
+     */
+    collections = [];
+    constructor(data) {
+        super();
+        proto3.util.initPartial(data, this);
+    }
+    static runtime = proto3;
+    static typeName = "libravdb.ipc.v1.RebuildIndexRequest";
+    static fields = proto3.util.newFieldList(() => [
+        { no: 1, name: "namespace", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+        { no: 2, name: "collections", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    ]);
+    static fromBinary(bytes, options) {
+        return new RebuildIndexRequest().fromBinary(bytes, options);
+    }
+    static fromJson(jsonValue, options) {
+        return new RebuildIndexRequest().fromJson(jsonValue, options);
+    }
+    static fromJsonString(jsonString, options) {
+        return new RebuildIndexRequest().fromJsonString(jsonString, options);
+    }
+    static equals(a, b) {
+        return proto3.util.equals(RebuildIndexRequest, a, b);
+    }
+}
+/**
+ * @generated from message libravdb.ipc.v1.RebuildIndexResponse
+ */
+export class RebuildIndexResponse extends Message {
+    /**
+     * @generated from field: int32 collections_processed = 1;
+     */
+    collectionsProcessed = 0;
+    /**
+     * @generated from field: int32 records_reindexed = 2;
+     */
+    recordsReindexed = 0;
+    /**
+     * @generated from field: int32 collections_recreated = 3;
+     */
+    collectionsRecreated = 0;
+    /**
+     * @generated from field: repeated string errors = 4;
+     */
+    errors = [];
+    constructor(data) {
+        super();
+        proto3.util.initPartial(data, this);
+    }
+    static runtime = proto3;
+    static typeName = "libravdb.ipc.v1.RebuildIndexResponse";
+    static fields = proto3.util.newFieldList(() => [
+        { no: 1, name: "collections_processed", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+        { no: 2, name: "records_reindexed", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+        { no: 3, name: "collections_recreated", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+        { no: 4, name: "errors", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    ]);
+    static fromBinary(bytes, options) {
+        return new RebuildIndexResponse().fromBinary(bytes, options);
+    }
+    static fromJson(jsonValue, options) {
+        return new RebuildIndexResponse().fromJson(jsonValue, options);
+    }
+    static fromJsonString(jsonString, options) {
+        return new RebuildIndexResponse().fromJsonString(jsonString, options);
+    }
+    static equals(a, b) {
+        return proto3.util.equals(RebuildIndexResponse, a, b);
+    }
+}
 //# sourceMappingURL=rpc_pb.js.map

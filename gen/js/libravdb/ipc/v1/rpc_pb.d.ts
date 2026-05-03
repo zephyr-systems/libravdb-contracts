@@ -1807,4 +1807,54 @@ export declare class RankCandidatesResponse extends Message<RankCandidatesRespon
     static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RankCandidatesResponse;
     static equals(a: RankCandidatesResponse | PlainMessage<RankCandidatesResponse> | undefined, b: RankCandidatesResponse | PlainMessage<RankCandidatesResponse> | undefined): boolean;
 }
+/**
+ * @generated from message libravdb.ipc.v1.RebuildIndexRequest
+ */
+export declare class RebuildIndexRequest extends Message<RebuildIndexRequest> {
+    /**
+     * @generated from field: string namespace = 1;
+     */
+    namespace: string;
+    /**
+     * @generated from field: repeated string collections = 2;
+     */
+    collections: string[];
+    constructor(data?: PartialMessage<RebuildIndexRequest>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.RebuildIndexRequest";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RebuildIndexRequest;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RebuildIndexRequest;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RebuildIndexRequest;
+    static equals(a: RebuildIndexRequest | PlainMessage<RebuildIndexRequest> | undefined, b: RebuildIndexRequest | PlainMessage<RebuildIndexRequest> | undefined): boolean;
+}
+/**
+ * @generated from message libravdb.ipc.v1.RebuildIndexResponse
+ */
+export declare class RebuildIndexResponse extends Message<RebuildIndexResponse> {
+    /**
+     * @generated from field: int32 collections_processed = 1;
+     */
+    collectionsProcessed: number;
+    /**
+     * @generated from field: int32 records_reindexed = 2;
+     */
+    recordsReindexed: number;
+    /**
+     * @generated from field: int32 collections_recreated = 3;
+     */
+    collectionsRecreated: number;
+    /**
+     * @generated from field: repeated string errors = 4;
+     */
+    errors: string[];
+    constructor(data?: PartialMessage<RebuildIndexResponse>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.RebuildIndexResponse";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RebuildIndexResponse;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RebuildIndexResponse;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RebuildIndexResponse;
+    static equals(a: RebuildIndexResponse | PlainMessage<RebuildIndexResponse> | undefined, b: RebuildIndexResponse | PlainMessage<RebuildIndexResponse> | undefined): boolean;
+}
 //# sourceMappingURL=rpc_pb.d.ts.map
