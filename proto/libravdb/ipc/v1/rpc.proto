@@ -480,3 +480,4 @@ message RebuildIndexResponse {
   int32 collections_recreated = 3;
   repeated string errors = 4;
 }
+// triggers workflow
