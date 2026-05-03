@@ -468,3 +468,15 @@ message RankCandidatesRequest {
 message RankCandidatesResponse {
   repeated RankCandidate ranked = 1;
 }
+
+message RebuildIndexRequest {
+  string namespace = 1;
+  repeated string collections = 2;
+}
+
+message RebuildIndexResponse {
+  int32 collections_processed = 1;
+  int32 records_reindexed = 2;
+  int32 collections_recreated = 3;
+  repeated string errors = 4;
+}

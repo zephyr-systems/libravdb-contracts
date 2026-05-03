@@ -4418,6 +4418,132 @@ func (x *RankCandidatesResponse) GetRanked() []*RankCandidate {
 	return nil
 }
 
+type RebuildIndexRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Namespace   string   `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	Collections []string `protobuf:"bytes,2,rep,name=collections,proto3" json:"collections,omitempty"`
+}
+
+func (x *RebuildIndexRequest) Reset() {
+	*x = RebuildIndexRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[63]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *RebuildIndexRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RebuildIndexRequest) ProtoMessage() {}
+
+func (x *RebuildIndexRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[63]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RebuildIndexRequest.ProtoReflect.Descriptor instead.
+func (*RebuildIndexRequest) Descriptor() ([]byte, []int) {
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{63}
+}
+
+func (x *RebuildIndexRequest) GetNamespace() string {
+	if x != nil {
+		return x.Namespace
+	}
+	return ""
+}
+
+func (x *RebuildIndexRequest) GetCollections() []string {
+	if x != nil {
+		return x.Collections
+	}
+	return nil
+}
+
+type RebuildIndexResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CollectionsProcessed int32    `protobuf:"varint,1,opt,name=collections_processed,json=collectionsProcessed,proto3" json:"collections_processed,omitempty"`
+	RecordsReindexed     int32    `protobuf:"varint,2,opt,name=records_reindexed,json=recordsReindexed,proto3" json:"records_reindexed,omitempty"`
+	CollectionsRecreated int32    `protobuf:"varint,3,opt,name=collections_recreated,json=collectionsRecreated,proto3" json:"collections_recreated,omitempty"`
+	Errors               []string `protobuf:"bytes,4,rep,name=errors,proto3" json:"errors,omitempty"`
+}
+
+func (x *RebuildIndexResponse) Reset() {
+	*x = RebuildIndexResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[64]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *RebuildIndexResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RebuildIndexResponse) ProtoMessage() {}
+
+func (x *RebuildIndexResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[64]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RebuildIndexResponse.ProtoReflect.Descriptor instead.
+func (*RebuildIndexResponse) Descriptor() ([]byte, []int) {
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{64}
+}
+
+func (x *RebuildIndexResponse) GetCollectionsProcessed() int32 {
+	if x != nil {
+		return x.CollectionsProcessed
+	}
+	return 0
+}
+
+func (x *RebuildIndexResponse) GetRecordsReindexed() int32 {
+	if x != nil {
+		return x.RecordsReindexed
+	}
+	return 0
+}
+
+func (x *RebuildIndexResponse) GetCollectionsRecreated() int32 {
+	if x != nil {
+		return x.CollectionsRecreated
+	}
+	return 0
+}
+
+func (x *RebuildIndexResponse) GetErrors() []string {
+	if x != nil {
+		return x.Errors
+	}
+	return nil
+}
+
 var File_libravdb_ipc_v1_rpc_proto protoreflect.FileDescriptor
 
 var file_libravdb_ipc_v1_rpc_proto_rawDesc = []byte{
@@ -5127,13 +5253,31 @@ var file_libravdb_ipc_v1_rpc_proto_rawDesc = []byte{
 	0x65, 0x64, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1e, 0x2e, 0x6c, 0x69, 0x62, 0x72, 0x61,
 	0x76, 0x64, 0x62, 0x2e, 0x69, 0x70, 0x63, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x61, 0x6e, 0x6b, 0x43,
 	0x61, 0x6e, 0x64, 0x69, 0x64, 0x61, 0x74, 0x65, 0x52, 0x06, 0x72, 0x61, 0x6e, 0x6b, 0x65, 0x64,
-	0x42, 0x60, 0x0a, 0x1d, 0x63, 0x6f, 0x6d, 0x2e, 0x78, 0x64, 0x61, 0x72, 0x6b, 0x69, 0x63, 0x65,
-	0x78, 0x2e, 0x6c, 0x69, 0x62, 0x72, 0x61, 0x76, 0x64, 0x62, 0x2e, 0x69, 0x70, 0x63, 0x2e, 0x76,
-	0x31, 0x50, 0x01, 0x5a, 0x3d, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f,
-	0x78, 0x44, 0x61, 0x72, 0x6b, 0x69, 0x63, 0x65, 0x78, 0x2f, 0x6c, 0x69, 0x62, 0x72, 0x61, 0x76,
-	0x64, 0x62, 0x2d, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x73, 0x2f, 0x6c, 0x69, 0x62,
-	0x72, 0x61, 0x76, 0x64, 0x62, 0x2f, 0x69, 0x70, 0x63, 0x2f, 0x76, 0x31, 0x3b, 0x69, 0x70, 0x63,
-	0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x22, 0x55, 0x0a, 0x13, 0x52, 0x65, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x49, 0x6e, 0x64, 0x65, 0x78,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1c, 0x0a, 0x09, 0x6e, 0x61, 0x6d, 0x65, 0x73,
+	0x70, 0x61, 0x63, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x6e, 0x61, 0x6d, 0x65,
+	0x73, 0x70, 0x61, 0x63, 0x65, 0x12, 0x20, 0x0a, 0x0b, 0x63, 0x6f, 0x6c, 0x6c, 0x65, 0x63, 0x74,
+	0x69, 0x6f, 0x6e, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x09, 0x52, 0x0b, 0x63, 0x6f, 0x6c, 0x6c,
+	0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x22, 0xc5, 0x01, 0x0a, 0x14, 0x52, 0x65, 0x62, 0x75,
+	0x69, 0x6c, 0x64, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x33, 0x0a, 0x15, 0x63, 0x6f, 0x6c, 0x6c, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x5f,
+	0x70, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x65, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52,
+	0x14, 0x63, 0x6f, 0x6c, 0x6c, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x50, 0x72, 0x6f, 0x63,
+	0x65, 0x73, 0x73, 0x65, 0x64, 0x12, 0x2b, 0x0a, 0x11, 0x72, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x73,
+	0x5f, 0x72, 0x65, 0x69, 0x6e, 0x64, 0x65, 0x78, 0x65, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05,
+	0x52, 0x10, 0x72, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x73, 0x52, 0x65, 0x69, 0x6e, 0x64, 0x65, 0x78,
+	0x65, 0x64, 0x12, 0x33, 0x0a, 0x15, 0x63, 0x6f, 0x6c, 0x6c, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e,
+	0x73, 0x5f, 0x72, 0x65, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x05, 0x52, 0x14, 0x63, 0x6f, 0x6c, 0x6c, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65,
+	0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x12, 0x16, 0x0a, 0x06, 0x65, 0x72, 0x72, 0x6f, 0x72,
+	0x73, 0x18, 0x04, 0x20, 0x03, 0x28, 0x09, 0x52, 0x06, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x73, 0x42,
+	0x60, 0x0a, 0x1d, 0x63, 0x6f, 0x6d, 0x2e, 0x78, 0x64, 0x61, 0x72, 0x6b, 0x69, 0x63, 0x65, 0x78,
+	0x2e, 0x6c, 0x69, 0x62, 0x72, 0x61, 0x76, 0x64, 0x62, 0x2e, 0x69, 0x70, 0x63, 0x2e, 0x76, 0x31,
+	0x50, 0x01, 0x5a, 0x3d, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x78,
+	0x44, 0x61, 0x72, 0x6b, 0x69, 0x63, 0x65, 0x78, 0x2f, 0x6c, 0x69, 0x62, 0x72, 0x61, 0x76, 0x64,
+	0x62, 0x2d, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x73, 0x2f, 0x6c, 0x69, 0x62, 0x72,
+	0x61, 0x76, 0x64, 0x62, 0x2f, 0x69, 0x70, 0x63, 0x2f, 0x76, 0x31, 0x3b, 0x69, 0x70, 0x63, 0x76,
+	0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -5148,7 +5292,7 @@ func file_libravdb_ipc_v1_rpc_proto_rawDescGZIP() []byte {
 	return file_libravdb_ipc_v1_rpc_proto_rawDescData
 }
 
-var file_libravdb_ipc_v1_rpc_proto_msgTypes = make([]protoimpl.MessageInfo, 64)
+var file_libravdb_ipc_v1_rpc_proto_msgTypes = make([]protoimpl.MessageInfo, 66)
 var file_libravdb_ipc_v1_rpc_proto_goTypes = []interface{}{
 	(*RpcRequest)(nil),                      // 0: libravdb.ipc.v1.RpcRequest
 	(*RpcResponse)(nil),                     // 1: libravdb.ipc.v1.RpcResponse
@@ -5213,24 +5357,26 @@ var file_libravdb_ipc_v1_rpc_proto_goTypes = []interface{}{
 	(*AssembleContextInternalRequest)(nil),  // 60: libravdb.ipc.v1.AssembleContextInternalRequest
 	(*RankCandidatesRequest)(nil),           // 61: libravdb.ipc.v1.RankCandidatesRequest
 	(*RankCandidatesResponse)(nil),          // 62: libravdb.ipc.v1.RankCandidatesResponse
-	nil,                                     // 63: libravdb.ipc.v1.SearchTextCollectionsRequest.ExcludeByCollectionEntry
-	(*structpb.Struct)(nil),                 // 64: google.protobuf.Struct
+	(*RebuildIndexRequest)(nil),             // 63: libravdb.ipc.v1.RebuildIndexRequest
+	(*RebuildIndexResponse)(nil),            // 64: libravdb.ipc.v1.RebuildIndexResponse
+	nil,                                     // 65: libravdb.ipc.v1.SearchTextCollectionsRequest.ExcludeByCollectionEntry
+	(*structpb.Struct)(nil),                 // 66: google.protobuf.Struct
 }
 var file_libravdb_ipc_v1_rpc_proto_depIdxs = []int32{
 	2,  // 0: libravdb.ipc.v1.RpcResponse.error:type_name -> libravdb.ipc.v1.RpcError
-	64, // 1: libravdb.ipc.v1.SearchResult.metadata:type_name -> google.protobuf.Struct
-	64, // 2: libravdb.ipc.v1.DreamPromotionEntry.metadata:type_name -> google.protobuf.Struct
+	66, // 1: libravdb.ipc.v1.SearchResult.metadata:type_name -> google.protobuf.Struct
+	66, // 2: libravdb.ipc.v1.DreamPromotionEntry.metadata:type_name -> google.protobuf.Struct
 	8,  // 3: libravdb.ipc.v1.AssembleContextInternalResponse.messages:type_name -> libravdb.ipc.v1.KernelMessage
 	10, // 4: libravdb.ipc.v1.AssembleContextInternalResponse.debug:type_name -> libravdb.ipc.v1.AssemblyDebug
 	11, // 5: libravdb.ipc.v1.AssemblyDebug.recovery_deduped_order:type_name -> libravdb.ipc.v1.RecoveryOrderEntry
 	11, // 6: libravdb.ipc.v1.AssemblyDebug.recovery_fitted_order:type_name -> libravdb.ipc.v1.RecoveryOrderEntry
-	64, // 7: libravdb.ipc.v1.RankCandidate.metadata:type_name -> google.protobuf.Struct
-	64, // 8: libravdb.ipc.v1.ExportMemoryRecord.metadata:type_name -> google.protobuf.Struct
-	64, // 9: libravdb.ipc.v1.InsertTextRequest.metadata:type_name -> google.protobuf.Struct
-	64, // 10: libravdb.ipc.v1.InsertSessionTurnRequest.metadata:type_name -> google.protobuf.Struct
+	66, // 7: libravdb.ipc.v1.RankCandidate.metadata:type_name -> google.protobuf.Struct
+	66, // 8: libravdb.ipc.v1.ExportMemoryRecord.metadata:type_name -> google.protobuf.Struct
+	66, // 9: libravdb.ipc.v1.InsertTextRequest.metadata:type_name -> google.protobuf.Struct
+	66, // 10: libravdb.ipc.v1.InsertSessionTurnRequest.metadata:type_name -> google.protobuf.Struct
 	5,  // 11: libravdb.ipc.v1.IngestMarkdownDocumentRequest.source_meta:type_name -> libravdb.ipc.v1.MarkdownSourceMeta
 	6,  // 12: libravdb.ipc.v1.PromoteDreamEntriesRequest.entries:type_name -> libravdb.ipc.v1.DreamPromotionEntry
-	63, // 13: libravdb.ipc.v1.SearchTextCollectionsRequest.exclude_by_collection:type_name -> libravdb.ipc.v1.SearchTextCollectionsRequest.ExcludeByCollectionEntry
+	65, // 13: libravdb.ipc.v1.SearchTextCollectionsRequest.exclude_by_collection:type_name -> libravdb.ipc.v1.SearchTextCollectionsRequest.ExcludeByCollectionEntry
 	4,  // 14: libravdb.ipc.v1.SearchTextResponse.results:type_name -> libravdb.ipc.v1.SearchResult
 	7,  // 15: libravdb.ipc.v1.BumpAccessCountsRequest.updates:type_name -> libravdb.ipc.v1.AccessCountUpdate
 	17, // 16: libravdb.ipc.v1.ExportMemoryResponse.records:type_name -> libravdb.ipc.v1.ExportMemoryRecord
@@ -6010,6 +6156,30 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 				return nil
 			}
 		}
+		file_libravdb_ipc_v1_rpc_proto_msgTypes[63].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*RebuildIndexRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_libravdb_ipc_v1_rpc_proto_msgTypes[64].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*RebuildIndexResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	file_libravdb_ipc_v1_rpc_proto_msgTypes[12].OneofWrappers = []interface{}{}
 	type x struct{}
@@ -6018,7 +6188,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_libravdb_ipc_v1_rpc_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   64,
+			NumMessages:   66,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
