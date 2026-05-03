@@ -12,6 +12,9 @@
       "default": "./gen/js/libravdb/ipc/v1/rpc_pb.js"
     }
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "gen/js/"
   ],
