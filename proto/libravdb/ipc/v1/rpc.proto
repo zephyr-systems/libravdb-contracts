@@ -222,12 +222,20 @@ message InsertSessionTurnResponse {
   bool ok = 1;
 }
 
+// IngestMode controls whether a call replaces all existing nodes for the source_doc
+// or appends/merges them without deleting anything.
+enum IngestMode {
+  INGEST_MODE_REPLACE = 0;  // default — delete existing nodes, then insert new
+  INGEST_MODE_APPEND  = 1;  // skip delete, only insert new nodes
+}
+
 message IngestMarkdownDocumentRequest {
   string source_doc = 1;
   string text = 2;
   string tokenizer_id = 3;
   bool core_doc = 4;
   MarkdownSourceMeta source_meta = 5;
+  IngestMode mode = 6;  // default INGEST_MODE_REPLACE if absent
 }
 
 message IngestMarkdownDocumentResponse {

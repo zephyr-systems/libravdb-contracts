@@ -7,6 +7,33 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3, protoInt64, Struct } from "@bufbuild/protobuf";
 
 /**
+ * IngestMode controls whether a call replaces all existing nodes for the source_doc
+ * or appends/merges them without deleting anything.
+ *
+ * @generated from enum libravdb.ipc.v1.IngestMode
+ */
+export enum IngestMode {
+  /**
+   * default — delete existing nodes, then insert new
+   *
+   * @generated from enum value: INGEST_MODE_REPLACE = 0;
+   */
+  REPLACE = 0,
+
+  /**
+   * skip delete, only insert new nodes
+   *
+   * @generated from enum value: INGEST_MODE_APPEND = 1;
+   */
+  APPEND = 1,
+}
+// Retrieve enum metadata with: proto3.getEnumType(IngestMode)
+proto3.util.setEnumType(IngestMode, "libravdb.ipc.v1.IngestMode", [
+  { no: 0, name: "INGEST_MODE_REPLACE" },
+  { no: 1, name: "INGEST_MODE_APPEND" },
+]);
+
+/**
  * @generated from message libravdb.ipc.v1.RpcRequest
  */
 export class RpcRequest extends Message<RpcRequest> {
@@ -1500,6 +1527,13 @@ export class IngestMarkdownDocumentRequest extends Message<IngestMarkdownDocumen
    */
   sourceMeta?: MarkdownSourceMeta;
 
+  /**
+   * default INGEST_MODE_REPLACE if absent
+   *
+   * @generated from field: libravdb.ipc.v1.IngestMode mode = 6;
+   */
+  mode = IngestMode.REPLACE;
+
   constructor(data?: PartialMessage<IngestMarkdownDocumentRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1513,6 +1547,7 @@ export class IngestMarkdownDocumentRequest extends Message<IngestMarkdownDocumen
     { no: 3, name: "tokenizer_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "core_doc", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 5, name: "source_meta", kind: "message", T: MarkdownSourceMeta },
+    { no: 6, name: "mode", kind: "enum", T: proto3.getEnumType(IngestMode) },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): IngestMarkdownDocumentRequest {
