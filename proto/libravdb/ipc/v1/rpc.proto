@@ -133,6 +133,8 @@ message AssembleConfigOverrides {
   optional double section7_authority_recency_weight = 20;
   optional double section7_authority_frequency_weight = 21;
   optional double section7_authority_authored_weight = 22;
+  optional double section7_authority_salience_weight = 30;
+  optional double section7_recency_access_lambda = 31;
   optional double recovery_floor_score = 23;
   optional int32 recovery_min_top_k = 24;
   optional double recovery_min_confidence_mean = 25;

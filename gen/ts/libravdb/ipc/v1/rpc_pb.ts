@@ -821,6 +821,16 @@ export class AssembleConfigOverrides extends Message<AssembleConfigOverrides> {
   section7AuthorityAuthoredWeight?: number;
 
   /**
+   * @generated from field: optional double section7_authority_salience_weight = 30;
+   */
+  section7AuthoritySalienceWeight?: number;
+
+  /**
+   * @generated from field: optional double section7_recency_access_lambda = 31;
+   */
+  section7RecencyAccessLambda?: number;
+
+  /**
    * @generated from field: optional double recovery_floor_score = 23;
    */
   recoveryFloorScore?: number;
@@ -885,6 +895,8 @@ export class AssembleConfigOverrides extends Message<AssembleConfigOverrides> {
     { no: 20, name: "section7_authority_recency_weight", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
     { no: 21, name: "section7_authority_frequency_weight", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
     { no: 22, name: "section7_authority_authored_weight", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
+    { no: 30, name: "section7_authority_salience_weight", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
+    { no: 31, name: "section7_recency_access_lambda", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
     { no: 23, name: "recovery_floor_score", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
     { no: 24, name: "recovery_min_top_k", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 25, name: "recovery_min_confidence_mean", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
