@@ -115,8 +115,32 @@ message RecoveryOrderEntry {
   int32 token_estimate = 4;
 }
 
+// =============================================================================
+// AssembleConfigOverrides — canonical contract schema
+//
+// This is a FLAT message with optional fields only. No oneof, no alternate
+// override message. This is the single canonical override message.
+//
+// Source of truth for daemon handler status: kernel_handlers.go in the
+// libravdb daemon repo. Plugin camelCase ↔ proto snake_case mapping follows
+// standard protobuf conventions with no custom serialization.
+//
+// GHOST KEYS — NOT part of this contract. Must NOT be added without explicit
+// daemon implementation decision:
+//   section7StartupTokenBudgetTokens
+//   summaryExpansionConfidenceThreshold
+//   summaryExpansionDepth
+//   summaryExpansionTokenBudget
+//   summaryExpansionPenaltyFactor
+//
+// FIELD NUMBERING NOTE:
+//   Fields 23-29 are followed by 30, 31. This is intentional reservation —
+//   field numbers 32+ are available for future use. Do not reassign.
+// =============================================================================
+
 // Pointer-backed overrides: optional preserves unset vs zero for Go migration.
 message AssembleConfigOverrides {
+  // LIVE — fields with confirmed daemon handlers
   optional bool use_session_recall_projection = 1;
   optional bool use_session_summary_search_experiment = 2;
   optional double token_budget_fraction = 3;
@@ -127,7 +151,13 @@ message AssembleConfigOverrides {
   optional int32 continuity_min_turns = 8;
   optional int32 continuity_tail_budget_tokens = 9;
   optional int32 continuity_prior_context_tokens = 10;
+
+  // DEPRECATED — no daemon handler exists. Do not use until wired.
+  // Tracking: confirm no active traffic before major version removal.
+  // compact_threshold (field 11) was once used for compaction tuning;
+  // the daemon now derives this internally from token budget signals.
   optional int32 compact_threshold = 11;
+
   optional int32 compact_session_token_budget = 12;
   optional double section7_theta1 = 13;
   optional double section7_kappa = 14;
@@ -135,19 +165,40 @@ message AssembleConfigOverrides {
   optional double section7_hop_threshold = 16;
   optional int32 section7_coarse_top_k = 17;
   optional int32 section7_second_pass_top_k = 18;
+
+  // DEPRECATED — no daemon handler exists. Do not use until wired.
+  // section7_authority_recency_lambda (field 19) is a latent authority
+  // signal that was never connected to the ranking pipeline.
   optional double section7_authority_recency_lambda = 19;
+
   optional double section7_authority_recency_weight = 20;
   optional double section7_authority_frequency_weight = 21;
   optional double section7_authority_authored_weight = 22;
-  optional double section7_authority_salience_weight = 30;
-  optional double section7_recency_access_lambda = 31;
   optional double recovery_floor_score = 23;
   optional int32 recovery_min_top_k = 24;
   optional double recovery_min_confidence_mean = 25;
+
+  // DEPRECATED — no daemon handler exists. Do not use until wired.
+  // recency_lambda_session (field 26) was reserved for session-scoped
+  // recency weighting but has no active handler in the daemon.
   optional double recency_lambda_session = 26;
+
   optional double recency_lambda_user = 27;
+
+  // DEPRECATED — no daemon handler exists. Do not use until wired.
+  // recency_lambda_global (field 28) was reserved for global recency
+  // weighting but has no active handler in the daemon.
   optional double recency_lambda_global = 28;
+
   optional double ingestion_gate_threshold = 29;
+
+  // LIVE — plugin PR #160 is adding these; no contract change needed.
+  // These fields are actively consumed by the daemon ranking pipeline.
+  optional double section7_authority_salience_weight = 30;
+  optional double section7_recency_access_lambda = 31;
+
+  // RESERVED — field numbers 32+ are available for future use.
+  // Do not reassign existing fields to these numbers.
 }
 
 message RankCandidate {

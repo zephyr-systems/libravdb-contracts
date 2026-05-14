@@ -760,6 +760,8 @@ export class RecoveryOrderEntry extends Message<RecoveryOrderEntry> {
  */
 export class AssembleConfigOverrides extends Message<AssembleConfigOverrides> {
   /**
+   * LIVE — fields with confirmed daemon handlers
+   *
    * @generated from field: optional bool use_session_recall_projection = 1;
    */
   useSessionRecallProjection?: boolean;
@@ -810,6 +812,11 @@ export class AssembleConfigOverrides extends Message<AssembleConfigOverrides> {
   continuityPriorContextTokens?: number;
 
   /**
+   * DEPRECATED — no daemon handler exists. Do not use until wired.
+   * Tracking: confirm no active traffic before major version removal.
+   * compact_threshold (field 11) was once used for compaction tuning;
+   * the daemon now derives this internally from token budget signals.
+   *
    * @generated from field: optional int32 compact_threshold = 11;
    */
   compactThreshold?: number;
@@ -850,6 +857,10 @@ export class AssembleConfigOverrides extends Message<AssembleConfigOverrides> {
   section7SecondPassTopK?: number;
 
   /**
+   * DEPRECATED — no daemon handler exists. Do not use until wired.
+   * section7_authority_recency_lambda (field 19) is a latent authority
+   * signal that was never connected to the ranking pipeline.
+   *
    * @generated from field: optional double section7_authority_recency_lambda = 19;
    */
   section7AuthorityRecencyLambda?: number;
@@ -870,16 +881,6 @@ export class AssembleConfigOverrides extends Message<AssembleConfigOverrides> {
   section7AuthorityAuthoredWeight?: number;
 
   /**
-   * @generated from field: optional double section7_authority_salience_weight = 30;
-   */
-  section7AuthoritySalienceWeight?: number;
-
-  /**
-   * @generated from field: optional double section7_recency_access_lambda = 31;
-   */
-  section7RecencyAccessLambda?: number;
-
-  /**
    * @generated from field: optional double recovery_floor_score = 23;
    */
   recoveryFloorScore?: number;
@@ -895,6 +896,10 @@ export class AssembleConfigOverrides extends Message<AssembleConfigOverrides> {
   recoveryMinConfidenceMean?: number;
 
   /**
+   * DEPRECATED — no daemon handler exists. Do not use until wired.
+   * recency_lambda_session (field 26) was reserved for session-scoped
+   * recency weighting but has no active handler in the daemon.
+   *
    * @generated from field: optional double recency_lambda_session = 26;
    */
   recencyLambdaSession?: number;
@@ -905,6 +910,10 @@ export class AssembleConfigOverrides extends Message<AssembleConfigOverrides> {
   recencyLambdaUser?: number;
 
   /**
+   * DEPRECATED — no daemon handler exists. Do not use until wired.
+   * recency_lambda_global (field 28) was reserved for global recency
+   * weighting but has no active handler in the daemon.
+   *
    * @generated from field: optional double recency_lambda_global = 28;
    */
   recencyLambdaGlobal?: number;
@@ -913,6 +922,19 @@ export class AssembleConfigOverrides extends Message<AssembleConfigOverrides> {
    * @generated from field: optional double ingestion_gate_threshold = 29;
    */
   ingestionGateThreshold?: number;
+
+  /**
+   * LIVE — plugin PR #160 is adding these; no contract change needed.
+   * These fields are actively consumed by the daemon ranking pipeline.
+   *
+   * @generated from field: optional double section7_authority_salience_weight = 30;
+   */
+  section7AuthoritySalienceWeight?: number;
+
+  /**
+   * @generated from field: optional double section7_recency_access_lambda = 31;
+   */
+  section7RecencyAccessLambda?: number;
 
   constructor(data?: PartialMessage<AssembleConfigOverrides>) {
     super();
@@ -944,8 +966,6 @@ export class AssembleConfigOverrides extends Message<AssembleConfigOverrides> {
     { no: 20, name: "section7_authority_recency_weight", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
     { no: 21, name: "section7_authority_frequency_weight", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
     { no: 22, name: "section7_authority_authored_weight", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
-    { no: 30, name: "section7_authority_salience_weight", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
-    { no: 31, name: "section7_recency_access_lambda", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
     { no: 23, name: "recovery_floor_score", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
     { no: 24, name: "recovery_min_top_k", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 25, name: "recovery_min_confidence_mean", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
@@ -953,6 +973,8 @@ export class AssembleConfigOverrides extends Message<AssembleConfigOverrides> {
     { no: 27, name: "recency_lambda_user", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
     { no: 28, name: "recency_lambda_global", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
     { no: 29, name: "ingestion_gate_threshold", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
+    { no: 30, name: "section7_authority_salience_weight", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
+    { no: 31, name: "section7_recency_access_lambda", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AssembleConfigOverrides {
