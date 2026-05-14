@@ -4,6 +4,32 @@
 // @ts-nocheck
 import { Message, proto3, protoInt64, Struct } from "@bufbuild/protobuf";
 /**
+ * IngestMode controls whether a call replaces all existing nodes for the source_doc
+ * or appends/merges them without deleting anything.
+ *
+ * @generated from enum libravdb.ipc.v1.IngestMode
+ */
+export var IngestMode;
+(function (IngestMode) {
+    /**
+     * default — delete existing nodes, then insert new
+     *
+     * @generated from enum value: INGEST_MODE_REPLACE = 0;
+     */
+    IngestMode[IngestMode["REPLACE"] = 0] = "REPLACE";
+    /**
+     * skip delete, only insert new nodes
+     *
+     * @generated from enum value: INGEST_MODE_APPEND = 1;
+     */
+    IngestMode[IngestMode["APPEND"] = 1] = "APPEND";
+})(IngestMode || (IngestMode = {}));
+// Retrieve enum metadata with: proto3.getEnumType(IngestMode)
+proto3.util.setEnumType(IngestMode, "libravdb.ipc.v1.IngestMode", [
+    { no: 0, name: "INGEST_MODE_REPLACE" },
+    { no: 1, name: "INGEST_MODE_APPEND" },
+]);
+/**
  * @generated from message libravdb.ipc.v1.RpcRequest
  */
 export class RpcRequest extends Message {
@@ -457,6 +483,46 @@ export class AssembleContextInternalResponse extends Message {
     }
 }
 /**
+ * @generated from message libravdb.ipc.v1.PredictedContext
+ */
+export class PredictedContext extends Message {
+    /**
+     * @generated from field: string id = 1;
+     */
+    id = "";
+    /**
+     * @generated from field: string text = 2;
+     */
+    text = "";
+    /**
+     * @generated from field: string reason = 3;
+     */
+    reason = "";
+    constructor(data) {
+        super();
+        proto3.util.initPartial(data, this);
+    }
+    static runtime = proto3;
+    static typeName = "libravdb.ipc.v1.PredictedContext";
+    static fields = proto3.util.newFieldList(() => [
+        { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+        { no: 2, name: "text", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+        { no: 3, name: "reason", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    ]);
+    static fromBinary(bytes, options) {
+        return new PredictedContext().fromBinary(bytes, options);
+    }
+    static fromJson(jsonValue, options) {
+        return new PredictedContext().fromJson(jsonValue, options);
+    }
+    static fromJsonString(jsonString, options) {
+        return new PredictedContext().fromJsonString(jsonString, options);
+    }
+    static equals(a, b) {
+        return proto3.util.equals(PredictedContext, a, b);
+    }
+}
+/**
  * Typed debug payload for assemble_context_internal.
  * Mirrors the fields produced by the transport layer's assembleDebugToProto.
  *
@@ -649,6 +715,14 @@ export class AssembleConfigOverrides extends Message {
      */
     section7AuthorityAuthoredWeight;
     /**
+     * @generated from field: optional double section7_authority_salience_weight = 30;
+     */
+    section7AuthoritySalienceWeight;
+    /**
+     * @generated from field: optional double section7_recency_access_lambda = 31;
+     */
+    section7RecencyAccessLambda;
+    /**
      * @generated from field: optional double recovery_floor_score = 23;
      */
     recoveryFloorScore;
@@ -705,6 +779,8 @@ export class AssembleConfigOverrides extends Message {
         { no: 20, name: "section7_authority_recency_weight", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
         { no: 21, name: "section7_authority_frequency_weight", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
         { no: 22, name: "section7_authority_authored_weight", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
+        { no: 30, name: "section7_authority_salience_weight", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
+        { no: 31, name: "section7_recency_access_lambda", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
         { no: 23, name: "recovery_floor_score", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
         { no: 24, name: "recovery_min_top_k", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
         { no: 25, name: "recovery_min_confidence_mean", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
@@ -1231,6 +1307,12 @@ export class IngestMarkdownDocumentRequest extends Message {
      * @generated from field: libravdb.ipc.v1.MarkdownSourceMeta source_meta = 5;
      */
     sourceMeta;
+    /**
+     * default INGEST_MODE_REPLACE if absent
+     *
+     * @generated from field: libravdb.ipc.v1.IngestMode mode = 6;
+     */
+    mode = IngestMode.REPLACE;
     constructor(data) {
         super();
         proto3.util.initPartial(data, this);
@@ -1243,6 +1325,7 @@ export class IngestMarkdownDocumentRequest extends Message {
         { no: 3, name: "tokenizer_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
         { no: 4, name: "core_doc", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
         { no: 5, name: "source_meta", kind: "message", T: MarkdownSourceMeta },
+        { no: 6, name: "mode", kind: "enum", T: proto3.getEnumType(IngestMode) },
     ]);
     static fromBinary(bytes, options) {
         return new IngestMarkdownDocumentRequest().fromBinary(bytes, options);
@@ -2633,6 +2716,10 @@ export class AfterTurnKernelResponse extends Message {
      * @generated from field: bool ok = 1;
      */
     ok = false;
+    /**
+     * @generated from field: repeated libravdb.ipc.v1.PredictedContext predictions = 2;
+     */
+    predictions = [];
     constructor(data) {
         super();
         proto3.util.initPartial(data, this);
@@ -2641,6 +2728,7 @@ export class AfterTurnKernelResponse extends Message {
     static typeName = "libravdb.ipc.v1.AfterTurnKernelResponse";
     static fields = proto3.util.newFieldList(() => [
         { no: 1, name: "ok", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+        { no: 2, name: "predictions", kind: "message", T: PredictedContext, repeated: true },
     ]);
     static fromBinary(bytes, options) {
         return new AfterTurnKernelResponse().fromBinary(bytes, options);

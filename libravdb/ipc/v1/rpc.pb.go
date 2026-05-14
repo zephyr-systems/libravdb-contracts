@@ -775,6 +775,69 @@ func (x *AssembleContextInternalResponse) GetDebug() *AssemblyDebug {
 	return nil
 }
 
+type PredictedContext struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id     string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Text   string `protobuf:"bytes,2,opt,name=text,proto3" json:"text,omitempty"`
+	Reason string `protobuf:"bytes,3,opt,name=reason,proto3" json:"reason,omitempty"`
+}
+
+func (x *PredictedContext) Reset() {
+	*x = PredictedContext{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PredictedContext) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PredictedContext) ProtoMessage() {}
+
+func (x *PredictedContext) ProtoReflect() protoreflect.Message {
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PredictedContext.ProtoReflect.Descriptor instead.
+func (*PredictedContext) Descriptor() ([]byte, []int) {
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *PredictedContext) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *PredictedContext) GetText() string {
+	if x != nil {
+		return x.Text
+	}
+	return ""
+}
+
+func (x *PredictedContext) GetReason() string {
+	if x != nil {
+		return x.Reason
+	}
+	return ""
+}
+
 // Typed debug payload for assemble_context_internal.
 // Mirrors the fields produced by the transport layer's assembleDebugToProto.
 type AssemblyDebug struct {
@@ -792,7 +855,7 @@ type AssemblyDebug struct {
 func (x *AssemblyDebug) Reset() {
 	*x = AssemblyDebug{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[10]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -805,7 +868,7 @@ func (x *AssemblyDebug) String() string {
 func (*AssemblyDebug) ProtoMessage() {}
 
 func (x *AssemblyDebug) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[10]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -818,7 +881,7 @@ func (x *AssemblyDebug) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AssemblyDebug.ProtoReflect.Descriptor instead.
 func (*AssemblyDebug) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{10}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *AssemblyDebug) GetRecoveryTriggerFired() bool {
@@ -870,7 +933,7 @@ type RecoveryOrderEntry struct {
 func (x *RecoveryOrderEntry) Reset() {
 	*x = RecoveryOrderEntry{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[11]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -883,7 +946,7 @@ func (x *RecoveryOrderEntry) String() string {
 func (*RecoveryOrderEntry) ProtoMessage() {}
 
 func (x *RecoveryOrderEntry) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[11]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -896,7 +959,7 @@ func (x *RecoveryOrderEntry) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RecoveryOrderEntry.ProtoReflect.Descriptor instead.
 func (*RecoveryOrderEntry) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{11}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *RecoveryOrderEntry) GetId() string {
@@ -969,7 +1032,7 @@ type AssembleConfigOverrides struct {
 func (x *AssembleConfigOverrides) Reset() {
 	*x = AssembleConfigOverrides{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[12]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -982,7 +1045,7 @@ func (x *AssembleConfigOverrides) String() string {
 func (*AssembleConfigOverrides) ProtoMessage() {}
 
 func (x *AssembleConfigOverrides) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[12]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -995,7 +1058,7 @@ func (x *AssembleConfigOverrides) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AssembleConfigOverrides.ProtoReflect.Descriptor instead.
 func (*AssembleConfigOverrides) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{12}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *AssembleConfigOverrides) GetUseSessionRecallProjection() bool {
@@ -1229,7 +1292,7 @@ type RankCandidate struct {
 func (x *RankCandidate) Reset() {
 	*x = RankCandidate{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[13]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1242,7 +1305,7 @@ func (x *RankCandidate) String() string {
 func (*RankCandidate) ProtoMessage() {}
 
 func (x *RankCandidate) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[13]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1255,7 +1318,7 @@ func (x *RankCandidate) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RankCandidate.ProtoReflect.Descriptor instead.
 func (*RankCandidate) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{13}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *RankCandidate) GetId() string {
@@ -1299,7 +1362,7 @@ type HealthResponse struct {
 func (x *HealthResponse) Reset() {
 	*x = HealthResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[14]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1312,7 +1375,7 @@ func (x *HealthResponse) String() string {
 func (*HealthResponse) ProtoMessage() {}
 
 func (x *HealthResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[14]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1325,7 +1388,7 @@ func (x *HealthResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HealthResponse.ProtoReflect.Descriptor instead.
 func (*HealthResponse) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{14}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *HealthResponse) GetOk() bool {
@@ -1359,7 +1422,7 @@ type CompactSessionResponse struct {
 func (x *CompactSessionResponse) Reset() {
 	*x = CompactSessionResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[15]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1372,7 +1435,7 @@ func (x *CompactSessionResponse) String() string {
 func (*CompactSessionResponse) ProtoMessage() {}
 
 func (x *CompactSessionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[15]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1385,7 +1448,7 @@ func (x *CompactSessionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CompactSessionResponse.ProtoReflect.Descriptor instead.
 func (*CompactSessionResponse) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{15}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *CompactSessionResponse) GetDidCompact() bool {
@@ -1453,7 +1516,7 @@ type GatingScalarResponse struct {
 func (x *GatingScalarResponse) Reset() {
 	*x = GatingScalarResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[16]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1466,7 +1529,7 @@ func (x *GatingScalarResponse) String() string {
 func (*GatingScalarResponse) ProtoMessage() {}
 
 func (x *GatingScalarResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[16]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1479,7 +1542,7 @@ func (x *GatingScalarResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GatingScalarResponse.ProtoReflect.Descriptor instead.
 func (*GatingScalarResponse) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{16}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *GatingScalarResponse) GetG() float64 {
@@ -1580,7 +1643,7 @@ type ExportMemoryRecord struct {
 func (x *ExportMemoryRecord) Reset() {
 	*x = ExportMemoryRecord{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[17]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1593,7 +1656,7 @@ func (x *ExportMemoryRecord) String() string {
 func (*ExportMemoryRecord) ProtoMessage() {}
 
 func (x *ExportMemoryRecord) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[17]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1606,7 +1669,7 @@ func (x *ExportMemoryRecord) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExportMemoryRecord.ProtoReflect.Descriptor instead.
 func (*ExportMemoryRecord) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{17}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *ExportMemoryRecord) GetCollection() string {
@@ -1648,7 +1711,7 @@ type EnsureCollectionsRequest struct {
 func (x *EnsureCollectionsRequest) Reset() {
 	*x = EnsureCollectionsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[18]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1661,7 +1724,7 @@ func (x *EnsureCollectionsRequest) String() string {
 func (*EnsureCollectionsRequest) ProtoMessage() {}
 
 func (x *EnsureCollectionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[18]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1674,7 +1737,7 @@ func (x *EnsureCollectionsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EnsureCollectionsRequest.ProtoReflect.Descriptor instead.
 func (*EnsureCollectionsRequest) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{18}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *EnsureCollectionsRequest) GetCollections() []string {
@@ -1695,7 +1758,7 @@ type EnsureCollectionsResponse struct {
 func (x *EnsureCollectionsResponse) Reset() {
 	*x = EnsureCollectionsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[19]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1708,7 +1771,7 @@ func (x *EnsureCollectionsResponse) String() string {
 func (*EnsureCollectionsResponse) ProtoMessage() {}
 
 func (x *EnsureCollectionsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[19]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1721,7 +1784,7 @@ func (x *EnsureCollectionsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EnsureCollectionsResponse.ProtoReflect.Descriptor instead.
 func (*EnsureCollectionsResponse) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{19}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *EnsureCollectionsResponse) GetOk() bool {
@@ -1745,7 +1808,7 @@ type InsertTextRequest struct {
 func (x *InsertTextRequest) Reset() {
 	*x = InsertTextRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[20]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1758,7 +1821,7 @@ func (x *InsertTextRequest) String() string {
 func (*InsertTextRequest) ProtoMessage() {}
 
 func (x *InsertTextRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[20]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1771,7 +1834,7 @@ func (x *InsertTextRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InsertTextRequest.ProtoReflect.Descriptor instead.
 func (*InsertTextRequest) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{20}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *InsertTextRequest) GetCollection() string {
@@ -1813,7 +1876,7 @@ type InsertTextResponse struct {
 func (x *InsertTextResponse) Reset() {
 	*x = InsertTextResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[21]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1826,7 +1889,7 @@ func (x *InsertTextResponse) String() string {
 func (*InsertTextResponse) ProtoMessage() {}
 
 func (x *InsertTextResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[21]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1839,7 +1902,7 @@ func (x *InsertTextResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InsertTextResponse.ProtoReflect.Descriptor instead.
 func (*InsertTextResponse) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{21}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *InsertTextResponse) GetOk() bool {
@@ -1863,7 +1926,7 @@ type InsertSessionTurnRequest struct {
 func (x *InsertSessionTurnRequest) Reset() {
 	*x = InsertSessionTurnRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[22]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1876,7 +1939,7 @@ func (x *InsertSessionTurnRequest) String() string {
 func (*InsertSessionTurnRequest) ProtoMessage() {}
 
 func (x *InsertSessionTurnRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[22]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1889,7 +1952,7 @@ func (x *InsertSessionTurnRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InsertSessionTurnRequest.ProtoReflect.Descriptor instead.
 func (*InsertSessionTurnRequest) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{22}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *InsertSessionTurnRequest) GetSessionId() string {
@@ -1931,7 +1994,7 @@ type InsertSessionTurnResponse struct {
 func (x *InsertSessionTurnResponse) Reset() {
 	*x = InsertSessionTurnResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[23]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[24]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1944,7 +2007,7 @@ func (x *InsertSessionTurnResponse) String() string {
 func (*InsertSessionTurnResponse) ProtoMessage() {}
 
 func (x *InsertSessionTurnResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[23]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[24]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1957,7 +2020,7 @@ func (x *InsertSessionTurnResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InsertSessionTurnResponse.ProtoReflect.Descriptor instead.
 func (*InsertSessionTurnResponse) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{23}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *InsertSessionTurnResponse) GetOk() bool {
@@ -1983,7 +2046,7 @@ type IngestMarkdownDocumentRequest struct {
 func (x *IngestMarkdownDocumentRequest) Reset() {
 	*x = IngestMarkdownDocumentRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[24]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[25]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1996,7 +2059,7 @@ func (x *IngestMarkdownDocumentRequest) String() string {
 func (*IngestMarkdownDocumentRequest) ProtoMessage() {}
 
 func (x *IngestMarkdownDocumentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[24]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[25]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2009,7 +2072,7 @@ func (x *IngestMarkdownDocumentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IngestMarkdownDocumentRequest.ProtoReflect.Descriptor instead.
 func (*IngestMarkdownDocumentRequest) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{24}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *IngestMarkdownDocumentRequest) GetSourceDoc() string {
@@ -2065,7 +2128,7 @@ type IngestMarkdownDocumentResponse struct {
 func (x *IngestMarkdownDocumentResponse) Reset() {
 	*x = IngestMarkdownDocumentResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[25]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[26]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2078,7 +2141,7 @@ func (x *IngestMarkdownDocumentResponse) String() string {
 func (*IngestMarkdownDocumentResponse) ProtoMessage() {}
 
 func (x *IngestMarkdownDocumentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[25]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[26]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2091,7 +2154,7 @@ func (x *IngestMarkdownDocumentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IngestMarkdownDocumentResponse.ProtoReflect.Descriptor instead.
 func (*IngestMarkdownDocumentResponse) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{25}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *IngestMarkdownDocumentResponse) GetOk() bool {
@@ -2112,7 +2175,7 @@ type DeleteAuthoredDocumentRequest struct {
 func (x *DeleteAuthoredDocumentRequest) Reset() {
 	*x = DeleteAuthoredDocumentRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[26]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[27]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2125,7 +2188,7 @@ func (x *DeleteAuthoredDocumentRequest) String() string {
 func (*DeleteAuthoredDocumentRequest) ProtoMessage() {}
 
 func (x *DeleteAuthoredDocumentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[26]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[27]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2138,7 +2201,7 @@ func (x *DeleteAuthoredDocumentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteAuthoredDocumentRequest.ProtoReflect.Descriptor instead.
 func (*DeleteAuthoredDocumentRequest) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{26}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *DeleteAuthoredDocumentRequest) GetSourceDoc() string {
@@ -2159,7 +2222,7 @@ type DeleteAuthoredDocumentResponse struct {
 func (x *DeleteAuthoredDocumentResponse) Reset() {
 	*x = DeleteAuthoredDocumentResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[27]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[28]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2172,7 +2235,7 @@ func (x *DeleteAuthoredDocumentResponse) String() string {
 func (*DeleteAuthoredDocumentResponse) ProtoMessage() {}
 
 func (x *DeleteAuthoredDocumentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[27]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[28]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2185,7 +2248,7 @@ func (x *DeleteAuthoredDocumentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteAuthoredDocumentResponse.ProtoReflect.Descriptor instead.
 func (*DeleteAuthoredDocumentResponse) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{27}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *DeleteAuthoredDocumentResponse) GetOk() bool {
@@ -2216,7 +2279,7 @@ type PromoteDreamEntriesRequest struct {
 func (x *PromoteDreamEntriesRequest) Reset() {
 	*x = PromoteDreamEntriesRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[28]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[29]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2229,7 +2292,7 @@ func (x *PromoteDreamEntriesRequest) String() string {
 func (*PromoteDreamEntriesRequest) ProtoMessage() {}
 
 func (x *PromoteDreamEntriesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[28]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[29]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2242,7 +2305,7 @@ func (x *PromoteDreamEntriesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PromoteDreamEntriesRequest.ProtoReflect.Descriptor instead.
 func (*PromoteDreamEntriesRequest) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{28}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *PromoteDreamEntriesRequest) GetUserId() string {
@@ -2334,7 +2397,7 @@ type DreamPromotionResponse struct {
 func (x *DreamPromotionResponse) Reset() {
 	*x = DreamPromotionResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[29]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[30]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2347,7 +2410,7 @@ func (x *DreamPromotionResponse) String() string {
 func (*DreamPromotionResponse) ProtoMessage() {}
 
 func (x *DreamPromotionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[29]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[30]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2360,7 +2423,7 @@ func (x *DreamPromotionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DreamPromotionResponse.ProtoReflect.Descriptor instead.
 func (*DreamPromotionResponse) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{29}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *DreamPromotionResponse) GetPromoted() int32 {
@@ -2391,7 +2454,7 @@ type SearchTextRequest struct {
 func (x *SearchTextRequest) Reset() {
 	*x = SearchTextRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[30]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[31]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2404,7 +2467,7 @@ func (x *SearchTextRequest) String() string {
 func (*SearchTextRequest) ProtoMessage() {}
 
 func (x *SearchTextRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[30]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[31]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2417,7 +2480,7 @@ func (x *SearchTextRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchTextRequest.ProtoReflect.Descriptor instead.
 func (*SearchTextRequest) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{30}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *SearchTextRequest) GetCollection() string {
@@ -2462,7 +2525,7 @@ type SearchTextCollectionsRequest struct {
 func (x *SearchTextCollectionsRequest) Reset() {
 	*x = SearchTextCollectionsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[31]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[32]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2475,7 +2538,7 @@ func (x *SearchTextCollectionsRequest) String() string {
 func (*SearchTextCollectionsRequest) ProtoMessage() {}
 
 func (x *SearchTextCollectionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[31]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[32]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2488,7 +2551,7 @@ func (x *SearchTextCollectionsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchTextCollectionsRequest.ProtoReflect.Descriptor instead.
 func (*SearchTextCollectionsRequest) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{31}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *SearchTextCollectionsRequest) GetCollections() []string {
@@ -2530,7 +2593,7 @@ type SearchTextResponse struct {
 func (x *SearchTextResponse) Reset() {
 	*x = SearchTextResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[32]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[33]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2543,7 +2606,7 @@ func (x *SearchTextResponse) String() string {
 func (*SearchTextResponse) ProtoMessage() {}
 
 func (x *SearchTextResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[32]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[33]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2556,7 +2619,7 @@ func (x *SearchTextResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchTextResponse.ProtoReflect.Descriptor instead.
 func (*SearchTextResponse) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{32}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *SearchTextResponse) GetResults() []*SearchResult {
@@ -2579,7 +2642,7 @@ type ListByMetaRequest struct {
 func (x *ListByMetaRequest) Reset() {
 	*x = ListByMetaRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[33]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[34]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2592,7 +2655,7 @@ func (x *ListByMetaRequest) String() string {
 func (*ListByMetaRequest) ProtoMessage() {}
 
 func (x *ListByMetaRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[33]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[34]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2605,7 +2668,7 @@ func (x *ListByMetaRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListByMetaRequest.ProtoReflect.Descriptor instead.
 func (*ListByMetaRequest) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{33}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *ListByMetaRequest) GetCollection() string {
@@ -2640,7 +2703,7 @@ type ListCollectionRequest struct {
 func (x *ListCollectionRequest) Reset() {
 	*x = ListCollectionRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[34]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[35]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2653,7 +2716,7 @@ func (x *ListCollectionRequest) String() string {
 func (*ListCollectionRequest) ProtoMessage() {}
 
 func (x *ListCollectionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[34]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[35]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2666,7 +2729,7 @@ func (x *ListCollectionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListCollectionRequest.ProtoReflect.Descriptor instead.
 func (*ListCollectionRequest) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{34}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *ListCollectionRequest) GetCollection() string {
@@ -2689,7 +2752,7 @@ type ExpandSummaryRequest struct {
 func (x *ExpandSummaryRequest) Reset() {
 	*x = ExpandSummaryRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[35]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[36]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2702,7 +2765,7 @@ func (x *ExpandSummaryRequest) String() string {
 func (*ExpandSummaryRequest) ProtoMessage() {}
 
 func (x *ExpandSummaryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[35]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[36]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2715,7 +2778,7 @@ func (x *ExpandSummaryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExpandSummaryRequest.ProtoReflect.Descriptor instead.
 func (*ExpandSummaryRequest) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{35}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *ExpandSummaryRequest) GetSessionId() string {
@@ -2753,7 +2816,7 @@ type QueryRawSessionRequest struct {
 func (x *QueryRawSessionRequest) Reset() {
 	*x = QueryRawSessionRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[36]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[37]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2766,7 +2829,7 @@ func (x *QueryRawSessionRequest) String() string {
 func (*QueryRawSessionRequest) ProtoMessage() {}
 
 func (x *QueryRawSessionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[36]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[37]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2779,7 +2842,7 @@ func (x *QueryRawSessionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use QueryRawSessionRequest.ProtoReflect.Descriptor instead.
 func (*QueryRawSessionRequest) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{36}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *QueryRawSessionRequest) GetSessionId() string {
@@ -2822,7 +2885,7 @@ type ListLifecycleJournalRequest struct {
 func (x *ListLifecycleJournalRequest) Reset() {
 	*x = ListLifecycleJournalRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[37]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[38]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2835,7 +2898,7 @@ func (x *ListLifecycleJournalRequest) String() string {
 func (*ListLifecycleJournalRequest) ProtoMessage() {}
 
 func (x *ListLifecycleJournalRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[37]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[38]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2848,7 +2911,7 @@ func (x *ListLifecycleJournalRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListLifecycleJournalRequest.ProtoReflect.Descriptor instead.
 func (*ListLifecycleJournalRequest) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{37}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *ListLifecycleJournalRequest) GetSessionId() string {
@@ -2876,7 +2939,7 @@ type BumpAccessCountsRequest struct {
 func (x *BumpAccessCountsRequest) Reset() {
 	*x = BumpAccessCountsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[38]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[39]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2889,7 +2952,7 @@ func (x *BumpAccessCountsRequest) String() string {
 func (*BumpAccessCountsRequest) ProtoMessage() {}
 
 func (x *BumpAccessCountsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[38]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[39]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2902,7 +2965,7 @@ func (x *BumpAccessCountsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BumpAccessCountsRequest.ProtoReflect.Descriptor instead.
 func (*BumpAccessCountsRequest) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{38}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *BumpAccessCountsRequest) GetUpdates() []*AccessCountUpdate {
@@ -2923,7 +2986,7 @@ type BumpAccessCountsResponse struct {
 func (x *BumpAccessCountsResponse) Reset() {
 	*x = BumpAccessCountsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[39]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[40]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2936,7 +2999,7 @@ func (x *BumpAccessCountsResponse) String() string {
 func (*BumpAccessCountsResponse) ProtoMessage() {}
 
 func (x *BumpAccessCountsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[39]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[40]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2949,7 +3012,7 @@ func (x *BumpAccessCountsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BumpAccessCountsResponse.ProtoReflect.Descriptor instead.
 func (*BumpAccessCountsResponse) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{39}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *BumpAccessCountsResponse) GetOk() bool {
@@ -2971,7 +3034,7 @@ type DeleteRequest struct {
 func (x *DeleteRequest) Reset() {
 	*x = DeleteRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[40]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[41]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2984,7 +3047,7 @@ func (x *DeleteRequest) String() string {
 func (*DeleteRequest) ProtoMessage() {}
 
 func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[40]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[41]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2997,7 +3060,7 @@ func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRequest) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{40}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{41}
 }
 
 func (x *DeleteRequest) GetCollection() string {
@@ -3025,7 +3088,7 @@ type DeleteResponse struct {
 func (x *DeleteResponse) Reset() {
 	*x = DeleteResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[41]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[42]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3038,7 +3101,7 @@ func (x *DeleteResponse) String() string {
 func (*DeleteResponse) ProtoMessage() {}
 
 func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[41]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[42]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3051,7 +3114,7 @@ func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteResponse.ProtoReflect.Descriptor instead.
 func (*DeleteResponse) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{41}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *DeleteResponse) GetOk() bool {
@@ -3073,7 +3136,7 @@ type DeleteBatchRequest struct {
 func (x *DeleteBatchRequest) Reset() {
 	*x = DeleteBatchRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[42]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[43]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3086,7 +3149,7 @@ func (x *DeleteBatchRequest) String() string {
 func (*DeleteBatchRequest) ProtoMessage() {}
 
 func (x *DeleteBatchRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[42]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[43]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3099,7 +3162,7 @@ func (x *DeleteBatchRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteBatchRequest.ProtoReflect.Descriptor instead.
 func (*DeleteBatchRequest) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{42}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *DeleteBatchRequest) GetCollection() string {
@@ -3127,7 +3190,7 @@ type DeleteBatchResponse struct {
 func (x *DeleteBatchResponse) Reset() {
 	*x = DeleteBatchResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[43]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[44]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3140,7 +3203,7 @@ func (x *DeleteBatchResponse) String() string {
 func (*DeleteBatchResponse) ProtoMessage() {}
 
 func (x *DeleteBatchResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[43]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[44]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3153,7 +3216,7 @@ func (x *DeleteBatchResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteBatchResponse.ProtoReflect.Descriptor instead.
 func (*DeleteBatchResponse) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{43}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *DeleteBatchResponse) GetOk() bool {
@@ -3182,7 +3245,7 @@ type CompactSessionRequest struct {
 func (x *CompactSessionRequest) Reset() {
 	*x = CompactSessionRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[44]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[45]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3195,7 +3258,7 @@ func (x *CompactSessionRequest) String() string {
 func (*CompactSessionRequest) ProtoMessage() {}
 
 func (x *CompactSessionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[44]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[45]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3208,7 +3271,7 @@ func (x *CompactSessionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CompactSessionRequest.ProtoReflect.Descriptor instead.
 func (*CompactSessionRequest) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{44}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{45}
 }
 
 func (x *CompactSessionRequest) GetSessionId() string {
@@ -3272,7 +3335,7 @@ type GatingScalarRequest struct {
 func (x *GatingScalarRequest) Reset() {
 	*x = GatingScalarRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[45]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[46]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3285,7 +3348,7 @@ func (x *GatingScalarRequest) String() string {
 func (*GatingScalarRequest) ProtoMessage() {}
 
 func (x *GatingScalarRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[45]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[46]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3298,7 +3361,7 @@ func (x *GatingScalarRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GatingScalarRequest.ProtoReflect.Descriptor instead.
 func (*GatingScalarRequest) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{45}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{46}
 }
 
 func (x *GatingScalarRequest) GetUserId() string {
@@ -3327,7 +3390,7 @@ type FlushNamespaceRequest struct {
 func (x *FlushNamespaceRequest) Reset() {
 	*x = FlushNamespaceRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[46]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[47]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3340,7 +3403,7 @@ func (x *FlushNamespaceRequest) String() string {
 func (*FlushNamespaceRequest) ProtoMessage() {}
 
 func (x *FlushNamespaceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[46]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[47]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3353,7 +3416,7 @@ func (x *FlushNamespaceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FlushNamespaceRequest.ProtoReflect.Descriptor instead.
 func (*FlushNamespaceRequest) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{46}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{47}
 }
 
 func (x *FlushNamespaceRequest) GetUserId() string {
@@ -3392,7 +3455,7 @@ type SessionLifecycleHintRequest struct {
 func (x *SessionLifecycleHintRequest) Reset() {
 	*x = SessionLifecycleHintRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[47]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[48]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3405,7 +3468,7 @@ func (x *SessionLifecycleHintRequest) String() string {
 func (*SessionLifecycleHintRequest) ProtoMessage() {}
 
 func (x *SessionLifecycleHintRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[47]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[48]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3418,7 +3481,7 @@ func (x *SessionLifecycleHintRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SessionLifecycleHintRequest.ProtoReflect.Descriptor instead.
 func (*SessionLifecycleHintRequest) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{47}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{48}
 }
 
 func (x *SessionLifecycleHintRequest) GetHook() string {
@@ -3519,7 +3582,7 @@ type SessionLifecycleHintResponse struct {
 func (x *SessionLifecycleHintResponse) Reset() {
 	*x = SessionLifecycleHintResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[48]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[49]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3532,7 +3595,7 @@ func (x *SessionLifecycleHintResponse) String() string {
 func (*SessionLifecycleHintResponse) ProtoMessage() {}
 
 func (x *SessionLifecycleHintResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[48]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[49]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3545,7 +3608,7 @@ func (x *SessionLifecycleHintResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SessionLifecycleHintResponse.ProtoReflect.Descriptor instead.
 func (*SessionLifecycleHintResponse) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{48}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{49}
 }
 
 func (x *SessionLifecycleHintResponse) GetOk() bool {
@@ -3594,7 +3657,7 @@ type MemoryStatusResponse struct {
 func (x *MemoryStatusResponse) Reset() {
 	*x = MemoryStatusResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[49]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[50]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3607,7 +3670,7 @@ func (x *MemoryStatusResponse) String() string {
 func (*MemoryStatusResponse) ProtoMessage() {}
 
 func (x *MemoryStatusResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[49]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[50]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3620,7 +3683,7 @@ func (x *MemoryStatusResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MemoryStatusResponse.ProtoReflect.Descriptor instead.
 func (*MemoryStatusResponse) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{49}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{50}
 }
 
 func (x *MemoryStatusResponse) GetOk() bool {
@@ -3691,7 +3754,7 @@ type ExportMemoryRequest struct {
 func (x *ExportMemoryRequest) Reset() {
 	*x = ExportMemoryRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[50]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[51]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3704,7 +3767,7 @@ func (x *ExportMemoryRequest) String() string {
 func (*ExportMemoryRequest) ProtoMessage() {}
 
 func (x *ExportMemoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[50]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[51]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3717,7 +3780,7 @@ func (x *ExportMemoryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExportMemoryRequest.ProtoReflect.Descriptor instead.
 func (*ExportMemoryRequest) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{50}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{51}
 }
 
 func (x *ExportMemoryRequest) GetUserId() string {
@@ -3745,7 +3808,7 @@ type ExportMemoryResponse struct {
 func (x *ExportMemoryResponse) Reset() {
 	*x = ExportMemoryResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[51]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[52]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3758,7 +3821,7 @@ func (x *ExportMemoryResponse) String() string {
 func (*ExportMemoryResponse) ProtoMessage() {}
 
 func (x *ExportMemoryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[51]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[52]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3771,7 +3834,7 @@ func (x *ExportMemoryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExportMemoryResponse.ProtoReflect.Descriptor instead.
 func (*ExportMemoryResponse) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{51}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{52}
 }
 
 func (x *ExportMemoryResponse) GetRecords() []*ExportMemoryRecord {
@@ -3792,7 +3855,7 @@ type FlushNamespaceResponse struct {
 func (x *FlushNamespaceResponse) Reset() {
 	*x = FlushNamespaceResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[52]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[53]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3805,7 +3868,7 @@ func (x *FlushNamespaceResponse) String() string {
 func (*FlushNamespaceResponse) ProtoMessage() {}
 
 func (x *FlushNamespaceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[52]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[53]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3818,7 +3881,7 @@ func (x *FlushNamespaceResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FlushNamespaceResponse.ProtoReflect.Descriptor instead.
 func (*FlushNamespaceResponse) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{52}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{53}
 }
 
 func (x *FlushNamespaceResponse) GetOk() bool {
@@ -3839,7 +3902,7 @@ type FlushResponse struct {
 func (x *FlushResponse) Reset() {
 	*x = FlushResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[53]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[54]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3852,7 +3915,7 @@ func (x *FlushResponse) String() string {
 func (*FlushResponse) ProtoMessage() {}
 
 func (x *FlushResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[53]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[54]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3865,7 +3928,7 @@ func (x *FlushResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FlushResponse.ProtoReflect.Descriptor instead.
 func (*FlushResponse) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{53}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *FlushResponse) GetOk() bool {
@@ -3888,7 +3951,7 @@ type BootstrapSessionKernelRequest struct {
 func (x *BootstrapSessionKernelRequest) Reset() {
 	*x = BootstrapSessionKernelRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[54]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[55]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3901,7 +3964,7 @@ func (x *BootstrapSessionKernelRequest) String() string {
 func (*BootstrapSessionKernelRequest) ProtoMessage() {}
 
 func (x *BootstrapSessionKernelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[54]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[55]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3914,7 +3977,7 @@ func (x *BootstrapSessionKernelRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BootstrapSessionKernelRequest.ProtoReflect.Descriptor instead.
 func (*BootstrapSessionKernelRequest) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{54}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{55}
 }
 
 func (x *BootstrapSessionKernelRequest) GetSessionId() string {
@@ -3949,7 +4012,7 @@ type BootstrapSessionKernelResponse struct {
 func (x *BootstrapSessionKernelResponse) Reset() {
 	*x = BootstrapSessionKernelResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[55]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[56]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3962,7 +4025,7 @@ func (x *BootstrapSessionKernelResponse) String() string {
 func (*BootstrapSessionKernelResponse) ProtoMessage() {}
 
 func (x *BootstrapSessionKernelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[55]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[56]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3975,7 +4038,7 @@ func (x *BootstrapSessionKernelResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BootstrapSessionKernelResponse.ProtoReflect.Descriptor instead.
 func (*BootstrapSessionKernelResponse) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{55}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{56}
 }
 
 func (x *BootstrapSessionKernelResponse) GetOk() bool {
@@ -4000,7 +4063,7 @@ type IngestMessageKernelRequest struct {
 func (x *IngestMessageKernelRequest) Reset() {
 	*x = IngestMessageKernelRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[56]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[57]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4013,7 +4076,7 @@ func (x *IngestMessageKernelRequest) String() string {
 func (*IngestMessageKernelRequest) ProtoMessage() {}
 
 func (x *IngestMessageKernelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[56]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[57]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4026,7 +4089,7 @@ func (x *IngestMessageKernelRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IngestMessageKernelRequest.ProtoReflect.Descriptor instead.
 func (*IngestMessageKernelRequest) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{56}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{57}
 }
 
 func (x *IngestMessageKernelRequest) GetSessionId() string {
@@ -4076,7 +4139,7 @@ type IngestMessageKernelResponse struct {
 func (x *IngestMessageKernelResponse) Reset() {
 	*x = IngestMessageKernelResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[57]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[58]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4089,7 +4152,7 @@ func (x *IngestMessageKernelResponse) String() string {
 func (*IngestMessageKernelResponse) ProtoMessage() {}
 
 func (x *IngestMessageKernelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[57]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[58]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4102,7 +4165,7 @@ func (x *IngestMessageKernelResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IngestMessageKernelResponse.ProtoReflect.Descriptor instead.
 func (*IngestMessageKernelResponse) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{57}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{58}
 }
 
 func (x *IngestMessageKernelResponse) GetOk() bool {
@@ -4135,7 +4198,7 @@ type AfterTurnKernelRequest struct {
 func (x *AfterTurnKernelRequest) Reset() {
 	*x = AfterTurnKernelRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[58]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[59]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4148,7 +4211,7 @@ func (x *AfterTurnKernelRequest) String() string {
 func (*AfterTurnKernelRequest) ProtoMessage() {}
 
 func (x *AfterTurnKernelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[58]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[59]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4161,7 +4224,7 @@ func (x *AfterTurnKernelRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AfterTurnKernelRequest.ProtoReflect.Descriptor instead.
 func (*AfterTurnKernelRequest) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{58}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{59}
 }
 
 func (x *AfterTurnKernelRequest) GetSessionId() string {
@@ -4211,13 +4274,14 @@ type AfterTurnKernelResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Ok bool `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
+	Ok          bool                `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
+	Predictions []*PredictedContext `protobuf:"bytes,2,rep,name=predictions,proto3" json:"predictions,omitempty"`
 }
 
 func (x *AfterTurnKernelResponse) Reset() {
 	*x = AfterTurnKernelResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[59]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[60]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4230,7 +4294,7 @@ func (x *AfterTurnKernelResponse) String() string {
 func (*AfterTurnKernelResponse) ProtoMessage() {}
 
 func (x *AfterTurnKernelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[59]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[60]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4243,7 +4307,7 @@ func (x *AfterTurnKernelResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AfterTurnKernelResponse.ProtoReflect.Descriptor instead.
 func (*AfterTurnKernelResponse) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{59}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{60}
 }
 
 func (x *AfterTurnKernelResponse) GetOk() bool {
@@ -4251,6 +4315,13 @@ func (x *AfterTurnKernelResponse) GetOk() bool {
 		return x.Ok
 	}
 	return false
+}
+
+func (x *AfterTurnKernelResponse) GetPredictions() []*PredictedContext {
+	if x != nil {
+		return x.Predictions
+	}
+	return nil
 }
 
 type AssembleContextInternalRequest struct {
@@ -4271,7 +4342,7 @@ type AssembleContextInternalRequest struct {
 func (x *AssembleContextInternalRequest) Reset() {
 	*x = AssembleContextInternalRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[60]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[61]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4284,7 +4355,7 @@ func (x *AssembleContextInternalRequest) String() string {
 func (*AssembleContextInternalRequest) ProtoMessage() {}
 
 func (x *AssembleContextInternalRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[60]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[61]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4297,7 +4368,7 @@ func (x *AssembleContextInternalRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AssembleContextInternalRequest.ProtoReflect.Descriptor instead.
 func (*AssembleContextInternalRequest) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{60}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{61}
 }
 
 func (x *AssembleContextInternalRequest) GetSessionId() string {
@@ -4372,7 +4443,7 @@ type RankCandidatesRequest struct {
 func (x *RankCandidatesRequest) Reset() {
 	*x = RankCandidatesRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[61]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[62]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4385,7 +4456,7 @@ func (x *RankCandidatesRequest) String() string {
 func (*RankCandidatesRequest) ProtoMessage() {}
 
 func (x *RankCandidatesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[61]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[62]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4398,7 +4469,7 @@ func (x *RankCandidatesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RankCandidatesRequest.ProtoReflect.Descriptor instead.
 func (*RankCandidatesRequest) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{61}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{62}
 }
 
 func (x *RankCandidatesRequest) GetCandidates() []*RankCandidate {
@@ -4454,7 +4525,7 @@ type RankCandidatesResponse struct {
 func (x *RankCandidatesResponse) Reset() {
 	*x = RankCandidatesResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[62]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[63]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4467,7 +4538,7 @@ func (x *RankCandidatesResponse) String() string {
 func (*RankCandidatesResponse) ProtoMessage() {}
 
 func (x *RankCandidatesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[62]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[63]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4480,7 +4551,7 @@ func (x *RankCandidatesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RankCandidatesResponse.ProtoReflect.Descriptor instead.
 func (*RankCandidatesResponse) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{62}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{63}
 }
 
 func (x *RankCandidatesResponse) GetRanked() []*RankCandidate {
@@ -4502,7 +4573,7 @@ type RebuildIndexRequest struct {
 func (x *RebuildIndexRequest) Reset() {
 	*x = RebuildIndexRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[63]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[64]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4515,7 +4586,7 @@ func (x *RebuildIndexRequest) String() string {
 func (*RebuildIndexRequest) ProtoMessage() {}
 
 func (x *RebuildIndexRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[63]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[64]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4528,7 +4599,7 @@ func (x *RebuildIndexRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RebuildIndexRequest.ProtoReflect.Descriptor instead.
 func (*RebuildIndexRequest) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{63}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{64}
 }
 
 func (x *RebuildIndexRequest) GetNamespace() string {
@@ -4559,7 +4630,7 @@ type RebuildIndexResponse struct {
 func (x *RebuildIndexResponse) Reset() {
 	*x = RebuildIndexResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[64]
+		mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[65]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4572,7 +4643,7 @@ func (x *RebuildIndexResponse) String() string {
 func (*RebuildIndexResponse) ProtoMessage() {}
 
 func (x *RebuildIndexResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[64]
+	mi := &file_libravdb_ipc_v1_rpc_proto_msgTypes[65]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4585,7 +4656,7 @@ func (x *RebuildIndexResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RebuildIndexResponse.ProtoReflect.Descriptor instead.
 func (*RebuildIndexResponse) Descriptor() ([]byte, []int) {
-	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{64}
+	return file_libravdb_ipc_v1_rpc_proto_rawDescGZIP(), []int{65}
 }
 
 func (x *RebuildIndexResponse) GetCollectionsProcessed() int32 {
@@ -4711,7 +4782,12 @@ var file_libravdb_ipc_v1_rpc_proto_rawDesc = []byte{
 	0x65, 0x62, 0x75, 0x67, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1e, 0x2e, 0x6c, 0x69, 0x62,
 	0x72, 0x61, 0x76, 0x64, 0x62, 0x2e, 0x69, 0x70, 0x63, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x73, 0x73,
 	0x65, 0x6d, 0x62, 0x6c, 0x79, 0x44, 0x65, 0x62, 0x75, 0x67, 0x52, 0x05, 0x64, 0x65, 0x62, 0x75,
-	0x67, 0x22, 0xee, 0x02, 0x0a, 0x0d, 0x41, 0x73, 0x73, 0x65, 0x6d, 0x62, 0x6c, 0x79, 0x44, 0x65,
+	0x67, 0x22, 0x4e, 0x0a, 0x10, 0x50, 0x72, 0x65, 0x64, 0x69, 0x63, 0x74, 0x65, 0x64, 0x43, 0x6f,
+	0x6e, 0x74, 0x65, 0x78, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x65, 0x78, 0x74, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x65, 0x78, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x72, 0x65, 0x61,
+	0x73, 0x6f, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x72, 0x65, 0x61, 0x73, 0x6f,
+	0x6e, 0x22, 0xee, 0x02, 0x0a, 0x0d, 0x41, 0x73, 0x73, 0x65, 0x6d, 0x62, 0x6c, 0x79, 0x44, 0x65,
 	0x62, 0x75, 0x67, 0x12, 0x34, 0x0a, 0x16, 0x72, 0x65, 0x63, 0x6f, 0x76, 0x65, 0x72, 0x79, 0x5f,
 	0x74, 0x72, 0x69, 0x67, 0x67, 0x65, 0x72, 0x5f, 0x66, 0x69, 0x72, 0x65, 0x64, 0x18, 0x01, 0x20,
 	0x01, 0x28, 0x08, 0x52, 0x14, 0x72, 0x65, 0x63, 0x6f, 0x76, 0x65, 0x72, 0x79, 0x54, 0x72, 0x69,
@@ -5300,77 +5376,82 @@ var file_libravdb_ipc_v1_rpc_proto_rawDesc = []byte{
 	0x50, 0x72, 0x6f, 0x6d, 0x70, 0x74, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x43, 0x6f, 0x75,
 	0x6e, 0x74, 0x12, 0x21, 0x0a, 0x0c, 0x69, 0x73, 0x5f, 0x68, 0x65, 0x61, 0x72, 0x74, 0x62, 0x65,
 	0x61, 0x74, 0x18, 0x06, 0x20, 0x01, 0x28, 0x08, 0x52, 0x0b, 0x69, 0x73, 0x48, 0x65, 0x61, 0x72,
-	0x74, 0x62, 0x65, 0x61, 0x74, 0x22, 0x29, 0x0a, 0x17, 0x41, 0x66, 0x74, 0x65, 0x72, 0x54, 0x75,
+	0x74, 0x62, 0x65, 0x61, 0x74, 0x22, 0x6e, 0x0a, 0x17, 0x41, 0x66, 0x74, 0x65, 0x72, 0x54, 0x75,
 	0x72, 0x6e, 0x4b, 0x65, 0x72, 0x6e, 0x65, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
 	0x12, 0x0e, 0x0a, 0x02, 0x6f, 0x6b, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x02, 0x6f, 0x6b,
-	0x22, 0xd1, 0x02, 0x0a, 0x1e, 0x41, 0x73, 0x73, 0x65, 0x6d, 0x62, 0x6c, 0x65, 0x43, 0x6f, 0x6e,
-	0x74, 0x65, 0x78, 0x74, 0x49, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x12, 0x1d, 0x0a, 0x0a, 0x73, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x5f, 0x69,
-	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x73, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e,
-	0x49, 0x64, 0x12, 0x1f, 0x0a, 0x0b, 0x73, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x5f, 0x6b, 0x65,
-	0x79, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x73, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e,
-	0x4b, 0x65, 0x79, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x03,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x3a, 0x0a, 0x08,
-	0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x73, 0x18, 0x04, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1e,
-	0x2e, 0x6c, 0x69, 0x62, 0x72, 0x61, 0x76, 0x64, 0x62, 0x2e, 0x69, 0x70, 0x63, 0x2e, 0x76, 0x31,
-	0x2e, 0x4b, 0x65, 0x72, 0x6e, 0x65, 0x6c, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x08,
-	0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x73, 0x12, 0x21, 0x0a, 0x0c, 0x74, 0x6f, 0x6b, 0x65,
-	0x6e, 0x5f, 0x62, 0x75, 0x64, 0x67, 0x65, 0x74, 0x18, 0x05, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0b,
-	0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x42, 0x75, 0x64, 0x67, 0x65, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x70,
-	0x72, 0x6f, 0x6d, 0x70, 0x74, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x70, 0x72, 0x6f,
-	0x6d, 0x70, 0x74, 0x12, 0x1d, 0x0a, 0x0a, 0x65, 0x6d, 0x69, 0x74, 0x5f, 0x64, 0x65, 0x62, 0x75,
-	0x67, 0x18, 0x07, 0x20, 0x01, 0x28, 0x08, 0x52, 0x09, 0x65, 0x6d, 0x69, 0x74, 0x44, 0x65, 0x62,
-	0x75, 0x67, 0x12, 0x40, 0x0a, 0x06, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x18, 0x08, 0x20, 0x01,
-	0x28, 0x0b, 0x32, 0x28, 0x2e, 0x6c, 0x69, 0x62, 0x72, 0x61, 0x76, 0x64, 0x62, 0x2e, 0x69, 0x70,
-	0x63, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x73, 0x73, 0x65, 0x6d, 0x62, 0x6c, 0x65, 0x43, 0x6f, 0x6e,
-	0x66, 0x69, 0x67, 0x4f, 0x76, 0x65, 0x72, 0x72, 0x69, 0x64, 0x65, 0x73, 0x52, 0x06, 0x63, 0x6f,
-	0x6e, 0x66, 0x69, 0x67, 0x22, 0xce, 0x01, 0x0a, 0x15, 0x52, 0x61, 0x6e, 0x6b, 0x43, 0x61, 0x6e,
-	0x64, 0x69, 0x64, 0x61, 0x74, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x3e,
-	0x0a, 0x0a, 0x63, 0x61, 0x6e, 0x64, 0x69, 0x64, 0x61, 0x74, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03,
-	0x28, 0x0b, 0x32, 0x1e, 0x2e, 0x6c, 0x69, 0x62, 0x72, 0x61, 0x76, 0x64, 0x62, 0x2e, 0x69, 0x70,
-	0x63, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x61, 0x6e, 0x6b, 0x43, 0x61, 0x6e, 0x64, 0x69, 0x64, 0x61,
-	0x74, 0x65, 0x52, 0x0a, 0x63, 0x61, 0x6e, 0x64, 0x69, 0x64, 0x61, 0x74, 0x65, 0x73, 0x12, 0x1d,
-	0x0a, 0x0a, 0x71, 0x75, 0x65, 0x72, 0x79, 0x5f, 0x74, 0x65, 0x78, 0x74, 0x18, 0x02, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x09, 0x71, 0x75, 0x65, 0x72, 0x79, 0x54, 0x65, 0x78, 0x74, 0x12, 0x1d, 0x0a,
-	0x0a, 0x73, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x09, 0x73, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x12, 0x17, 0x0a, 0x07,
-	0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x75,
-	0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x0e, 0x0a, 0x02, 0x6b, 0x31, 0x18, 0x05, 0x20, 0x01, 0x28,
-	0x05, 0x52, 0x02, 0x6b, 0x31, 0x12, 0x0e, 0x0a, 0x02, 0x6b, 0x32, 0x18, 0x06, 0x20, 0x01, 0x28,
-	0x05, 0x52, 0x02, 0x6b, 0x32, 0x22, 0x50, 0x0a, 0x16, 0x52, 0x61, 0x6e, 0x6b, 0x43, 0x61, 0x6e,
-	0x64, 0x69, 0x64, 0x61, 0x74, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
-	0x36, 0x0a, 0x06, 0x72, 0x61, 0x6e, 0x6b, 0x65, 0x64, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32,
-	0x1e, 0x2e, 0x6c, 0x69, 0x62, 0x72, 0x61, 0x76, 0x64, 0x62, 0x2e, 0x69, 0x70, 0x63, 0x2e, 0x76,
-	0x31, 0x2e, 0x52, 0x61, 0x6e, 0x6b, 0x43, 0x61, 0x6e, 0x64, 0x69, 0x64, 0x61, 0x74, 0x65, 0x52,
-	0x06, 0x72, 0x61, 0x6e, 0x6b, 0x65, 0x64, 0x22, 0x55, 0x0a, 0x13, 0x52, 0x65, 0x62, 0x75, 0x69,
-	0x6c, 0x64, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1c,
-	0x0a, 0x09, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x09, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x12, 0x20, 0x0a, 0x0b,
-	0x63, 0x6f, 0x6c, 0x6c, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28,
-	0x09, 0x52, 0x0b, 0x63, 0x6f, 0x6c, 0x6c, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x22, 0xc5,
-	0x01, 0x0a, 0x14, 0x52, 0x65, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x33, 0x0a, 0x15, 0x63, 0x6f, 0x6c, 0x6c, 0x65,
-	0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x5f, 0x70, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x65, 0x64,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x14, 0x63, 0x6f, 0x6c, 0x6c, 0x65, 0x63, 0x74, 0x69,
-	0x6f, 0x6e, 0x73, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x65, 0x64, 0x12, 0x2b, 0x0a, 0x11,
-	0x72, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x73, 0x5f, 0x72, 0x65, 0x69, 0x6e, 0x64, 0x65, 0x78, 0x65,
-	0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x10, 0x72, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x73,
-	0x52, 0x65, 0x69, 0x6e, 0x64, 0x65, 0x78, 0x65, 0x64, 0x12, 0x33, 0x0a, 0x15, 0x63, 0x6f, 0x6c,
-	0x6c, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x5f, 0x72, 0x65, 0x63, 0x72, 0x65, 0x61, 0x74,
-	0x65, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x14, 0x63, 0x6f, 0x6c, 0x6c, 0x65, 0x63,
-	0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x12, 0x16,
-	0x0a, 0x06, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x73, 0x18, 0x04, 0x20, 0x03, 0x28, 0x09, 0x52, 0x06,
-	0x65, 0x72, 0x72, 0x6f, 0x72, 0x73, 0x2a, 0x3d, 0x0a, 0x0a, 0x49, 0x6e, 0x67, 0x65, 0x73, 0x74,
-	0x4d, 0x6f, 0x64, 0x65, 0x12, 0x17, 0x0a, 0x13, 0x49, 0x4e, 0x47, 0x45, 0x53, 0x54, 0x5f, 0x4d,
-	0x4f, 0x44, 0x45, 0x5f, 0x52, 0x45, 0x50, 0x4c, 0x41, 0x43, 0x45, 0x10, 0x00, 0x12, 0x16, 0x0a,
-	0x12, 0x49, 0x4e, 0x47, 0x45, 0x53, 0x54, 0x5f, 0x4d, 0x4f, 0x44, 0x45, 0x5f, 0x41, 0x50, 0x50,
-	0x45, 0x4e, 0x44, 0x10, 0x01, 0x42, 0x60, 0x0a, 0x1d, 0x63, 0x6f, 0x6d, 0x2e, 0x78, 0x64, 0x61,
-	0x72, 0x6b, 0x69, 0x63, 0x65, 0x78, 0x2e, 0x6c, 0x69, 0x62, 0x72, 0x61, 0x76, 0x64, 0x62, 0x2e,
-	0x69, 0x70, 0x63, 0x2e, 0x76, 0x31, 0x50, 0x01, 0x5a, 0x3d, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62,
-	0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x78, 0x44, 0x61, 0x72, 0x6b, 0x69, 0x63, 0x65, 0x78, 0x2f, 0x6c,
-	0x69, 0x62, 0x72, 0x61, 0x76, 0x64, 0x62, 0x2d, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74,
-	0x73, 0x2f, 0x6c, 0x69, 0x62, 0x72, 0x61, 0x76, 0x64, 0x62, 0x2f, 0x69, 0x70, 0x63, 0x2f, 0x76,
-	0x31, 0x3b, 0x69, 0x70, 0x63, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x12, 0x43, 0x0a, 0x0b, 0x70, 0x72, 0x65, 0x64, 0x69, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18,
+	0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x21, 0x2e, 0x6c, 0x69, 0x62, 0x72, 0x61, 0x76, 0x64, 0x62,
+	0x2e, 0x69, 0x70, 0x63, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x72, 0x65, 0x64, 0x69, 0x63, 0x74, 0x65,
+	0x64, 0x43, 0x6f, 0x6e, 0x74, 0x65, 0x78, 0x74, 0x52, 0x0b, 0x70, 0x72, 0x65, 0x64, 0x69, 0x63,
+	0x74, 0x69, 0x6f, 0x6e, 0x73, 0x22, 0xd1, 0x02, 0x0a, 0x1e, 0x41, 0x73, 0x73, 0x65, 0x6d, 0x62,
+	0x6c, 0x65, 0x43, 0x6f, 0x6e, 0x74, 0x65, 0x78, 0x74, 0x49, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61,
+	0x6c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1d, 0x0a, 0x0a, 0x73, 0x65, 0x73, 0x73,
+	0x69, 0x6f, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x73, 0x65,
+	0x73, 0x73, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x12, 0x1f, 0x0a, 0x0b, 0x73, 0x65, 0x73, 0x73, 0x69,
+	0x6f, 0x6e, 0x5f, 0x6b, 0x65, 0x79, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x73, 0x65,
+	0x73, 0x73, 0x69, 0x6f, 0x6e, 0x4b, 0x65, 0x79, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72,
+	0x5f, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49,
+	0x64, 0x12, 0x3a, 0x0a, 0x08, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x73, 0x18, 0x04, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x1e, 0x2e, 0x6c, 0x69, 0x62, 0x72, 0x61, 0x76, 0x64, 0x62, 0x2e, 0x69,
+	0x70, 0x63, 0x2e, 0x76, 0x31, 0x2e, 0x4b, 0x65, 0x72, 0x6e, 0x65, 0x6c, 0x4d, 0x65, 0x73, 0x73,
+	0x61, 0x67, 0x65, 0x52, 0x08, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x73, 0x12, 0x21, 0x0a,
+	0x0c, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x5f, 0x62, 0x75, 0x64, 0x67, 0x65, 0x74, 0x18, 0x05, 0x20,
+	0x01, 0x28, 0x05, 0x52, 0x0b, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x42, 0x75, 0x64, 0x67, 0x65, 0x74,
+	0x12, 0x16, 0x0a, 0x06, 0x70, 0x72, 0x6f, 0x6d, 0x70, 0x74, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x06, 0x70, 0x72, 0x6f, 0x6d, 0x70, 0x74, 0x12, 0x1d, 0x0a, 0x0a, 0x65, 0x6d, 0x69, 0x74,
+	0x5f, 0x64, 0x65, 0x62, 0x75, 0x67, 0x18, 0x07, 0x20, 0x01, 0x28, 0x08, 0x52, 0x09, 0x65, 0x6d,
+	0x69, 0x74, 0x44, 0x65, 0x62, 0x75, 0x67, 0x12, 0x40, 0x0a, 0x06, 0x63, 0x6f, 0x6e, 0x66, 0x69,
+	0x67, 0x18, 0x08, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x28, 0x2e, 0x6c, 0x69, 0x62, 0x72, 0x61, 0x76,
+	0x64, 0x62, 0x2e, 0x69, 0x70, 0x63, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x73, 0x73, 0x65, 0x6d, 0x62,
+	0x6c, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x4f, 0x76, 0x65, 0x72, 0x72, 0x69, 0x64, 0x65,
+	0x73, 0x52, 0x06, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x22, 0xce, 0x01, 0x0a, 0x15, 0x52, 0x61,
+	0x6e, 0x6b, 0x43, 0x61, 0x6e, 0x64, 0x69, 0x64, 0x61, 0x74, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x12, 0x3e, 0x0a, 0x0a, 0x63, 0x61, 0x6e, 0x64, 0x69, 0x64, 0x61, 0x74, 0x65,
+	0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1e, 0x2e, 0x6c, 0x69, 0x62, 0x72, 0x61, 0x76,
+	0x64, 0x62, 0x2e, 0x69, 0x70, 0x63, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x61, 0x6e, 0x6b, 0x43, 0x61,
+	0x6e, 0x64, 0x69, 0x64, 0x61, 0x74, 0x65, 0x52, 0x0a, 0x63, 0x61, 0x6e, 0x64, 0x69, 0x64, 0x61,
+	0x74, 0x65, 0x73, 0x12, 0x1d, 0x0a, 0x0a, 0x71, 0x75, 0x65, 0x72, 0x79, 0x5f, 0x74, 0x65, 0x78,
+	0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x71, 0x75, 0x65, 0x72, 0x79, 0x54, 0x65,
+	0x78, 0x74, 0x12, 0x1d, 0x0a, 0x0a, 0x73, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x5f, 0x69, 0x64,
+	0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x73, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x49,
+	0x64, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x04, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x0e, 0x0a, 0x02, 0x6b, 0x31,
+	0x18, 0x05, 0x20, 0x01, 0x28, 0x05, 0x52, 0x02, 0x6b, 0x31, 0x12, 0x0e, 0x0a, 0x02, 0x6b, 0x32,
+	0x18, 0x06, 0x20, 0x01, 0x28, 0x05, 0x52, 0x02, 0x6b, 0x32, 0x22, 0x50, 0x0a, 0x16, 0x52, 0x61,
+	0x6e, 0x6b, 0x43, 0x61, 0x6e, 0x64, 0x69, 0x64, 0x61, 0x74, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x36, 0x0a, 0x06, 0x72, 0x61, 0x6e, 0x6b, 0x65, 0x64, 0x18, 0x01,
+	0x20, 0x03, 0x28, 0x0b, 0x32, 0x1e, 0x2e, 0x6c, 0x69, 0x62, 0x72, 0x61, 0x76, 0x64, 0x62, 0x2e,
+	0x69, 0x70, 0x63, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x61, 0x6e, 0x6b, 0x43, 0x61, 0x6e, 0x64, 0x69,
+	0x64, 0x61, 0x74, 0x65, 0x52, 0x06, 0x72, 0x61, 0x6e, 0x6b, 0x65, 0x64, 0x22, 0x55, 0x0a, 0x13,
+	0x52, 0x65, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x12, 0x1c, 0x0a, 0x09, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63,
+	0x65, 0x12, 0x20, 0x0a, 0x0b, 0x63, 0x6f, 0x6c, 0x6c, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73,
+	0x18, 0x02, 0x20, 0x03, 0x28, 0x09, 0x52, 0x0b, 0x63, 0x6f, 0x6c, 0x6c, 0x65, 0x63, 0x74, 0x69,
+	0x6f, 0x6e, 0x73, 0x22, 0xc5, 0x01, 0x0a, 0x14, 0x52, 0x65, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x49,
+	0x6e, 0x64, 0x65, 0x78, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x33, 0x0a, 0x15,
+	0x63, 0x6f, 0x6c, 0x6c, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x5f, 0x70, 0x72, 0x6f, 0x63,
+	0x65, 0x73, 0x73, 0x65, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x14, 0x63, 0x6f, 0x6c,
+	0x6c, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x65,
+	0x64, 0x12, 0x2b, 0x0a, 0x11, 0x72, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x73, 0x5f, 0x72, 0x65, 0x69,
+	0x6e, 0x64, 0x65, 0x78, 0x65, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x10, 0x72, 0x65,
+	0x63, 0x6f, 0x72, 0x64, 0x73, 0x52, 0x65, 0x69, 0x6e, 0x64, 0x65, 0x78, 0x65, 0x64, 0x12, 0x33,
+	0x0a, 0x15, 0x63, 0x6f, 0x6c, 0x6c, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x5f, 0x72, 0x65,
+	0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x14, 0x63,
+	0x6f, 0x6c, 0x6c, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65, 0x63, 0x72, 0x65, 0x61,
+	0x74, 0x65, 0x64, 0x12, 0x16, 0x0a, 0x06, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x73, 0x18, 0x04, 0x20,
+	0x03, 0x28, 0x09, 0x52, 0x06, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x73, 0x2a, 0x3d, 0x0a, 0x0a, 0x49,
+	0x6e, 0x67, 0x65, 0x73, 0x74, 0x4d, 0x6f, 0x64, 0x65, 0x12, 0x17, 0x0a, 0x13, 0x49, 0x4e, 0x47,
+	0x45, 0x53, 0x54, 0x5f, 0x4d, 0x4f, 0x44, 0x45, 0x5f, 0x52, 0x45, 0x50, 0x4c, 0x41, 0x43, 0x45,
+	0x10, 0x00, 0x12, 0x16, 0x0a, 0x12, 0x49, 0x4e, 0x47, 0x45, 0x53, 0x54, 0x5f, 0x4d, 0x4f, 0x44,
+	0x45, 0x5f, 0x41, 0x50, 0x50, 0x45, 0x4e, 0x44, 0x10, 0x01, 0x42, 0x60, 0x0a, 0x1d, 0x63, 0x6f,
+	0x6d, 0x2e, 0x78, 0x64, 0x61, 0x72, 0x6b, 0x69, 0x63, 0x65, 0x78, 0x2e, 0x6c, 0x69, 0x62, 0x72,
+	0x61, 0x76, 0x64, 0x62, 0x2e, 0x69, 0x70, 0x63, 0x2e, 0x76, 0x31, 0x50, 0x01, 0x5a, 0x3d, 0x67,
+	0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x78, 0x44, 0x61, 0x72, 0x6b, 0x69,
+	0x63, 0x65, 0x78, 0x2f, 0x6c, 0x69, 0x62, 0x72, 0x61, 0x76, 0x64, 0x62, 0x2d, 0x63, 0x6f, 0x6e,
+	0x74, 0x72, 0x61, 0x63, 0x74, 0x73, 0x2f, 0x6c, 0x69, 0x62, 0x72, 0x61, 0x76, 0x64, 0x62, 0x2f,
+	0x69, 0x70, 0x63, 0x2f, 0x76, 0x31, 0x3b, 0x69, 0x70, 0x63, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -5386,7 +5467,7 @@ func file_libravdb_ipc_v1_rpc_proto_rawDescGZIP() []byte {
 }
 
 var file_libravdb_ipc_v1_rpc_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_libravdb_ipc_v1_rpc_proto_msgTypes = make([]protoimpl.MessageInfo, 66)
+var file_libravdb_ipc_v1_rpc_proto_msgTypes = make([]protoimpl.MessageInfo, 67)
 var file_libravdb_ipc_v1_rpc_proto_goTypes = []interface{}{
 	(IngestMode)(0),                         // 0: libravdb.ipc.v1.IngestMode
 	(*RpcRequest)(nil),                      // 1: libravdb.ipc.v1.RpcRequest
@@ -5399,95 +5480,97 @@ var file_libravdb_ipc_v1_rpc_proto_goTypes = []interface{}{
 	(*AccessCountUpdate)(nil),               // 8: libravdb.ipc.v1.AccessCountUpdate
 	(*KernelMessage)(nil),                   // 9: libravdb.ipc.v1.KernelMessage
 	(*AssembleContextInternalResponse)(nil), // 10: libravdb.ipc.v1.AssembleContextInternalResponse
-	(*AssemblyDebug)(nil),                   // 11: libravdb.ipc.v1.AssemblyDebug
-	(*RecoveryOrderEntry)(nil),              // 12: libravdb.ipc.v1.RecoveryOrderEntry
-	(*AssembleConfigOverrides)(nil),         // 13: libravdb.ipc.v1.AssembleConfigOverrides
-	(*RankCandidate)(nil),                   // 14: libravdb.ipc.v1.RankCandidate
-	(*HealthResponse)(nil),                  // 15: libravdb.ipc.v1.HealthResponse
-	(*CompactSessionResponse)(nil),          // 16: libravdb.ipc.v1.CompactSessionResponse
-	(*GatingScalarResponse)(nil),            // 17: libravdb.ipc.v1.GatingScalarResponse
-	(*ExportMemoryRecord)(nil),              // 18: libravdb.ipc.v1.ExportMemoryRecord
-	(*EnsureCollectionsRequest)(nil),        // 19: libravdb.ipc.v1.EnsureCollectionsRequest
-	(*EnsureCollectionsResponse)(nil),       // 20: libravdb.ipc.v1.EnsureCollectionsResponse
-	(*InsertTextRequest)(nil),               // 21: libravdb.ipc.v1.InsertTextRequest
-	(*InsertTextResponse)(nil),              // 22: libravdb.ipc.v1.InsertTextResponse
-	(*InsertSessionTurnRequest)(nil),        // 23: libravdb.ipc.v1.InsertSessionTurnRequest
-	(*InsertSessionTurnResponse)(nil),       // 24: libravdb.ipc.v1.InsertSessionTurnResponse
-	(*IngestMarkdownDocumentRequest)(nil),   // 25: libravdb.ipc.v1.IngestMarkdownDocumentRequest
-	(*IngestMarkdownDocumentResponse)(nil),  // 26: libravdb.ipc.v1.IngestMarkdownDocumentResponse
-	(*DeleteAuthoredDocumentRequest)(nil),   // 27: libravdb.ipc.v1.DeleteAuthoredDocumentRequest
-	(*DeleteAuthoredDocumentResponse)(nil),  // 28: libravdb.ipc.v1.DeleteAuthoredDocumentResponse
-	(*PromoteDreamEntriesRequest)(nil),      // 29: libravdb.ipc.v1.PromoteDreamEntriesRequest
-	(*DreamPromotionResponse)(nil),          // 30: libravdb.ipc.v1.DreamPromotionResponse
-	(*SearchTextRequest)(nil),               // 31: libravdb.ipc.v1.SearchTextRequest
-	(*SearchTextCollectionsRequest)(nil),    // 32: libravdb.ipc.v1.SearchTextCollectionsRequest
-	(*SearchTextResponse)(nil),              // 33: libravdb.ipc.v1.SearchTextResponse
-	(*ListByMetaRequest)(nil),               // 34: libravdb.ipc.v1.ListByMetaRequest
-	(*ListCollectionRequest)(nil),           // 35: libravdb.ipc.v1.ListCollectionRequest
-	(*ExpandSummaryRequest)(nil),            // 36: libravdb.ipc.v1.ExpandSummaryRequest
-	(*QueryRawSessionRequest)(nil),          // 37: libravdb.ipc.v1.QueryRawSessionRequest
-	(*ListLifecycleJournalRequest)(nil),     // 38: libravdb.ipc.v1.ListLifecycleJournalRequest
-	(*BumpAccessCountsRequest)(nil),         // 39: libravdb.ipc.v1.BumpAccessCountsRequest
-	(*BumpAccessCountsResponse)(nil),        // 40: libravdb.ipc.v1.BumpAccessCountsResponse
-	(*DeleteRequest)(nil),                   // 41: libravdb.ipc.v1.DeleteRequest
-	(*DeleteResponse)(nil),                  // 42: libravdb.ipc.v1.DeleteResponse
-	(*DeleteBatchRequest)(nil),              // 43: libravdb.ipc.v1.DeleteBatchRequest
-	(*DeleteBatchResponse)(nil),             // 44: libravdb.ipc.v1.DeleteBatchResponse
-	(*CompactSessionRequest)(nil),           // 45: libravdb.ipc.v1.CompactSessionRequest
-	(*GatingScalarRequest)(nil),             // 46: libravdb.ipc.v1.GatingScalarRequest
-	(*FlushNamespaceRequest)(nil),           // 47: libravdb.ipc.v1.FlushNamespaceRequest
-	(*SessionLifecycleHintRequest)(nil),     // 48: libravdb.ipc.v1.SessionLifecycleHintRequest
-	(*SessionLifecycleHintResponse)(nil),    // 49: libravdb.ipc.v1.SessionLifecycleHintResponse
-	(*MemoryStatusResponse)(nil),            // 50: libravdb.ipc.v1.MemoryStatusResponse
-	(*ExportMemoryRequest)(nil),             // 51: libravdb.ipc.v1.ExportMemoryRequest
-	(*ExportMemoryResponse)(nil),            // 52: libravdb.ipc.v1.ExportMemoryResponse
-	(*FlushNamespaceResponse)(nil),          // 53: libravdb.ipc.v1.FlushNamespaceResponse
-	(*FlushResponse)(nil),                   // 54: libravdb.ipc.v1.FlushResponse
-	(*BootstrapSessionKernelRequest)(nil),   // 55: libravdb.ipc.v1.BootstrapSessionKernelRequest
-	(*BootstrapSessionKernelResponse)(nil),  // 56: libravdb.ipc.v1.BootstrapSessionKernelResponse
-	(*IngestMessageKernelRequest)(nil),      // 57: libravdb.ipc.v1.IngestMessageKernelRequest
-	(*IngestMessageKernelResponse)(nil),     // 58: libravdb.ipc.v1.IngestMessageKernelResponse
-	(*AfterTurnKernelRequest)(nil),          // 59: libravdb.ipc.v1.AfterTurnKernelRequest
-	(*AfterTurnKernelResponse)(nil),         // 60: libravdb.ipc.v1.AfterTurnKernelResponse
-	(*AssembleContextInternalRequest)(nil),  // 61: libravdb.ipc.v1.AssembleContextInternalRequest
-	(*RankCandidatesRequest)(nil),           // 62: libravdb.ipc.v1.RankCandidatesRequest
-	(*RankCandidatesResponse)(nil),          // 63: libravdb.ipc.v1.RankCandidatesResponse
-	(*RebuildIndexRequest)(nil),             // 64: libravdb.ipc.v1.RebuildIndexRequest
-	(*RebuildIndexResponse)(nil),            // 65: libravdb.ipc.v1.RebuildIndexResponse
-	nil,                                     // 66: libravdb.ipc.v1.SearchTextCollectionsRequest.ExcludeByCollectionEntry
-	(*structpb.Struct)(nil),                 // 67: google.protobuf.Struct
+	(*PredictedContext)(nil),                // 11: libravdb.ipc.v1.PredictedContext
+	(*AssemblyDebug)(nil),                   // 12: libravdb.ipc.v1.AssemblyDebug
+	(*RecoveryOrderEntry)(nil),              // 13: libravdb.ipc.v1.RecoveryOrderEntry
+	(*AssembleConfigOverrides)(nil),         // 14: libravdb.ipc.v1.AssembleConfigOverrides
+	(*RankCandidate)(nil),                   // 15: libravdb.ipc.v1.RankCandidate
+	(*HealthResponse)(nil),                  // 16: libravdb.ipc.v1.HealthResponse
+	(*CompactSessionResponse)(nil),          // 17: libravdb.ipc.v1.CompactSessionResponse
+	(*GatingScalarResponse)(nil),            // 18: libravdb.ipc.v1.GatingScalarResponse
+	(*ExportMemoryRecord)(nil),              // 19: libravdb.ipc.v1.ExportMemoryRecord
+	(*EnsureCollectionsRequest)(nil),        // 20: libravdb.ipc.v1.EnsureCollectionsRequest
+	(*EnsureCollectionsResponse)(nil),       // 21: libravdb.ipc.v1.EnsureCollectionsResponse
+	(*InsertTextRequest)(nil),               // 22: libravdb.ipc.v1.InsertTextRequest
+	(*InsertTextResponse)(nil),              // 23: libravdb.ipc.v1.InsertTextResponse
+	(*InsertSessionTurnRequest)(nil),        // 24: libravdb.ipc.v1.InsertSessionTurnRequest
+	(*InsertSessionTurnResponse)(nil),       // 25: libravdb.ipc.v1.InsertSessionTurnResponse
+	(*IngestMarkdownDocumentRequest)(nil),   // 26: libravdb.ipc.v1.IngestMarkdownDocumentRequest
+	(*IngestMarkdownDocumentResponse)(nil),  // 27: libravdb.ipc.v1.IngestMarkdownDocumentResponse
+	(*DeleteAuthoredDocumentRequest)(nil),   // 28: libravdb.ipc.v1.DeleteAuthoredDocumentRequest
+	(*DeleteAuthoredDocumentResponse)(nil),  // 29: libravdb.ipc.v1.DeleteAuthoredDocumentResponse
+	(*PromoteDreamEntriesRequest)(nil),      // 30: libravdb.ipc.v1.PromoteDreamEntriesRequest
+	(*DreamPromotionResponse)(nil),          // 31: libravdb.ipc.v1.DreamPromotionResponse
+	(*SearchTextRequest)(nil),               // 32: libravdb.ipc.v1.SearchTextRequest
+	(*SearchTextCollectionsRequest)(nil),    // 33: libravdb.ipc.v1.SearchTextCollectionsRequest
+	(*SearchTextResponse)(nil),              // 34: libravdb.ipc.v1.SearchTextResponse
+	(*ListByMetaRequest)(nil),               // 35: libravdb.ipc.v1.ListByMetaRequest
+	(*ListCollectionRequest)(nil),           // 36: libravdb.ipc.v1.ListCollectionRequest
+	(*ExpandSummaryRequest)(nil),            // 37: libravdb.ipc.v1.ExpandSummaryRequest
+	(*QueryRawSessionRequest)(nil),          // 38: libravdb.ipc.v1.QueryRawSessionRequest
+	(*ListLifecycleJournalRequest)(nil),     // 39: libravdb.ipc.v1.ListLifecycleJournalRequest
+	(*BumpAccessCountsRequest)(nil),         // 40: libravdb.ipc.v1.BumpAccessCountsRequest
+	(*BumpAccessCountsResponse)(nil),        // 41: libravdb.ipc.v1.BumpAccessCountsResponse
+	(*DeleteRequest)(nil),                   // 42: libravdb.ipc.v1.DeleteRequest
+	(*DeleteResponse)(nil),                  // 43: libravdb.ipc.v1.DeleteResponse
+	(*DeleteBatchRequest)(nil),              // 44: libravdb.ipc.v1.DeleteBatchRequest
+	(*DeleteBatchResponse)(nil),             // 45: libravdb.ipc.v1.DeleteBatchResponse
+	(*CompactSessionRequest)(nil),           // 46: libravdb.ipc.v1.CompactSessionRequest
+	(*GatingScalarRequest)(nil),             // 47: libravdb.ipc.v1.GatingScalarRequest
+	(*FlushNamespaceRequest)(nil),           // 48: libravdb.ipc.v1.FlushNamespaceRequest
+	(*SessionLifecycleHintRequest)(nil),     // 49: libravdb.ipc.v1.SessionLifecycleHintRequest
+	(*SessionLifecycleHintResponse)(nil),    // 50: libravdb.ipc.v1.SessionLifecycleHintResponse
+	(*MemoryStatusResponse)(nil),            // 51: libravdb.ipc.v1.MemoryStatusResponse
+	(*ExportMemoryRequest)(nil),             // 52: libravdb.ipc.v1.ExportMemoryRequest
+	(*ExportMemoryResponse)(nil),            // 53: libravdb.ipc.v1.ExportMemoryResponse
+	(*FlushNamespaceResponse)(nil),          // 54: libravdb.ipc.v1.FlushNamespaceResponse
+	(*FlushResponse)(nil),                   // 55: libravdb.ipc.v1.FlushResponse
+	(*BootstrapSessionKernelRequest)(nil),   // 56: libravdb.ipc.v1.BootstrapSessionKernelRequest
+	(*BootstrapSessionKernelResponse)(nil),  // 57: libravdb.ipc.v1.BootstrapSessionKernelResponse
+	(*IngestMessageKernelRequest)(nil),      // 58: libravdb.ipc.v1.IngestMessageKernelRequest
+	(*IngestMessageKernelResponse)(nil),     // 59: libravdb.ipc.v1.IngestMessageKernelResponse
+	(*AfterTurnKernelRequest)(nil),          // 60: libravdb.ipc.v1.AfterTurnKernelRequest
+	(*AfterTurnKernelResponse)(nil),         // 61: libravdb.ipc.v1.AfterTurnKernelResponse
+	(*AssembleContextInternalRequest)(nil),  // 62: libravdb.ipc.v1.AssembleContextInternalRequest
+	(*RankCandidatesRequest)(nil),           // 63: libravdb.ipc.v1.RankCandidatesRequest
+	(*RankCandidatesResponse)(nil),          // 64: libravdb.ipc.v1.RankCandidatesResponse
+	(*RebuildIndexRequest)(nil),             // 65: libravdb.ipc.v1.RebuildIndexRequest
+	(*RebuildIndexResponse)(nil),            // 66: libravdb.ipc.v1.RebuildIndexResponse
+	nil,                                     // 67: libravdb.ipc.v1.SearchTextCollectionsRequest.ExcludeByCollectionEntry
+	(*structpb.Struct)(nil),                 // 68: google.protobuf.Struct
 }
 var file_libravdb_ipc_v1_rpc_proto_depIdxs = []int32{
 	3,  // 0: libravdb.ipc.v1.RpcResponse.error:type_name -> libravdb.ipc.v1.RpcError
-	67, // 1: libravdb.ipc.v1.SearchResult.metadata:type_name -> google.protobuf.Struct
-	67, // 2: libravdb.ipc.v1.DreamPromotionEntry.metadata:type_name -> google.protobuf.Struct
+	68, // 1: libravdb.ipc.v1.SearchResult.metadata:type_name -> google.protobuf.Struct
+	68, // 2: libravdb.ipc.v1.DreamPromotionEntry.metadata:type_name -> google.protobuf.Struct
 	9,  // 3: libravdb.ipc.v1.AssembleContextInternalResponse.messages:type_name -> libravdb.ipc.v1.KernelMessage
-	11, // 4: libravdb.ipc.v1.AssembleContextInternalResponse.debug:type_name -> libravdb.ipc.v1.AssemblyDebug
-	12, // 5: libravdb.ipc.v1.AssemblyDebug.recovery_deduped_order:type_name -> libravdb.ipc.v1.RecoveryOrderEntry
-	12, // 6: libravdb.ipc.v1.AssemblyDebug.recovery_fitted_order:type_name -> libravdb.ipc.v1.RecoveryOrderEntry
-	67, // 7: libravdb.ipc.v1.RankCandidate.metadata:type_name -> google.protobuf.Struct
-	67, // 8: libravdb.ipc.v1.ExportMemoryRecord.metadata:type_name -> google.protobuf.Struct
-	67, // 9: libravdb.ipc.v1.InsertTextRequest.metadata:type_name -> google.protobuf.Struct
-	67, // 10: libravdb.ipc.v1.InsertSessionTurnRequest.metadata:type_name -> google.protobuf.Struct
+	12, // 4: libravdb.ipc.v1.AssembleContextInternalResponse.debug:type_name -> libravdb.ipc.v1.AssemblyDebug
+	13, // 5: libravdb.ipc.v1.AssemblyDebug.recovery_deduped_order:type_name -> libravdb.ipc.v1.RecoveryOrderEntry
+	13, // 6: libravdb.ipc.v1.AssemblyDebug.recovery_fitted_order:type_name -> libravdb.ipc.v1.RecoveryOrderEntry
+	68, // 7: libravdb.ipc.v1.RankCandidate.metadata:type_name -> google.protobuf.Struct
+	68, // 8: libravdb.ipc.v1.ExportMemoryRecord.metadata:type_name -> google.protobuf.Struct
+	68, // 9: libravdb.ipc.v1.InsertTextRequest.metadata:type_name -> google.protobuf.Struct
+	68, // 10: libravdb.ipc.v1.InsertSessionTurnRequest.metadata:type_name -> google.protobuf.Struct
 	6,  // 11: libravdb.ipc.v1.IngestMarkdownDocumentRequest.source_meta:type_name -> libravdb.ipc.v1.MarkdownSourceMeta
 	0,  // 12: libravdb.ipc.v1.IngestMarkdownDocumentRequest.mode:type_name -> libravdb.ipc.v1.IngestMode
 	7,  // 13: libravdb.ipc.v1.PromoteDreamEntriesRequest.entries:type_name -> libravdb.ipc.v1.DreamPromotionEntry
-	66, // 14: libravdb.ipc.v1.SearchTextCollectionsRequest.exclude_by_collection:type_name -> libravdb.ipc.v1.SearchTextCollectionsRequest.ExcludeByCollectionEntry
+	67, // 14: libravdb.ipc.v1.SearchTextCollectionsRequest.exclude_by_collection:type_name -> libravdb.ipc.v1.SearchTextCollectionsRequest.ExcludeByCollectionEntry
 	5,  // 15: libravdb.ipc.v1.SearchTextResponse.results:type_name -> libravdb.ipc.v1.SearchResult
 	8,  // 16: libravdb.ipc.v1.BumpAccessCountsRequest.updates:type_name -> libravdb.ipc.v1.AccessCountUpdate
-	18, // 17: libravdb.ipc.v1.ExportMemoryResponse.records:type_name -> libravdb.ipc.v1.ExportMemoryRecord
+	19, // 17: libravdb.ipc.v1.ExportMemoryResponse.records:type_name -> libravdb.ipc.v1.ExportMemoryRecord
 	9,  // 18: libravdb.ipc.v1.IngestMessageKernelRequest.message:type_name -> libravdb.ipc.v1.KernelMessage
 	9,  // 19: libravdb.ipc.v1.AfterTurnKernelRequest.messages:type_name -> libravdb.ipc.v1.KernelMessage
-	9,  // 20: libravdb.ipc.v1.AssembleContextInternalRequest.messages:type_name -> libravdb.ipc.v1.KernelMessage
-	13, // 21: libravdb.ipc.v1.AssembleContextInternalRequest.config:type_name -> libravdb.ipc.v1.AssembleConfigOverrides
-	14, // 22: libravdb.ipc.v1.RankCandidatesRequest.candidates:type_name -> libravdb.ipc.v1.RankCandidate
-	14, // 23: libravdb.ipc.v1.RankCandidatesResponse.ranked:type_name -> libravdb.ipc.v1.RankCandidate
-	4,  // 24: libravdb.ipc.v1.SearchTextCollectionsRequest.ExcludeByCollectionEntry.value:type_name -> libravdb.ipc.v1.StringList
-	25, // [25:25] is the sub-list for method output_type
-	25, // [25:25] is the sub-list for method input_type
-	25, // [25:25] is the sub-list for extension type_name
-	25, // [25:25] is the sub-list for extension extendee
-	0,  // [0:25] is the sub-list for field type_name
+	11, // 20: libravdb.ipc.v1.AfterTurnKernelResponse.predictions:type_name -> libravdb.ipc.v1.PredictedContext
+	9,  // 21: libravdb.ipc.v1.AssembleContextInternalRequest.messages:type_name -> libravdb.ipc.v1.KernelMessage
+	14, // 22: libravdb.ipc.v1.AssembleContextInternalRequest.config:type_name -> libravdb.ipc.v1.AssembleConfigOverrides
+	15, // 23: libravdb.ipc.v1.RankCandidatesRequest.candidates:type_name -> libravdb.ipc.v1.RankCandidate
+	15, // 24: libravdb.ipc.v1.RankCandidatesResponse.ranked:type_name -> libravdb.ipc.v1.RankCandidate
+	4,  // 25: libravdb.ipc.v1.SearchTextCollectionsRequest.ExcludeByCollectionEntry.value:type_name -> libravdb.ipc.v1.StringList
+	26, // [26:26] is the sub-list for method output_type
+	26, // [26:26] is the sub-list for method input_type
+	26, // [26:26] is the sub-list for extension type_name
+	26, // [26:26] is the sub-list for extension extendee
+	0,  // [0:26] is the sub-list for field type_name
 }
 
 func init() { file_libravdb_ipc_v1_rpc_proto_init() }
@@ -5617,7 +5700,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AssemblyDebug); i {
+			switch v := v.(*PredictedContext); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5629,7 +5712,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RecoveryOrderEntry); i {
+			switch v := v.(*AssemblyDebug); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5641,7 +5724,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AssembleConfigOverrides); i {
+			switch v := v.(*RecoveryOrderEntry); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5653,7 +5736,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RankCandidate); i {
+			switch v := v.(*AssembleConfigOverrides); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5665,7 +5748,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*HealthResponse); i {
+			switch v := v.(*RankCandidate); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5677,7 +5760,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CompactSessionResponse); i {
+			switch v := v.(*HealthResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5689,7 +5772,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GatingScalarResponse); i {
+			switch v := v.(*CompactSessionResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5701,7 +5784,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ExportMemoryRecord); i {
+			switch v := v.(*GatingScalarResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5713,7 +5796,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*EnsureCollectionsRequest); i {
+			switch v := v.(*ExportMemoryRecord); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5725,7 +5808,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*EnsureCollectionsResponse); i {
+			switch v := v.(*EnsureCollectionsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5737,7 +5820,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*InsertTextRequest); i {
+			switch v := v.(*EnsureCollectionsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5749,7 +5832,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*InsertTextResponse); i {
+			switch v := v.(*InsertTextRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5761,7 +5844,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*InsertSessionTurnRequest); i {
+			switch v := v.(*InsertTextResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5773,7 +5856,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*InsertSessionTurnResponse); i {
+			switch v := v.(*InsertSessionTurnRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5785,7 +5868,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*IngestMarkdownDocumentRequest); i {
+			switch v := v.(*InsertSessionTurnResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5797,7 +5880,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*IngestMarkdownDocumentResponse); i {
+			switch v := v.(*IngestMarkdownDocumentRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5809,7 +5892,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteAuthoredDocumentRequest); i {
+			switch v := v.(*IngestMarkdownDocumentResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5821,7 +5904,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteAuthoredDocumentResponse); i {
+			switch v := v.(*DeleteAuthoredDocumentRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5833,7 +5916,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PromoteDreamEntriesRequest); i {
+			switch v := v.(*DeleteAuthoredDocumentResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5845,7 +5928,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DreamPromotionResponse); i {
+			switch v := v.(*PromoteDreamEntriesRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5857,7 +5940,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*SearchTextRequest); i {
+			switch v := v.(*DreamPromotionResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5869,7 +5952,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*SearchTextCollectionsRequest); i {
+			switch v := v.(*SearchTextRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5881,7 +5964,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*SearchTextResponse); i {
+			switch v := v.(*SearchTextCollectionsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5893,7 +5976,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListByMetaRequest); i {
+			switch v := v.(*SearchTextResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5905,7 +5988,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListCollectionRequest); i {
+			switch v := v.(*ListByMetaRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5917,7 +6000,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[35].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ExpandSummaryRequest); i {
+			switch v := v.(*ListCollectionRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5929,7 +6012,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[36].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryRawSessionRequest); i {
+			switch v := v.(*ExpandSummaryRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5941,7 +6024,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[37].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListLifecycleJournalRequest); i {
+			switch v := v.(*QueryRawSessionRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5953,7 +6036,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[38].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*BumpAccessCountsRequest); i {
+			switch v := v.(*ListLifecycleJournalRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5965,7 +6048,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[39].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*BumpAccessCountsResponse); i {
+			switch v := v.(*BumpAccessCountsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5977,7 +6060,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[40].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteRequest); i {
+			switch v := v.(*BumpAccessCountsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5989,7 +6072,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[41].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteResponse); i {
+			switch v := v.(*DeleteRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -6001,7 +6084,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[42].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteBatchRequest); i {
+			switch v := v.(*DeleteResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -6013,7 +6096,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[43].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteBatchResponse); i {
+			switch v := v.(*DeleteBatchRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -6025,7 +6108,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[44].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CompactSessionRequest); i {
+			switch v := v.(*DeleteBatchResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -6037,7 +6120,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[45].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GatingScalarRequest); i {
+			switch v := v.(*CompactSessionRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -6049,7 +6132,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[46].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FlushNamespaceRequest); i {
+			switch v := v.(*GatingScalarRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -6061,7 +6144,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[47].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*SessionLifecycleHintRequest); i {
+			switch v := v.(*FlushNamespaceRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -6073,7 +6156,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[48].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*SessionLifecycleHintResponse); i {
+			switch v := v.(*SessionLifecycleHintRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -6085,7 +6168,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[49].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MemoryStatusResponse); i {
+			switch v := v.(*SessionLifecycleHintResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -6097,7 +6180,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[50].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ExportMemoryRequest); i {
+			switch v := v.(*MemoryStatusResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -6109,7 +6192,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[51].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ExportMemoryResponse); i {
+			switch v := v.(*ExportMemoryRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -6121,7 +6204,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[52].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FlushNamespaceResponse); i {
+			switch v := v.(*ExportMemoryResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -6133,7 +6216,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[53].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FlushResponse); i {
+			switch v := v.(*FlushNamespaceResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -6145,7 +6228,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[54].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*BootstrapSessionKernelRequest); i {
+			switch v := v.(*FlushResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -6157,7 +6240,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[55].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*BootstrapSessionKernelResponse); i {
+			switch v := v.(*BootstrapSessionKernelRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -6169,7 +6252,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[56].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*IngestMessageKernelRequest); i {
+			switch v := v.(*BootstrapSessionKernelResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -6181,7 +6264,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[57].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*IngestMessageKernelResponse); i {
+			switch v := v.(*IngestMessageKernelRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -6193,7 +6276,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[58].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AfterTurnKernelRequest); i {
+			switch v := v.(*IngestMessageKernelResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -6205,7 +6288,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[59].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AfterTurnKernelResponse); i {
+			switch v := v.(*AfterTurnKernelRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -6217,7 +6300,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[60].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AssembleContextInternalRequest); i {
+			switch v := v.(*AfterTurnKernelResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -6229,7 +6312,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[61].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RankCandidatesRequest); i {
+			switch v := v.(*AssembleContextInternalRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -6241,7 +6324,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[62].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RankCandidatesResponse); i {
+			switch v := v.(*RankCandidatesRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -6253,7 +6336,7 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[63].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RebuildIndexRequest); i {
+			switch v := v.(*RankCandidatesResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -6265,6 +6348,18 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 		file_libravdb_ipc_v1_rpc_proto_msgTypes[64].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*RebuildIndexRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_libravdb_ipc_v1_rpc_proto_msgTypes[65].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RebuildIndexResponse); i {
 			case 0:
 				return &v.state
@@ -6277,14 +6372,14 @@ func file_libravdb_ipc_v1_rpc_proto_init() {
 			}
 		}
 	}
-	file_libravdb_ipc_v1_rpc_proto_msgTypes[12].OneofWrappers = []interface{}{}
+	file_libravdb_ipc_v1_rpc_proto_msgTypes[13].OneofWrappers = []interface{}{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_libravdb_ipc_v1_rpc_proto_rawDesc,
 			NumEnums:      1,
-			NumMessages:   66,
+			NumMessages:   67,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

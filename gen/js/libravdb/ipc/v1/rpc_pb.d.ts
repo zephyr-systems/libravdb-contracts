@@ -1,6 +1,26 @@
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, Struct } from "@bufbuild/protobuf";
 /**
+ * IngestMode controls whether a call replaces all existing nodes for the source_doc
+ * or appends/merges them without deleting anything.
+ *
+ * @generated from enum libravdb.ipc.v1.IngestMode
+ */
+export declare enum IngestMode {
+    /**
+     * default — delete existing nodes, then insert new
+     *
+     * @generated from enum value: INGEST_MODE_REPLACE = 0;
+     */
+    REPLACE = 0,
+    /**
+     * skip delete, only insert new nodes
+     *
+     * @generated from enum value: INGEST_MODE_APPEND = 1;
+     */
+    APPEND = 1
+}
+/**
  * @generated from message libravdb.ipc.v1.RpcRequest
  */
 export declare class RpcRequest extends Message<RpcRequest> {
@@ -295,6 +315,31 @@ export declare class AssembleContextInternalResponse extends Message<AssembleCon
     static equals(a: AssembleContextInternalResponse | PlainMessage<AssembleContextInternalResponse> | undefined, b: AssembleContextInternalResponse | PlainMessage<AssembleContextInternalResponse> | undefined): boolean;
 }
 /**
+ * @generated from message libravdb.ipc.v1.PredictedContext
+ */
+export declare class PredictedContext extends Message<PredictedContext> {
+    /**
+     * @generated from field: string id = 1;
+     */
+    id: string;
+    /**
+     * @generated from field: string text = 2;
+     */
+    text: string;
+    /**
+     * @generated from field: string reason = 3;
+     */
+    reason: string;
+    constructor(data?: PartialMessage<PredictedContext>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.PredictedContext";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PredictedContext;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PredictedContext;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PredictedContext;
+    static equals(a: PredictedContext | PlainMessage<PredictedContext> | undefined, b: PredictedContext | PlainMessage<PredictedContext> | undefined): boolean;
+}
+/**
  * Typed debug payload for assemble_context_internal.
  * Mirrors the fields produced by the transport layer's assembleDebugToProto.
  *
@@ -453,6 +498,14 @@ export declare class AssembleConfigOverrides extends Message<AssembleConfigOverr
      * @generated from field: optional double section7_authority_authored_weight = 22;
      */
     section7AuthorityAuthoredWeight?: number;
+    /**
+     * @generated from field: optional double section7_authority_salience_weight = 30;
+     */
+    section7AuthoritySalienceWeight?: number;
+    /**
+     * @generated from field: optional double section7_recency_access_lambda = 31;
+     */
+    section7RecencyAccessLambda?: number;
     /**
      * @generated from field: optional double recovery_floor_score = 23;
      */
@@ -823,6 +876,12 @@ export declare class IngestMarkdownDocumentRequest extends Message<IngestMarkdow
      * @generated from field: libravdb.ipc.v1.MarkdownSourceMeta source_meta = 5;
      */
     sourceMeta?: MarkdownSourceMeta;
+    /**
+     * default INGEST_MODE_REPLACE if absent
+     *
+     * @generated from field: libravdb.ipc.v1.IngestMode mode = 6;
+     */
+    mode: IngestMode;
     constructor(data?: PartialMessage<IngestMarkdownDocumentRequest>);
     static readonly runtime: typeof proto3;
     static readonly typeName = "libravdb.ipc.v1.IngestMarkdownDocumentRequest";
@@ -1699,6 +1758,10 @@ export declare class AfterTurnKernelResponse extends Message<AfterTurnKernelResp
      * @generated from field: bool ok = 1;
      */
     ok: boolean;
+    /**
+     * @generated from field: repeated libravdb.ipc.v1.PredictedContext predictions = 2;
+     */
+    predictions: PredictedContext[];
     constructor(data?: PartialMessage<AfterTurnKernelResponse>);
     static readonly runtime: typeof proto3;
     static readonly typeName = "libravdb.ipc.v1.AfterTurnKernelResponse";

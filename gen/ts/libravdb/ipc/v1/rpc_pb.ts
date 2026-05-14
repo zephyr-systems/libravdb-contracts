@@ -586,6 +586,55 @@ export class AssembleContextInternalResponse extends Message<AssembleContextInte
 }
 
 /**
+ * @generated from message libravdb.ipc.v1.PredictedContext
+ */
+export class PredictedContext extends Message<PredictedContext> {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id = "";
+
+  /**
+   * @generated from field: string text = 2;
+   */
+  text = "";
+
+  /**
+   * @generated from field: string reason = 3;
+   */
+  reason = "";
+
+  constructor(data?: PartialMessage<PredictedContext>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "libravdb.ipc.v1.PredictedContext";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "text", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "reason", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PredictedContext {
+    return new PredictedContext().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PredictedContext {
+    return new PredictedContext().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PredictedContext {
+    return new PredictedContext().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: PredictedContext | PlainMessage<PredictedContext> | undefined, b: PredictedContext | PlainMessage<PredictedContext> | undefined): boolean {
+    return proto3.util.equals(PredictedContext, a, b);
+  }
+}
+
+/**
  * Typed debug payload for assemble_context_internal.
  * Mirrors the fields produced by the transport layer's assembleDebugToProto.
  *
@@ -3263,6 +3312,11 @@ export class AfterTurnKernelResponse extends Message<AfterTurnKernelResponse> {
    */
   ok = false;
 
+  /**
+   * @generated from field: repeated libravdb.ipc.v1.PredictedContext predictions = 2;
+   */
+  predictions: PredictedContext[] = [];
+
   constructor(data?: PartialMessage<AfterTurnKernelResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -3272,6 +3326,7 @@ export class AfterTurnKernelResponse extends Message<AfterTurnKernelResponse> {
   static readonly typeName = "libravdb.ipc.v1.AfterTurnKernelResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "ok", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 2, name: "predictions", kind: "message", T: PredictedContext, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AfterTurnKernelResponse {

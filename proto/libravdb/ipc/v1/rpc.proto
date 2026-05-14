@@ -92,6 +92,12 @@ message AssembleContextInternalResponse {
   AssemblyDebug debug = 4;
 }
 
+message PredictedContext {
+  string id = 1;
+  string text = 2;
+  string reason = 3;
+}
+
 // Typed debug payload for assemble_context_internal.
 // Mirrors the fields produced by the transport layer's assembleDebugToProto.
 message AssemblyDebug {
@@ -453,6 +459,7 @@ message AfterTurnKernelRequest {
 
 message AfterTurnKernelResponse {
   bool ok = 1;
+  repeated PredictedContext predictions = 2;
 }
 
 message AssembleContextInternalRequest {
