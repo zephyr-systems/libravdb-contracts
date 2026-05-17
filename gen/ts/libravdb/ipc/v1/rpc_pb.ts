@@ -320,6 +320,16 @@ export class MarkdownSourceMeta extends Message<MarkdownSourceMeta> {
    */
   hashBackend = "";
 
+  /**
+   * Inode change time in Unix milliseconds. Populated only when the
+   * caller has filesystem access to ctime. Zero when unavailable.
+   * Used by the plugin for priority ordering. Not used by the daemon
+   * for deduplication.
+   *
+   * @generated from field: int64 source_ctime_ms = 9;
+   */
+  sourceCtimeMs = protoInt64.zero;
+
   constructor(data?: PartialMessage<MarkdownSourceMeta>) {
     super();
     proto3.util.initPartial(data, this);
@@ -336,6 +346,7 @@ export class MarkdownSourceMeta extends Message<MarkdownSourceMeta> {
     { no: 6, name: "source_mtime_ms", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 7, name: "ingest_version", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 8, name: "hash_backend", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 9, name: "source_ctime_ms", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MarkdownSourceMeta {
@@ -431,6 +442,113 @@ export class DreamPromotionEntry extends Message<DreamPromotionEntry> {
 
   static equals(a: DreamPromotionEntry | PlainMessage<DreamPromotionEntry> | undefined, b: DreamPromotionEntry | PlainMessage<DreamPromotionEntry> | undefined): boolean {
     return proto3.util.equals(DreamPromotionEntry, a, b);
+  }
+}
+
+/**
+ * @generated from message libravdb.ipc.v1.IngestFeedback
+ */
+export class IngestFeedback extends Message<IngestFeedback> {
+  /**
+   * Current number of items waiting in the async ingest worker queue.
+   * Zero when daemon runs synchronously. Treat zero as no information.
+   *
+   * @generated from field: int32 queue_depth = 1;
+   */
+  queueDepth = 0;
+
+  /**
+   * Maximum capacity of the ingest worker queue.
+   * Zero when daemon runs synchronously.
+   *
+   * @generated from field: int32 queue_capacity = 2;
+   */
+  queueCapacity = 0;
+
+  /**
+   * When false the caller must stop sending ingest requests until
+   * retry_after_ms has elapsed. Zero value (false in proto3) means
+   * no signal — do not interpret zero as a stop instruction.
+   * Daemon must explicitly set true to signal readiness.
+   *
+   * @generated from field: bool accept_more = 3;
+   */
+  acceptMore = false;
+
+  /**
+   * Suggested caller backoff in milliseconds when accept_more is false.
+   * Zero means the daemon has no recommendation.
+   *
+   * @generated from field: int32 retry_after_ms = 4;
+   */
+  retryAfterMs = 0;
+
+  /**
+   * Wall-clock duration of this ingest request in microseconds.
+   * Includes AST parse, embedding inference, and store write.
+   * Zero when not measured.
+   *
+   * @generated from field: int64 processing_time_us = 5;
+   */
+  processingTimeUs = protoInt64.zero;
+
+  /**
+   * AST nodes that passed the IngestionGateThreshold quality filter
+   * and were written to the vector store.
+   *
+   * @generated from field: int32 nodes_accepted = 6;
+   */
+  nodesAccepted = 0;
+
+  /**
+   * AST nodes silently dropped by IngestionGateThreshold.
+   * High rejected-to-accepted ratio indicates low-value document.
+   *
+   * @generated from field: int32 nodes_rejected = 7;
+   */
+  nodesRejected = 0;
+
+  /**
+   * Estimated tokens actually embedded across all accepted nodes,
+   * summed after sliding-window expansion. This is the real per-request
+   * token consumption the caller can use for budget accounting.
+   *
+   * @generated from field: int32 tokens_ingested = 8;
+   */
+  tokensIngested = 0;
+
+  constructor(data?: PartialMessage<IngestFeedback>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "libravdb.ipc.v1.IngestFeedback";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "queue_depth", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "queue_capacity", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 3, name: "accept_more", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 4, name: "retry_after_ms", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 5, name: "processing_time_us", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 6, name: "nodes_accepted", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 7, name: "nodes_rejected", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 8, name: "tokens_ingested", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): IngestFeedback {
+    return new IngestFeedback().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): IngestFeedback {
+    return new IngestFeedback().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): IngestFeedback {
+    return new IngestFeedback().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: IngestFeedback | PlainMessage<IngestFeedback> | undefined, b: IngestFeedback | PlainMessage<IngestFeedback> | undefined): boolean {
+    return proto3.util.equals(IngestFeedback, a, b);
   }
 }
 
@@ -1659,6 +1777,11 @@ export class IngestMarkdownDocumentResponse extends Message<IngestMarkdownDocume
    */
   ok = false;
 
+  /**
+   * @generated from field: libravdb.ipc.v1.IngestFeedback feedback = 2;
+   */
+  feedback?: IngestFeedback;
+
   constructor(data?: PartialMessage<IngestMarkdownDocumentResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1668,6 +1791,7 @@ export class IngestMarkdownDocumentResponse extends Message<IngestMarkdownDocume
   static readonly typeName = "libravdb.ipc.v1.IngestMarkdownDocumentResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "ok", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 2, name: "feedback", kind: "message", T: IngestFeedback },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): IngestMarkdownDocumentResponse {
@@ -1820,6 +1944,14 @@ export class PromoteDreamEntriesRequest extends Message<PromoteDreamEntriesReque
    */
   entries: DreamPromotionEntry[] = [];
 
+  /**
+   * Inode change time in Unix milliseconds. Mirrors the field added
+   * to MarkdownSourceMeta. Zero when unavailable.
+   *
+   * @generated from field: int64 source_ctime_ms = 12;
+   */
+  sourceCtimeMs = protoInt64.zero;
+
   constructor(data?: PartialMessage<PromoteDreamEntriesRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1839,6 +1971,7 @@ export class PromoteDreamEntriesRequest extends Message<PromoteDreamEntriesReque
     { no: 9, name: "ingest_version", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 10, name: "hash_backend", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 11, name: "entries", kind: "message", T: DreamPromotionEntry, repeated: true },
+    { no: 12, name: "source_ctime_ms", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PromoteDreamEntriesRequest {
@@ -1872,6 +2005,11 @@ export class DreamPromotionResponse extends Message<DreamPromotionResponse> {
    */
   rejected = 0;
 
+  /**
+   * @generated from field: libravdb.ipc.v1.IngestFeedback feedback = 3;
+   */
+  feedback?: IngestFeedback;
+
   constructor(data?: PartialMessage<DreamPromotionResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1882,6 +2020,7 @@ export class DreamPromotionResponse extends Message<DreamPromotionResponse> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "promoted", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 2, name: "rejected", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 3, name: "feedback", kind: "message", T: IngestFeedback },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DreamPromotionResponse {

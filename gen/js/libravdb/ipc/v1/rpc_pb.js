@@ -264,6 +264,15 @@ export class MarkdownSourceMeta extends Message {
      * @generated from field: string hash_backend = 8;
      */
     hashBackend = "";
+    /**
+     * Inode change time in Unix milliseconds. Populated only when the
+     * caller has filesystem access to ctime. Zero when unavailable.
+     * Used by the plugin for priority ordering. Not used by the daemon
+     * for deduplication.
+     *
+     * @generated from field: int64 source_ctime_ms = 9;
+     */
+    sourceCtimeMs = protoInt64.zero;
     constructor(data) {
         super();
         proto3.util.initPartial(data, this);
@@ -279,6 +288,7 @@ export class MarkdownSourceMeta extends Message {
         { no: 6, name: "source_mtime_ms", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
         { no: 7, name: "ingest_version", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
         { no: 8, name: "hash_backend", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+        { no: 9, name: "source_ctime_ms", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     ]);
     static fromBinary(bytes, options) {
         return new MarkdownSourceMeta().fromBinary(bytes, options);
@@ -356,6 +366,99 @@ export class DreamPromotionEntry extends Message {
     }
     static equals(a, b) {
         return proto3.util.equals(DreamPromotionEntry, a, b);
+    }
+}
+/**
+ * @generated from message libravdb.ipc.v1.IngestFeedback
+ */
+export class IngestFeedback extends Message {
+    /**
+     * Current number of items waiting in the async ingest worker queue.
+     * Zero when daemon runs synchronously. Treat zero as no information.
+     *
+     * @generated from field: int32 queue_depth = 1;
+     */
+    queueDepth = 0;
+    /**
+     * Maximum capacity of the ingest worker queue.
+     * Zero when daemon runs synchronously.
+     *
+     * @generated from field: int32 queue_capacity = 2;
+     */
+    queueCapacity = 0;
+    /**
+     * When false the caller must stop sending ingest requests until
+     * retry_after_ms has elapsed. Zero value (false in proto3) means
+     * no signal — do not interpret zero as a stop instruction.
+     * Daemon must explicitly set true to signal readiness.
+     *
+     * @generated from field: bool accept_more = 3;
+     */
+    acceptMore = false;
+    /**
+     * Suggested caller backoff in milliseconds when accept_more is false.
+     * Zero means the daemon has no recommendation.
+     *
+     * @generated from field: int32 retry_after_ms = 4;
+     */
+    retryAfterMs = 0;
+    /**
+     * Wall-clock duration of this ingest request in microseconds.
+     * Includes AST parse, embedding inference, and store write.
+     * Zero when not measured.
+     *
+     * @generated from field: int64 processing_time_us = 5;
+     */
+    processingTimeUs = protoInt64.zero;
+    /**
+     * AST nodes that passed the IngestionGateThreshold quality filter
+     * and were written to the vector store.
+     *
+     * @generated from field: int32 nodes_accepted = 6;
+     */
+    nodesAccepted = 0;
+    /**
+     * AST nodes silently dropped by IngestionGateThreshold.
+     * High rejected-to-accepted ratio indicates low-value document.
+     *
+     * @generated from field: int32 nodes_rejected = 7;
+     */
+    nodesRejected = 0;
+    /**
+     * Estimated tokens actually embedded across all accepted nodes,
+     * summed after sliding-window expansion. This is the real per-request
+     * token consumption the caller can use for budget accounting.
+     *
+     * @generated from field: int32 tokens_ingested = 8;
+     */
+    tokensIngested = 0;
+    constructor(data) {
+        super();
+        proto3.util.initPartial(data, this);
+    }
+    static runtime = proto3;
+    static typeName = "libravdb.ipc.v1.IngestFeedback";
+    static fields = proto3.util.newFieldList(() => [
+        { no: 1, name: "queue_depth", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+        { no: 2, name: "queue_capacity", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+        { no: 3, name: "accept_more", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+        { no: 4, name: "retry_after_ms", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+        { no: 5, name: "processing_time_us", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+        { no: 6, name: "nodes_accepted", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+        { no: 7, name: "nodes_rejected", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+        { no: 8, name: "tokens_ingested", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    ]);
+    static fromBinary(bytes, options) {
+        return new IngestFeedback().fromBinary(bytes, options);
+    }
+    static fromJson(jsonValue, options) {
+        return new IngestFeedback().fromJson(jsonValue, options);
+    }
+    static fromJsonString(jsonString, options) {
+        return new IngestFeedback().fromJsonString(jsonString, options);
+    }
+    static equals(a, b) {
+        return proto3.util.equals(IngestFeedback, a, b);
     }
 }
 /**
@@ -627,6 +730,8 @@ export class RecoveryOrderEntry extends Message {
  */
 export class AssembleConfigOverrides extends Message {
     /**
+     * LIVE — fields with confirmed daemon handlers
+     *
      * @generated from field: optional bool use_session_recall_projection = 1;
      */
     useSessionRecallProjection;
@@ -667,6 +772,11 @@ export class AssembleConfigOverrides extends Message {
      */
     continuityPriorContextTokens;
     /**
+     * DEPRECATED — no daemon handler exists. Do not use until wired.
+     * Tracking: confirm no active traffic before major version removal.
+     * compact_threshold (field 11) was once used for compaction tuning;
+     * the daemon now derives this internally from token budget signals.
+     *
      * @generated from field: optional int32 compact_threshold = 11;
      */
     compactThreshold;
@@ -699,6 +809,10 @@ export class AssembleConfigOverrides extends Message {
      */
     section7SecondPassTopK;
     /**
+     * DEPRECATED — no daemon handler exists. Do not use until wired.
+     * section7_authority_recency_lambda (field 19) is a latent authority
+     * signal that was never connected to the ranking pipeline.
+     *
      * @generated from field: optional double section7_authority_recency_lambda = 19;
      */
     section7AuthorityRecencyLambda;
@@ -715,14 +829,6 @@ export class AssembleConfigOverrides extends Message {
      */
     section7AuthorityAuthoredWeight;
     /**
-     * @generated from field: optional double section7_authority_salience_weight = 30;
-     */
-    section7AuthoritySalienceWeight;
-    /**
-     * @generated from field: optional double section7_recency_access_lambda = 31;
-     */
-    section7RecencyAccessLambda;
-    /**
      * @generated from field: optional double recovery_floor_score = 23;
      */
     recoveryFloorScore;
@@ -735,6 +841,10 @@ export class AssembleConfigOverrides extends Message {
      */
     recoveryMinConfidenceMean;
     /**
+     * DEPRECATED — no daemon handler exists. Do not use until wired.
+     * recency_lambda_session (field 26) was reserved for session-scoped
+     * recency weighting but has no active handler in the daemon.
+     *
      * @generated from field: optional double recency_lambda_session = 26;
      */
     recencyLambdaSession;
@@ -743,6 +853,10 @@ export class AssembleConfigOverrides extends Message {
      */
     recencyLambdaUser;
     /**
+     * DEPRECATED — no daemon handler exists. Do not use until wired.
+     * recency_lambda_global (field 28) was reserved for global recency
+     * weighting but has no active handler in the daemon.
+     *
      * @generated from field: optional double recency_lambda_global = 28;
      */
     recencyLambdaGlobal;
@@ -750,6 +864,17 @@ export class AssembleConfigOverrides extends Message {
      * @generated from field: optional double ingestion_gate_threshold = 29;
      */
     ingestionGateThreshold;
+    /**
+     * LIVE — plugin PR #160 is adding these; no contract change needed.
+     * These fields are actively consumed by the daemon ranking pipeline.
+     *
+     * @generated from field: optional double section7_authority_salience_weight = 30;
+     */
+    section7AuthoritySalienceWeight;
+    /**
+     * @generated from field: optional double section7_recency_access_lambda = 31;
+     */
+    section7RecencyAccessLambda;
     constructor(data) {
         super();
         proto3.util.initPartial(data, this);
@@ -779,8 +904,6 @@ export class AssembleConfigOverrides extends Message {
         { no: 20, name: "section7_authority_recency_weight", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
         { no: 21, name: "section7_authority_frequency_weight", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
         { no: 22, name: "section7_authority_authored_weight", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
-        { no: 30, name: "section7_authority_salience_weight", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
-        { no: 31, name: "section7_recency_access_lambda", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
         { no: 23, name: "recovery_floor_score", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
         { no: 24, name: "recovery_min_top_k", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
         { no: 25, name: "recovery_min_confidence_mean", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
@@ -788,6 +911,8 @@ export class AssembleConfigOverrides extends Message {
         { no: 27, name: "recency_lambda_user", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
         { no: 28, name: "recency_lambda_global", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
         { no: 29, name: "ingestion_gate_threshold", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
+        { no: 30, name: "section7_authority_salience_weight", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
+        { no: 31, name: "section7_recency_access_lambda", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
     ]);
     static fromBinary(bytes, options) {
         return new AssembleConfigOverrides().fromBinary(bytes, options);
@@ -1348,6 +1473,10 @@ export class IngestMarkdownDocumentResponse extends Message {
      * @generated from field: bool ok = 1;
      */
     ok = false;
+    /**
+     * @generated from field: libravdb.ipc.v1.IngestFeedback feedback = 2;
+     */
+    feedback;
     constructor(data) {
         super();
         proto3.util.initPartial(data, this);
@@ -1356,6 +1485,7 @@ export class IngestMarkdownDocumentResponse extends Message {
     static typeName = "libravdb.ipc.v1.IngestMarkdownDocumentResponse";
     static fields = proto3.util.newFieldList(() => [
         { no: 1, name: "ok", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+        { no: 2, name: "feedback", kind: "message", T: IngestFeedback },
     ]);
     static fromBinary(bytes, options) {
         return new IngestMarkdownDocumentResponse().fromBinary(bytes, options);
@@ -1478,6 +1608,13 @@ export class PromoteDreamEntriesRequest extends Message {
      * @generated from field: repeated libravdb.ipc.v1.DreamPromotionEntry entries = 11;
      */
     entries = [];
+    /**
+     * Inode change time in Unix milliseconds. Mirrors the field added
+     * to MarkdownSourceMeta. Zero when unavailable.
+     *
+     * @generated from field: int64 source_ctime_ms = 12;
+     */
+    sourceCtimeMs = protoInt64.zero;
     constructor(data) {
         super();
         proto3.util.initPartial(data, this);
@@ -1496,6 +1633,7 @@ export class PromoteDreamEntriesRequest extends Message {
         { no: 9, name: "ingest_version", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
         { no: 10, name: "hash_backend", kind: "scalar", T: 9 /* ScalarType.STRING */ },
         { no: 11, name: "entries", kind: "message", T: DreamPromotionEntry, repeated: true },
+        { no: 12, name: "source_ctime_ms", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     ]);
     static fromBinary(bytes, options) {
         return new PromoteDreamEntriesRequest().fromBinary(bytes, options);
@@ -1522,6 +1660,10 @@ export class DreamPromotionResponse extends Message {
      * @generated from field: int32 rejected = 2;
      */
     rejected = 0;
+    /**
+     * @generated from field: libravdb.ipc.v1.IngestFeedback feedback = 3;
+     */
+    feedback;
     constructor(data) {
         super();
         proto3.util.initPartial(data, this);
@@ -1531,6 +1673,7 @@ export class DreamPromotionResponse extends Message {
     static fields = proto3.util.newFieldList(() => [
         { no: 1, name: "promoted", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
         { no: 2, name: "rejected", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+        { no: 3, name: "feedback", kind: "message", T: IngestFeedback },
     ]);
     static fromBinary(bytes, options) {
         return new DreamPromotionResponse().fromBinary(bytes, options);

@@ -59,6 +59,11 @@ message MarkdownSourceMeta {
   int64 source_mtime_ms = 6;
   int32 ingest_version = 7;
   string hash_backend = 8;
+  // Inode change time in Unix milliseconds. Populated only when the
+  // caller has filesystem access to ctime. Zero when unavailable.
+  // Used by the plugin for priority ordering. Not used by the daemon
+  // for deduplication.
+  int64 source_ctime_ms = 9;
 }
 
 message DreamPromotionEntry {
@@ -70,6 +75,37 @@ message DreamPromotionEntry {
   int32 line = 6;
   int32 source_line = 7;
   google.protobuf.Struct metadata = 8;
+}
+
+message IngestFeedback {
+  // Current number of items waiting in the async ingest worker queue.
+  // Zero when daemon runs synchronously. Treat zero as no information.
+  int32 queue_depth = 1;
+  // Maximum capacity of the ingest worker queue.
+  // Zero when daemon runs synchronously.
+  int32 queue_capacity = 2;
+  // When false the caller must stop sending ingest requests until
+  // retry_after_ms has elapsed. Zero value (false in proto3) means
+  // no signal — do not interpret zero as a stop instruction.
+  // Daemon must explicitly set true to signal readiness.
+  bool accept_more = 3;
+  // Suggested caller backoff in milliseconds when accept_more is false.
+  // Zero means the daemon has no recommendation.
+  int32 retry_after_ms = 4;
+  // Wall-clock duration of this ingest request in microseconds.
+  // Includes AST parse, embedding inference, and store write.
+  // Zero when not measured.
+  int64 processing_time_us = 5;
+  // AST nodes that passed the IngestionGateThreshold quality filter
+  // and were written to the vector store.
+  int32 nodes_accepted = 6;
+  // AST nodes silently dropped by IngestionGateThreshold.
+  // High rejected-to-accepted ratio indicates low-value document.
+  int32 nodes_rejected = 7;
+  // Estimated tokens actually embedded across all accepted nodes,
+  // summed after sliding-window expansion. This is the real per-request
+  // token consumption the caller can use for budget accounting.
+  int32 tokens_ingested = 8;
 }
 
 message AccessCountUpdate {
@@ -299,6 +335,7 @@ message IngestMarkdownDocumentRequest {
 
 message IngestMarkdownDocumentResponse {
   bool ok = 1;
+  IngestFeedback feedback = 2;
 }
 
 message DeleteAuthoredDocumentRequest {
@@ -321,11 +358,15 @@ message PromoteDreamEntriesRequest {
   int32 ingest_version = 9;
   string hash_backend = 10;
   repeated DreamPromotionEntry entries = 11;
+  // Inode change time in Unix milliseconds. Mirrors the field added
+  // to MarkdownSourceMeta. Zero when unavailable.
+  int64 source_ctime_ms = 12;
 }
 
 message DreamPromotionResponse {
   int32 promoted = 1;
   int32 rejected = 2;
+  IngestFeedback feedback = 3;
 }
 
 message SearchTextRequest {

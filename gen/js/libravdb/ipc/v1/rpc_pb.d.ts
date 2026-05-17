@@ -181,6 +181,15 @@ export declare class MarkdownSourceMeta extends Message<MarkdownSourceMeta> {
      * @generated from field: string hash_backend = 8;
      */
     hashBackend: string;
+    /**
+     * Inode change time in Unix milliseconds. Populated only when the
+     * caller has filesystem access to ctime. Zero when unavailable.
+     * Used by the plugin for priority ordering. Not used by the daemon
+     * for deduplication.
+     *
+     * @generated from field: int64 source_ctime_ms = 9;
+     */
+    sourceCtimeMs: bigint;
     constructor(data?: PartialMessage<MarkdownSourceMeta>);
     static readonly runtime: typeof proto3;
     static readonly typeName = "libravdb.ipc.v1.MarkdownSourceMeta";
@@ -234,6 +243,79 @@ export declare class DreamPromotionEntry extends Message<DreamPromotionEntry> {
     static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DreamPromotionEntry;
     static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DreamPromotionEntry;
     static equals(a: DreamPromotionEntry | PlainMessage<DreamPromotionEntry> | undefined, b: DreamPromotionEntry | PlainMessage<DreamPromotionEntry> | undefined): boolean;
+}
+/**
+ * @generated from message libravdb.ipc.v1.IngestFeedback
+ */
+export declare class IngestFeedback extends Message<IngestFeedback> {
+    /**
+     * Current number of items waiting in the async ingest worker queue.
+     * Zero when daemon runs synchronously. Treat zero as no information.
+     *
+     * @generated from field: int32 queue_depth = 1;
+     */
+    queueDepth: number;
+    /**
+     * Maximum capacity of the ingest worker queue.
+     * Zero when daemon runs synchronously.
+     *
+     * @generated from field: int32 queue_capacity = 2;
+     */
+    queueCapacity: number;
+    /**
+     * When false the caller must stop sending ingest requests until
+     * retry_after_ms has elapsed. Zero value (false in proto3) means
+     * no signal — do not interpret zero as a stop instruction.
+     * Daemon must explicitly set true to signal readiness.
+     *
+     * @generated from field: bool accept_more = 3;
+     */
+    acceptMore: boolean;
+    /**
+     * Suggested caller backoff in milliseconds when accept_more is false.
+     * Zero means the daemon has no recommendation.
+     *
+     * @generated from field: int32 retry_after_ms = 4;
+     */
+    retryAfterMs: number;
+    /**
+     * Wall-clock duration of this ingest request in microseconds.
+     * Includes AST parse, embedding inference, and store write.
+     * Zero when not measured.
+     *
+     * @generated from field: int64 processing_time_us = 5;
+     */
+    processingTimeUs: bigint;
+    /**
+     * AST nodes that passed the IngestionGateThreshold quality filter
+     * and were written to the vector store.
+     *
+     * @generated from field: int32 nodes_accepted = 6;
+     */
+    nodesAccepted: number;
+    /**
+     * AST nodes silently dropped by IngestionGateThreshold.
+     * High rejected-to-accepted ratio indicates low-value document.
+     *
+     * @generated from field: int32 nodes_rejected = 7;
+     */
+    nodesRejected: number;
+    /**
+     * Estimated tokens actually embedded across all accepted nodes,
+     * summed after sliding-window expansion. This is the real per-request
+     * token consumption the caller can use for budget accounting.
+     *
+     * @generated from field: int32 tokens_ingested = 8;
+     */
+    tokensIngested: number;
+    constructor(data?: PartialMessage<IngestFeedback>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.IngestFeedback";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): IngestFeedback;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): IngestFeedback;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): IngestFeedback;
+    static equals(a: IngestFeedback | PlainMessage<IngestFeedback> | undefined, b: IngestFeedback | PlainMessage<IngestFeedback> | undefined): boolean;
 }
 /**
  * @generated from message libravdb.ipc.v1.AccessCountUpdate
@@ -411,6 +493,8 @@ export declare class RecoveryOrderEntry extends Message<RecoveryOrderEntry> {
  */
 export declare class AssembleConfigOverrides extends Message<AssembleConfigOverrides> {
     /**
+     * LIVE — fields with confirmed daemon handlers
+     *
      * @generated from field: optional bool use_session_recall_projection = 1;
      */
     useSessionRecallProjection?: boolean;
@@ -451,6 +535,11 @@ export declare class AssembleConfigOverrides extends Message<AssembleConfigOverr
      */
     continuityPriorContextTokens?: number;
     /**
+     * DEPRECATED — no daemon handler exists. Do not use until wired.
+     * Tracking: confirm no active traffic before major version removal.
+     * compact_threshold (field 11) was once used for compaction tuning;
+     * the daemon now derives this internally from token budget signals.
+     *
      * @generated from field: optional int32 compact_threshold = 11;
      */
     compactThreshold?: number;
@@ -483,6 +572,10 @@ export declare class AssembleConfigOverrides extends Message<AssembleConfigOverr
      */
     section7SecondPassTopK?: number;
     /**
+     * DEPRECATED — no daemon handler exists. Do not use until wired.
+     * section7_authority_recency_lambda (field 19) is a latent authority
+     * signal that was never connected to the ranking pipeline.
+     *
      * @generated from field: optional double section7_authority_recency_lambda = 19;
      */
     section7AuthorityRecencyLambda?: number;
@@ -499,14 +592,6 @@ export declare class AssembleConfigOverrides extends Message<AssembleConfigOverr
      */
     section7AuthorityAuthoredWeight?: number;
     /**
-     * @generated from field: optional double section7_authority_salience_weight = 30;
-     */
-    section7AuthoritySalienceWeight?: number;
-    /**
-     * @generated from field: optional double section7_recency_access_lambda = 31;
-     */
-    section7RecencyAccessLambda?: number;
-    /**
      * @generated from field: optional double recovery_floor_score = 23;
      */
     recoveryFloorScore?: number;
@@ -519,6 +604,10 @@ export declare class AssembleConfigOverrides extends Message<AssembleConfigOverr
      */
     recoveryMinConfidenceMean?: number;
     /**
+     * DEPRECATED — no daemon handler exists. Do not use until wired.
+     * recency_lambda_session (field 26) was reserved for session-scoped
+     * recency weighting but has no active handler in the daemon.
+     *
      * @generated from field: optional double recency_lambda_session = 26;
      */
     recencyLambdaSession?: number;
@@ -527,6 +616,10 @@ export declare class AssembleConfigOverrides extends Message<AssembleConfigOverr
      */
     recencyLambdaUser?: number;
     /**
+     * DEPRECATED — no daemon handler exists. Do not use until wired.
+     * recency_lambda_global (field 28) was reserved for global recency
+     * weighting but has no active handler in the daemon.
+     *
      * @generated from field: optional double recency_lambda_global = 28;
      */
     recencyLambdaGlobal?: number;
@@ -534,6 +627,17 @@ export declare class AssembleConfigOverrides extends Message<AssembleConfigOverr
      * @generated from field: optional double ingestion_gate_threshold = 29;
      */
     ingestionGateThreshold?: number;
+    /**
+     * LIVE — plugin PR #160 is adding these; no contract change needed.
+     * These fields are actively consumed by the daemon ranking pipeline.
+     *
+     * @generated from field: optional double section7_authority_salience_weight = 30;
+     */
+    section7AuthoritySalienceWeight?: number;
+    /**
+     * @generated from field: optional double section7_recency_access_lambda = 31;
+     */
+    section7RecencyAccessLambda?: number;
     constructor(data?: PartialMessage<AssembleConfigOverrides>);
     static readonly runtime: typeof proto3;
     static readonly typeName = "libravdb.ipc.v1.AssembleConfigOverrides";
@@ -899,6 +1003,10 @@ export declare class IngestMarkdownDocumentResponse extends Message<IngestMarkdo
      * @generated from field: bool ok = 1;
      */
     ok: boolean;
+    /**
+     * @generated from field: libravdb.ipc.v1.IngestFeedback feedback = 2;
+     */
+    feedback?: IngestFeedback;
     constructor(data?: PartialMessage<IngestMarkdownDocumentResponse>);
     static readonly runtime: typeof proto3;
     static readonly typeName = "libravdb.ipc.v1.IngestMarkdownDocumentResponse";
@@ -990,6 +1098,13 @@ export declare class PromoteDreamEntriesRequest extends Message<PromoteDreamEntr
      * @generated from field: repeated libravdb.ipc.v1.DreamPromotionEntry entries = 11;
      */
     entries: DreamPromotionEntry[];
+    /**
+     * Inode change time in Unix milliseconds. Mirrors the field added
+     * to MarkdownSourceMeta. Zero when unavailable.
+     *
+     * @generated from field: int64 source_ctime_ms = 12;
+     */
+    sourceCtimeMs: bigint;
     constructor(data?: PartialMessage<PromoteDreamEntriesRequest>);
     static readonly runtime: typeof proto3;
     static readonly typeName = "libravdb.ipc.v1.PromoteDreamEntriesRequest";
@@ -1011,6 +1126,10 @@ export declare class DreamPromotionResponse extends Message<DreamPromotionRespon
      * @generated from field: int32 rejected = 2;
      */
     rejected: number;
+    /**
+     * @generated from field: libravdb.ipc.v1.IngestFeedback feedback = 3;
+     */
+    feedback?: IngestFeedback;
     constructor(data?: PartialMessage<DreamPromotionResponse>);
     static readonly runtime: typeof proto3;
     static readonly typeName = "libravdb.ipc.v1.DreamPromotionResponse";
