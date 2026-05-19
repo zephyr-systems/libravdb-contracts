@@ -596,5 +596,193 @@ message RebuildIndexResponse {
   int32 collections_recreated = 3;
   repeated string errors = 4;
 }
-// triggers workflow
-// test
+
+// =============================================================================
+// New message types for daemon operations without proto definitions
+// =============================================================================
+
+// Cognitive tier metrics from the ranking pipeline.
+message CognitiveMetricsRequest {
+}
+
+message CognitiveMetricsResponse {
+  int64 total_nodes = 1;
+  int64 fallbacks = 2;
+  int64 identity = 3;
+  int64 constraint = 4;
+  int64 decision = 5;
+  int64 fact = 6;
+  int64 preference = 7;
+  int64 episode = 8;
+  int64 tier_hard = 9;
+  int64 tier_soft = 10;
+  int64 tier_variant = 11;
+  int64 heading_identity = 12;
+  int64 heading_constraint = 13;
+  int64 heading_workflow = 14;
+  int64 heading_background = 15;
+  int64 heading_preferences = 16;
+  repeated int64 support_buckets = 17;
+  bool circuit_open = 18;
+  string circuit_reason = 19;
+  bool use_cognitive_routing = 20;
+}
+
+// ReindexChange describes a single node-level change in a reindex operation.
+message ReindexChange {
+  int32 ordinal = 1;
+  string kind = 2;
+  string text_preview = 3;
+  int32 legacy_tier = 4;
+  int32 cognitive_tier = 5;
+  string memory_kind = 6;
+  double memory_support = 7;
+  string memory_role = 8;
+  bool tier_changed = 9;
+}
+
+// Result payload for a dry-run reindex — describes what would change without applying it.
+message ReindexDryRunResult {
+  int32 total_nodes = 1;
+  bool promote_tier = 2;
+  repeated ReindexChange changes = 3;
+}
+
+// Result payload for a live reindex — describes what was applied.
+message ReindexLiveResult {
+  bool ok = 1;
+  bool promote_cognitive_tier = 2;
+  int32 nodes_accepted = 3;
+  int32 nodes_rejected = 4;
+  int32 tokens_ingested = 5;
+}
+
+message ReindexAuthoredDocumentRequest {
+  string source_doc = 1;
+  string text = 2;
+  string tokenizer_id = 3;
+  bool core_doc = 4;
+  MarkdownSourceMeta source_meta = 5;
+  bool promote_cognitive_tier = 6;
+  bool dry_run = 7;
+}
+
+message ReindexAuthoredDocumentResponse {
+  string source_doc = 1;
+  oneof result {
+    ReindexDryRunResult dry_run = 2;
+    ReindexLiveResult live = 3;
+  }
+}
+
+message MarkMemorySupersededRequest {
+  string collection = 1;
+  string old_id = 2;
+  string new_id = 3;
+  int64 valid_until = 4;
+}
+
+message MarkMemorySupersededResponse {
+  bool ok = 1;
+}
+
+// =============================================================================
+// LibravDB service — single canonical RPC service covering all 33 operations
+// All methods are unary. Request and response types are listed explicitly.
+// =============================================================================
+
+service LibravDB {
+  // Session lifecycle
+  rpc Health(HealthRequest) returns (HealthResponse);
+  rpc Status(MemoryStatusRequest) returns (MemoryStatusResponse);
+  rpc Flush(FlushRequest) returns (FlushResponse);
+  rpc SessionLifecycleHint(SessionLifecycleHintRequest) returns (SessionLifecycleHintResponse);
+  rpc ListLifecycleJournal(ListLifecycleJournalRequest) returns (ListLifecycleJournalResponse);
+
+  // Collections
+  rpc EnsureCollections(EnsureCollectionsRequest) returns (EnsureCollectionsResponse);
+
+  // Ingest
+  rpc IngestMarkdownDocument(IngestMarkdownDocumentRequest) returns (IngestMarkdownDocumentResponse);
+  rpc PromoteDreamEntries(PromoteDreamEntriesRequest) returns (DreamPromotionResponse);
+  rpc ReindexAuthoredDocument(ReindexAuthoredDocumentRequest) returns (ReindexAuthoredDocumentResponse);
+  rpc DeleteAuthoredDocument(DeleteAuthoredDocumentRequest) returns (DeleteAuthoredDocumentResponse);
+  rpc MarkMemorySuperseded(MarkMemorySupersededRequest) returns (MarkMemorySupersededResponse);
+
+  // Insert
+  rpc InsertText(InsertTextRequest) returns (InsertTextResponse);
+  rpc InsertSessionTurn(InsertSessionTurnRequest) returns (InsertSessionTurnResponse);
+
+  // Ranking and gating
+  rpc GatingScalar(GatingScalarRequest) returns (GatingScalarResponse);
+  rpc SearchText(SearchTextRequest) returns (SearchTextResponse);
+  rpc SearchTextCollections(SearchTextCollectionsRequest) returns (SearchTextResponse);
+  rpc BumpAccessCounts(BumpAccessCountsRequest) returns (BumpAccessCountsResponse);
+
+  // Query
+  rpc ListCollection(ListCollectionRequest) returns (ListCollectionResponse);
+  rpc ListByMeta(ListByMetaRequest) returns (ListByMetaResponse);
+
+  // Memory
+  rpc ExportMemory(ExportMemoryRequest) returns (ExportMemoryResponse);
+  rpc FlushNamespace(FlushNamespaceRequest) returns (FlushNamespaceResponse);
+
+  // Delete
+  rpc Delete(DeleteRequest) returns (DeleteResponse);
+  rpc DeleteBatch(DeleteBatchRequest) returns (DeleteBatchResponse);
+
+  // Session
+  rpc CompactSession(CompactSessionRequest) returns (CompactSessionResponse);
+  rpc ExpandSummary(ExpandSummaryRequest) returns (ExpandSummaryResponse);
+  rpc QueryRawSession(QueryRawSessionRequest) returns (QueryRawSessionResponse);
+
+  // Index
+  rpc RebuildIndex(RebuildIndexRequest) returns (RebuildIndexResponse);
+
+  // Kernel
+  rpc BootstrapSessionKernel(BootstrapSessionKernelRequest) returns (BootstrapSessionKernelResponse);
+  rpc IngestMessageKernel(IngestMessageKernelRequest) returns (IngestMessageKernelResponse);
+  rpc AfterTurnKernel(AfterTurnKernelRequest) returns (AfterTurnKernelResponse);
+  rpc AssembleContextInternal(AssembleContextInternalRequest) returns (AssembleContextInternalResponse);
+
+  // Ranking
+  rpc RankCandidates(RankCandidatesRequest) returns (RankCandidatesResponse);
+
+  // Cognitive
+  rpc CognitiveMetrics(CognitiveMetricsRequest) returns (CognitiveMetricsResponse);
+}
+
+// =============================================================================
+// Response message aliases required by the service definition above
+// These wrap the bare { ok: bool } responses used by the existing handlers.
+// =============================================================================
+
+message HealthRequest {
+}
+
+message MemoryStatusRequest {
+}
+
+message FlushRequest {
+}
+
+message ListLifecycleJournalResponse {
+  repeated string entries = 1;
+}
+
+message ListCollectionResponse {
+  repeated string ids = 1;
+}
+
+message ListByMetaResponse {
+  repeated SearchResult results = 1;
+}
+
+message ExpandSummaryResponse {
+  string summary_id = 1;
+  string text = 2;
+}
+
+message QueryRawSessionResponse {
+  repeated KernelMessage messages = 1;
+}

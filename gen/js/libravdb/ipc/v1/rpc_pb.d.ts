@@ -2058,4 +2058,476 @@ export declare class RebuildIndexResponse extends Message<RebuildIndexResponse> 
     static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RebuildIndexResponse;
     static equals(a: RebuildIndexResponse | PlainMessage<RebuildIndexResponse> | undefined, b: RebuildIndexResponse | PlainMessage<RebuildIndexResponse> | undefined): boolean;
 }
+/**
+ * Cognitive tier metrics from the ranking pipeline.
+ *
+ * @generated from message libravdb.ipc.v1.CognitiveMetricsRequest
+ */
+export declare class CognitiveMetricsRequest extends Message<CognitiveMetricsRequest> {
+    constructor(data?: PartialMessage<CognitiveMetricsRequest>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.CognitiveMetricsRequest";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CognitiveMetricsRequest;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CognitiveMetricsRequest;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CognitiveMetricsRequest;
+    static equals(a: CognitiveMetricsRequest | PlainMessage<CognitiveMetricsRequest> | undefined, b: CognitiveMetricsRequest | PlainMessage<CognitiveMetricsRequest> | undefined): boolean;
+}
+/**
+ * @generated from message libravdb.ipc.v1.CognitiveMetricsResponse
+ */
+export declare class CognitiveMetricsResponse extends Message<CognitiveMetricsResponse> {
+    /**
+     * @generated from field: int64 total_nodes = 1;
+     */
+    totalNodes: bigint;
+    /**
+     * @generated from field: int64 fallbacks = 2;
+     */
+    fallbacks: bigint;
+    /**
+     * @generated from field: int64 identity = 3;
+     */
+    identity: bigint;
+    /**
+     * @generated from field: int64 constraint = 4;
+     */
+    constraint: bigint;
+    /**
+     * @generated from field: int64 decision = 5;
+     */
+    decision: bigint;
+    /**
+     * @generated from field: int64 fact = 6;
+     */
+    fact: bigint;
+    /**
+     * @generated from field: int64 preference = 7;
+     */
+    preference: bigint;
+    /**
+     * @generated from field: int64 episode = 8;
+     */
+    episode: bigint;
+    /**
+     * @generated from field: int64 tier_hard = 9;
+     */
+    tierHard: bigint;
+    /**
+     * @generated from field: int64 tier_soft = 10;
+     */
+    tierSoft: bigint;
+    /**
+     * @generated from field: int64 tier_variant = 11;
+     */
+    tierVariant: bigint;
+    /**
+     * @generated from field: int64 heading_identity = 12;
+     */
+    headingIdentity: bigint;
+    /**
+     * @generated from field: int64 heading_constraint = 13;
+     */
+    headingConstraint: bigint;
+    /**
+     * @generated from field: int64 heading_workflow = 14;
+     */
+    headingWorkflow: bigint;
+    /**
+     * @generated from field: int64 heading_background = 15;
+     */
+    headingBackground: bigint;
+    /**
+     * @generated from field: int64 heading_preferences = 16;
+     */
+    headingPreferences: bigint;
+    /**
+     * @generated from field: repeated int64 support_buckets = 17;
+     */
+    supportBuckets: bigint[];
+    /**
+     * @generated from field: bool circuit_open = 18;
+     */
+    circuitOpen: boolean;
+    /**
+     * @generated from field: string circuit_reason = 19;
+     */
+    circuitReason: string;
+    /**
+     * @generated from field: bool use_cognitive_routing = 20;
+     */
+    useCognitiveRouting: boolean;
+    constructor(data?: PartialMessage<CognitiveMetricsResponse>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.CognitiveMetricsResponse";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CognitiveMetricsResponse;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CognitiveMetricsResponse;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CognitiveMetricsResponse;
+    static equals(a: CognitiveMetricsResponse | PlainMessage<CognitiveMetricsResponse> | undefined, b: CognitiveMetricsResponse | PlainMessage<CognitiveMetricsResponse> | undefined): boolean;
+}
+/**
+ * ReindexChange describes a single node-level change in a reindex operation.
+ *
+ * @generated from message libravdb.ipc.v1.ReindexChange
+ */
+export declare class ReindexChange extends Message<ReindexChange> {
+    /**
+     * @generated from field: int32 ordinal = 1;
+     */
+    ordinal: number;
+    /**
+     * @generated from field: string kind = 2;
+     */
+    kind: string;
+    /**
+     * @generated from field: string text_preview = 3;
+     */
+    textPreview: string;
+    /**
+     * @generated from field: int32 legacy_tier = 4;
+     */
+    legacyTier: number;
+    /**
+     * @generated from field: int32 cognitive_tier = 5;
+     */
+    cognitiveTier: number;
+    /**
+     * @generated from field: string memory_kind = 6;
+     */
+    memoryKind: string;
+    /**
+     * @generated from field: double memory_support = 7;
+     */
+    memorySupport: number;
+    /**
+     * @generated from field: string memory_role = 8;
+     */
+    memoryRole: string;
+    /**
+     * @generated from field: bool tier_changed = 9;
+     */
+    tierChanged: boolean;
+    constructor(data?: PartialMessage<ReindexChange>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.ReindexChange";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ReindexChange;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ReindexChange;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ReindexChange;
+    static equals(a: ReindexChange | PlainMessage<ReindexChange> | undefined, b: ReindexChange | PlainMessage<ReindexChange> | undefined): boolean;
+}
+/**
+ * Result payload for a dry-run reindex — describes what would change without applying it.
+ *
+ * @generated from message libravdb.ipc.v1.ReindexDryRunResult
+ */
+export declare class ReindexDryRunResult extends Message<ReindexDryRunResult> {
+    /**
+     * @generated from field: int32 total_nodes = 1;
+     */
+    totalNodes: number;
+    /**
+     * @generated from field: bool promote_tier = 2;
+     */
+    promoteTier: boolean;
+    /**
+     * @generated from field: repeated libravdb.ipc.v1.ReindexChange changes = 3;
+     */
+    changes: ReindexChange[];
+    constructor(data?: PartialMessage<ReindexDryRunResult>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.ReindexDryRunResult";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ReindexDryRunResult;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ReindexDryRunResult;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ReindexDryRunResult;
+    static equals(a: ReindexDryRunResult | PlainMessage<ReindexDryRunResult> | undefined, b: ReindexDryRunResult | PlainMessage<ReindexDryRunResult> | undefined): boolean;
+}
+/**
+ * Result payload for a live reindex — describes what was applied.
+ *
+ * @generated from message libravdb.ipc.v1.ReindexLiveResult
+ */
+export declare class ReindexLiveResult extends Message<ReindexLiveResult> {
+    /**
+     * @generated from field: bool ok = 1;
+     */
+    ok: boolean;
+    /**
+     * @generated from field: bool promote_cognitive_tier = 2;
+     */
+    promoteCognitiveTier: boolean;
+    /**
+     * @generated from field: int32 nodes_accepted = 3;
+     */
+    nodesAccepted: number;
+    /**
+     * @generated from field: int32 nodes_rejected = 4;
+     */
+    nodesRejected: number;
+    /**
+     * @generated from field: int32 tokens_ingested = 5;
+     */
+    tokensIngested: number;
+    constructor(data?: PartialMessage<ReindexLiveResult>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.ReindexLiveResult";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ReindexLiveResult;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ReindexLiveResult;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ReindexLiveResult;
+    static equals(a: ReindexLiveResult | PlainMessage<ReindexLiveResult> | undefined, b: ReindexLiveResult | PlainMessage<ReindexLiveResult> | undefined): boolean;
+}
+/**
+ * @generated from message libravdb.ipc.v1.ReindexAuthoredDocumentRequest
+ */
+export declare class ReindexAuthoredDocumentRequest extends Message<ReindexAuthoredDocumentRequest> {
+    /**
+     * @generated from field: string source_doc = 1;
+     */
+    sourceDoc: string;
+    /**
+     * @generated from field: string text = 2;
+     */
+    text: string;
+    /**
+     * @generated from field: string tokenizer_id = 3;
+     */
+    tokenizerId: string;
+    /**
+     * @generated from field: bool core_doc = 4;
+     */
+    coreDoc: boolean;
+    /**
+     * @generated from field: libravdb.ipc.v1.MarkdownSourceMeta source_meta = 5;
+     */
+    sourceMeta?: MarkdownSourceMeta;
+    /**
+     * @generated from field: bool promote_cognitive_tier = 6;
+     */
+    promoteCognitiveTier: boolean;
+    /**
+     * @generated from field: bool dry_run = 7;
+     */
+    dryRun: boolean;
+    constructor(data?: PartialMessage<ReindexAuthoredDocumentRequest>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.ReindexAuthoredDocumentRequest";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ReindexAuthoredDocumentRequest;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ReindexAuthoredDocumentRequest;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ReindexAuthoredDocumentRequest;
+    static equals(a: ReindexAuthoredDocumentRequest | PlainMessage<ReindexAuthoredDocumentRequest> | undefined, b: ReindexAuthoredDocumentRequest | PlainMessage<ReindexAuthoredDocumentRequest> | undefined): boolean;
+}
+/**
+ * @generated from message libravdb.ipc.v1.ReindexAuthoredDocumentResponse
+ */
+export declare class ReindexAuthoredDocumentResponse extends Message<ReindexAuthoredDocumentResponse> {
+    /**
+     * @generated from field: string source_doc = 1;
+     */
+    sourceDoc: string;
+    /**
+     * @generated from oneof libravdb.ipc.v1.ReindexAuthoredDocumentResponse.result
+     */
+    result: {
+        /**
+         * @generated from field: libravdb.ipc.v1.ReindexDryRunResult dry_run = 2;
+         */
+        value: ReindexDryRunResult;
+        case: "dryRun";
+    } | {
+        /**
+         * @generated from field: libravdb.ipc.v1.ReindexLiveResult live = 3;
+         */
+        value: ReindexLiveResult;
+        case: "live";
+    } | {
+        case: undefined;
+        value?: undefined;
+    };
+    constructor(data?: PartialMessage<ReindexAuthoredDocumentResponse>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.ReindexAuthoredDocumentResponse";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ReindexAuthoredDocumentResponse;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ReindexAuthoredDocumentResponse;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ReindexAuthoredDocumentResponse;
+    static equals(a: ReindexAuthoredDocumentResponse | PlainMessage<ReindexAuthoredDocumentResponse> | undefined, b: ReindexAuthoredDocumentResponse | PlainMessage<ReindexAuthoredDocumentResponse> | undefined): boolean;
+}
+/**
+ * @generated from message libravdb.ipc.v1.MarkMemorySupersededRequest
+ */
+export declare class MarkMemorySupersededRequest extends Message<MarkMemorySupersededRequest> {
+    /**
+     * @generated from field: string collection = 1;
+     */
+    collection: string;
+    /**
+     * @generated from field: string old_id = 2;
+     */
+    oldId: string;
+    /**
+     * @generated from field: string new_id = 3;
+     */
+    newId: string;
+    /**
+     * @generated from field: int64 valid_until = 4;
+     */
+    validUntil: bigint;
+    constructor(data?: PartialMessage<MarkMemorySupersededRequest>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.MarkMemorySupersededRequest";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MarkMemorySupersededRequest;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MarkMemorySupersededRequest;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MarkMemorySupersededRequest;
+    static equals(a: MarkMemorySupersededRequest | PlainMessage<MarkMemorySupersededRequest> | undefined, b: MarkMemorySupersededRequest | PlainMessage<MarkMemorySupersededRequest> | undefined): boolean;
+}
+/**
+ * @generated from message libravdb.ipc.v1.MarkMemorySupersededResponse
+ */
+export declare class MarkMemorySupersededResponse extends Message<MarkMemorySupersededResponse> {
+    /**
+     * @generated from field: bool ok = 1;
+     */
+    ok: boolean;
+    constructor(data?: PartialMessage<MarkMemorySupersededResponse>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.MarkMemorySupersededResponse";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MarkMemorySupersededResponse;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MarkMemorySupersededResponse;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MarkMemorySupersededResponse;
+    static equals(a: MarkMemorySupersededResponse | PlainMessage<MarkMemorySupersededResponse> | undefined, b: MarkMemorySupersededResponse | PlainMessage<MarkMemorySupersededResponse> | undefined): boolean;
+}
+/**
+ * @generated from message libravdb.ipc.v1.HealthRequest
+ */
+export declare class HealthRequest extends Message<HealthRequest> {
+    constructor(data?: PartialMessage<HealthRequest>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.HealthRequest";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): HealthRequest;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): HealthRequest;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): HealthRequest;
+    static equals(a: HealthRequest | PlainMessage<HealthRequest> | undefined, b: HealthRequest | PlainMessage<HealthRequest> | undefined): boolean;
+}
+/**
+ * @generated from message libravdb.ipc.v1.MemoryStatusRequest
+ */
+export declare class MemoryStatusRequest extends Message<MemoryStatusRequest> {
+    constructor(data?: PartialMessage<MemoryStatusRequest>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.MemoryStatusRequest";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MemoryStatusRequest;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MemoryStatusRequest;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MemoryStatusRequest;
+    static equals(a: MemoryStatusRequest | PlainMessage<MemoryStatusRequest> | undefined, b: MemoryStatusRequest | PlainMessage<MemoryStatusRequest> | undefined): boolean;
+}
+/**
+ * @generated from message libravdb.ipc.v1.FlushRequest
+ */
+export declare class FlushRequest extends Message<FlushRequest> {
+    constructor(data?: PartialMessage<FlushRequest>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.FlushRequest";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FlushRequest;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): FlushRequest;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FlushRequest;
+    static equals(a: FlushRequest | PlainMessage<FlushRequest> | undefined, b: FlushRequest | PlainMessage<FlushRequest> | undefined): boolean;
+}
+/**
+ * @generated from message libravdb.ipc.v1.ListLifecycleJournalResponse
+ */
+export declare class ListLifecycleJournalResponse extends Message<ListLifecycleJournalResponse> {
+    /**
+     * @generated from field: repeated string entries = 1;
+     */
+    entries: string[];
+    constructor(data?: PartialMessage<ListLifecycleJournalResponse>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.ListLifecycleJournalResponse";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListLifecycleJournalResponse;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListLifecycleJournalResponse;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListLifecycleJournalResponse;
+    static equals(a: ListLifecycleJournalResponse | PlainMessage<ListLifecycleJournalResponse> | undefined, b: ListLifecycleJournalResponse | PlainMessage<ListLifecycleJournalResponse> | undefined): boolean;
+}
+/**
+ * @generated from message libravdb.ipc.v1.ListCollectionResponse
+ */
+export declare class ListCollectionResponse extends Message<ListCollectionResponse> {
+    /**
+     * @generated from field: repeated string ids = 1;
+     */
+    ids: string[];
+    constructor(data?: PartialMessage<ListCollectionResponse>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.ListCollectionResponse";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListCollectionResponse;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListCollectionResponse;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListCollectionResponse;
+    static equals(a: ListCollectionResponse | PlainMessage<ListCollectionResponse> | undefined, b: ListCollectionResponse | PlainMessage<ListCollectionResponse> | undefined): boolean;
+}
+/**
+ * @generated from message libravdb.ipc.v1.ListByMetaResponse
+ */
+export declare class ListByMetaResponse extends Message<ListByMetaResponse> {
+    /**
+     * @generated from field: repeated libravdb.ipc.v1.SearchResult results = 1;
+     */
+    results: SearchResult[];
+    constructor(data?: PartialMessage<ListByMetaResponse>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.ListByMetaResponse";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListByMetaResponse;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListByMetaResponse;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListByMetaResponse;
+    static equals(a: ListByMetaResponse | PlainMessage<ListByMetaResponse> | undefined, b: ListByMetaResponse | PlainMessage<ListByMetaResponse> | undefined): boolean;
+}
+/**
+ * @generated from message libravdb.ipc.v1.ExpandSummaryResponse
+ */
+export declare class ExpandSummaryResponse extends Message<ExpandSummaryResponse> {
+    /**
+     * @generated from field: string summary_id = 1;
+     */
+    summaryId: string;
+    /**
+     * @generated from field: string text = 2;
+     */
+    text: string;
+    constructor(data?: PartialMessage<ExpandSummaryResponse>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.ExpandSummaryResponse";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ExpandSummaryResponse;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ExpandSummaryResponse;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ExpandSummaryResponse;
+    static equals(a: ExpandSummaryResponse | PlainMessage<ExpandSummaryResponse> | undefined, b: ExpandSummaryResponse | PlainMessage<ExpandSummaryResponse> | undefined): boolean;
+}
+/**
+ * @generated from message libravdb.ipc.v1.QueryRawSessionResponse
+ */
+export declare class QueryRawSessionResponse extends Message<QueryRawSessionResponse> {
+    /**
+     * @generated from field: repeated libravdb.ipc.v1.KernelMessage messages = 1;
+     */
+    messages: KernelMessage[];
+    constructor(data?: PartialMessage<QueryRawSessionResponse>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.QueryRawSessionResponse";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryRawSessionResponse;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryRawSessionResponse;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryRawSessionResponse;
+    static equals(a: QueryRawSessionResponse | PlainMessage<QueryRawSessionResponse> | undefined, b: QueryRawSessionResponse | PlainMessage<QueryRawSessionResponse> | undefined): boolean;
+}
 //# sourceMappingURL=rpc_pb.d.ts.map
