@@ -308,6 +308,13 @@ export declare class IngestFeedback extends Message<IngestFeedback> {
      * @generated from field: int32 tokens_ingested = 8;
      */
     tokensIngested: number;
+    /**
+     * The maximum number of tokens (estimated via heuristic) the daemon
+     * will accept in a single request before rejecting it.
+     *
+     * @generated from field: int32 token_burst_limit = 9;
+     */
+    tokenBurstLimit: number;
     constructor(data?: PartialMessage<IngestFeedback>);
     static readonly runtime: typeof proto3;
     static readonly typeName = "libravdb.ipc.v1.IngestFeedback";

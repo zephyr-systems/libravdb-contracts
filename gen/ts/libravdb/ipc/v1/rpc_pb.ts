@@ -517,6 +517,14 @@ export class IngestFeedback extends Message<IngestFeedback> {
    */
   tokensIngested = 0;
 
+  /**
+   * The maximum number of tokens (estimated via heuristic) the daemon
+   * will accept in a single request before rejecting it.
+   *
+   * @generated from field: int32 token_burst_limit = 9;
+   */
+  tokenBurstLimit = 0;
+
   constructor(data?: PartialMessage<IngestFeedback>) {
     super();
     proto3.util.initPartial(data, this);
@@ -533,6 +541,7 @@ export class IngestFeedback extends Message<IngestFeedback> {
     { no: 6, name: "nodes_accepted", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 7, name: "nodes_rejected", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 8, name: "tokens_ingested", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 9, name: "token_burst_limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): IngestFeedback {
