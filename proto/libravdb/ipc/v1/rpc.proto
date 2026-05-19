@@ -109,6 +109,10 @@ message IngestFeedback {
   // The maximum number of tokens (estimated via heuristic) the daemon
   // will accept in a single request before rejecting it.
   int32 token_burst_limit = 9;
+  // The current number of unprocessed chunks sitting in the durable pending collection.
+  int32 wal_depth = 10;
+  // The maximum acceptable depth of the durable pending collection before the plugin should pause scanning.
+  int32 wal_capacity = 11;
 }
 
 message AccessCountUpdate {

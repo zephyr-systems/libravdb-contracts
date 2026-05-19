@@ -525,6 +525,20 @@ export class IngestFeedback extends Message<IngestFeedback> {
    */
   tokenBurstLimit = 0;
 
+  /**
+   * The current number of unprocessed chunks sitting in the durable pending collection.
+   *
+   * @generated from field: int32 wal_depth = 10;
+   */
+  walDepth = 0;
+
+  /**
+   * The maximum acceptable depth of the durable pending collection before the plugin should pause scanning.
+   *
+   * @generated from field: int32 wal_capacity = 11;
+   */
+  walCapacity = 0;
+
   constructor(data?: PartialMessage<IngestFeedback>) {
     super();
     proto3.util.initPartial(data, this);
@@ -542,6 +556,8 @@ export class IngestFeedback extends Message<IngestFeedback> {
     { no: 7, name: "nodes_rejected", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 8, name: "tokens_ingested", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 9, name: "token_burst_limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 10, name: "wal_depth", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 11, name: "wal_capacity", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): IngestFeedback {

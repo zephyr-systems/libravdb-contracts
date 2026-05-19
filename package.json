@@ -1,6 +1,6 @@
 {
   "name": "@xdarkicex/libravdb-contracts",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "LibraVDB IPC protocol types — protobuf-es generated",
   "type": "module",
   "main": "./gen/js/libravdb/ipc/v1/rpc_pb.js",

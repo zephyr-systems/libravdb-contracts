@@ -315,6 +315,18 @@ export declare class IngestFeedback extends Message<IngestFeedback> {
      * @generated from field: int32 token_burst_limit = 9;
      */
     tokenBurstLimit: number;
+    /**
+     * The current number of unprocessed chunks sitting in the durable pending collection.
+     *
+     * @generated from field: int32 wal_depth = 10;
+     */
+    walDepth: number;
+    /**
+     * The maximum acceptable depth of the durable pending collection before the plugin should pause scanning.
+     *
+     * @generated from field: int32 wal_capacity = 11;
+     */
+    walCapacity: number;
     constructor(data?: PartialMessage<IngestFeedback>);
     static readonly runtime: typeof proto3;
     static readonly typeName = "libravdb.ipc.v1.IngestFeedback";
