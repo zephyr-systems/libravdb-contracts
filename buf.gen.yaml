@@ -1,7 +1,13 @@
 version: v2
 plugins:
-  # Go generation
+  # Go generation (message types only)
   - remote: buf.build/protocolbuffers/go:v1.32.0
+    out: .
+    opt:
+      - paths=source_relative
+
+  # Go gRPC service generation
+  - remote: buf.build/grpc/go:v1.3.0
     out: .
     opt:
       - paths=source_relative
