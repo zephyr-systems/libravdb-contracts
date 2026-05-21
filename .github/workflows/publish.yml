@@ -39,7 +39,24 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - name: Publish
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Python dependencies
+        run: pip install --upgrade pip setuptools wheel twine
+
+      - name: Build Python package
+        run: python -m build
+        working-directory: gen/python
+
+      # PYPI_API_TOKEN secret must be set in repository secrets for PyPI upload
+      - name: Publish npm
         run: |
           npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
           pnpm publish --access public --no-git-checks
+
+      - name: Publish Python
+        run: |
+          twine upload --non-interactive dist/*.whl dist/*.tar.gz
