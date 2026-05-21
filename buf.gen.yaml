@@ -23,3 +23,13 @@ plugins:
     out: gen/ts
     opt:
       - target=ts
+
+  # Python message types
+  - remote: buf.build/protocolbuffers/python:v28.3
+    out: gen/python
+    opt:
+      - pyi_out=
+
+  # Python gRPC service stubs
+  - remote: buf.build/grpc/python:v1.80.0
+    out: gen/python
