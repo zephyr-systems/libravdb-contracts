@@ -55,8 +55,9 @@ jobs:
       - name: Publish npm
         run: |
           npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
-          if npm view @xdarkicex/libravdb-contracts --json 2>/dev/null | grep -q "\"$(npm pkg get version)\""; then
-            echo "npm version already published, skipping"
+          PKG_VERSION=$(node -p "require('./package.json').version")
+          if npm view @xdarkicex/libravdb-contracts --json 2>/dev/null | grep -q "\"$PKG_VERSION\""; then
+            echo "npm version $PKG_VERSION already published, skipping"
           else
             pnpm publish --access public --no-git-checks
           fi
