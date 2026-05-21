@@ -60,3 +60,4 @@ jobs:
       - name: Publish Python
         run: |
           twine upload --non-interactive dist/*.whl dist/*.tar.gz
+        working-directory: gen/python
