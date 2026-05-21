@@ -55,9 +55,13 @@ jobs:
       - name: Publish npm
         run: |
           npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
-          pnpm publish --access public --no-git-checks
+          if npm view @xdarkicex/libravdb-contracts --json 2>/dev/null | grep -q "\"$(npm pkg get version)\""; then
+            echo "npm version already published, skipping"
+          else
+            pnpm publish --access public --no-git-checks
+          fi
 
       - name: Publish Python
         run: |
-          twine upload --non-interactive dist/*.whl dist/*.tar.gz
+          twine upload --non-interactive --skip-existing dist/*.whl dist/*.tar.gz
         working-directory: gen/python
