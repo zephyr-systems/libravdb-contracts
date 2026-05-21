@@ -1,5 +1,5 @@
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, Struct } from "@bufbuild/protobuf";
+import { Message, proto3 } from "@bufbuild/protobuf";
 /**
  * IngestMode controls whether a call replaces all existing nodes for the source_doc
  * or appends/merges them without deleting anything.
@@ -129,9 +129,9 @@ export declare class SearchResult extends Message<SearchResult> {
      */
     text: string;
     /**
-     * @generated from field: google.protobuf.Struct metadata = 4;
+     * @generated from field: bytes metadata_json = 4;
      */
-    metadata?: Struct;
+    metadataJson: Uint8Array<ArrayBuffer>;
     /**
      * @generated from field: uint64 version = 5;
      */
@@ -232,9 +232,9 @@ export declare class DreamPromotionEntry extends Message<DreamPromotionEntry> {
      */
     sourceLine: number;
     /**
-     * @generated from field: google.protobuf.Struct metadata = 8;
+     * @generated from field: bytes metadata_json = 8;
      */
-    metadata?: Struct;
+    metadataJson: Uint8Array<ArrayBuffer>;
     constructor(data?: PartialMessage<DreamPromotionEntry>);
     static readonly runtime: typeof proto3;
     static readonly typeName = "libravdb.ipc.v1.DreamPromotionEntry";
@@ -683,9 +683,9 @@ export declare class RankCandidate extends Message<RankCandidate> {
      */
     score: number;
     /**
-     * @generated from field: google.protobuf.Struct metadata = 4;
+     * @generated from field: bytes metadata_json = 4;
      */
-    metadata?: Struct;
+    metadataJson: Uint8Array<ArrayBuffer>;
     constructor(data?: PartialMessage<RankCandidate>);
     static readonly runtime: typeof proto3;
     static readonly typeName = "libravdb.ipc.v1.RankCandidate";
@@ -837,9 +837,9 @@ export declare class ExportMemoryRecord extends Message<ExportMemoryRecord> {
      */
     text: string;
     /**
-     * @generated from field: google.protobuf.Struct metadata = 4;
+     * @generated from field: bytes metadata_json = 4;
      */
-    metadata?: Struct;
+    metadataJson: Uint8Array<ArrayBuffer>;
     constructor(data?: PartialMessage<ExportMemoryRecord>);
     static readonly runtime: typeof proto3;
     static readonly typeName = "libravdb.ipc.v1.ExportMemoryRecord";
@@ -900,9 +900,9 @@ export declare class InsertTextRequest extends Message<InsertTextRequest> {
      */
     text: string;
     /**
-     * @generated from field: google.protobuf.Struct metadata = 4;
+     * @generated from field: bytes metadata_json = 4;
      */
-    metadata?: Struct;
+    metadataJson: Uint8Array<ArrayBuffer>;
     constructor(data?: PartialMessage<InsertTextRequest>);
     static readonly runtime: typeof proto3;
     static readonly typeName = "libravdb.ipc.v1.InsertTextRequest";
@@ -946,9 +946,9 @@ export declare class InsertSessionTurnRequest extends Message<InsertSessionTurnR
      */
     text: string;
     /**
-     * @generated from field: google.protobuf.Struct metadata = 4;
+     * @generated from field: bytes metadata_json = 4;
      */
-    metadata?: Struct;
+    metadataJson: Uint8Array<ArrayBuffer>;
     constructor(data?: PartialMessage<InsertSessionTurnRequest>);
     static readonly runtime: typeof proto3;
     static readonly typeName = "libravdb.ipc.v1.InsertSessionTurnRequest";

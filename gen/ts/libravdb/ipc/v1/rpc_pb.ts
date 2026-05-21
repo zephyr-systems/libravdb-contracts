@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64, Struct } from "@bufbuild/protobuf";
+import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
 
 /**
  * IngestMode controls whether a call replaces all existing nodes for the source_doc
@@ -235,9 +235,9 @@ export class SearchResult extends Message<SearchResult> {
   text = "";
 
   /**
-   * @generated from field: google.protobuf.Struct metadata = 4;
+   * @generated from field: bytes metadata_json = 4;
    */
-  metadata?: Struct;
+  metadataJson = new Uint8Array(0);
 
   /**
    * @generated from field: uint64 version = 5;
@@ -255,7 +255,7 @@ export class SearchResult extends Message<SearchResult> {
     { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "score", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
     { no: 3, name: "text", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "metadata", kind: "message", T: Struct },
+    { no: 4, name: "metadata_json", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
     { no: 5, name: "version", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
   ]);
 
@@ -406,9 +406,9 @@ export class DreamPromotionEntry extends Message<DreamPromotionEntry> {
   sourceLine = 0;
 
   /**
-   * @generated from field: google.protobuf.Struct metadata = 8;
+   * @generated from field: bytes metadata_json = 8;
    */
-  metadata?: Struct;
+  metadataJson = new Uint8Array(0);
 
   constructor(data?: PartialMessage<DreamPromotionEntry>) {
     super();
@@ -425,7 +425,7 @@ export class DreamPromotionEntry extends Message<DreamPromotionEntry> {
     { no: 5, name: "section", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "line", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 7, name: "source_line", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 8, name: "metadata", kind: "message", T: Struct },
+    { no: 8, name: "metadata_json", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DreamPromotionEntry {
@@ -1157,9 +1157,9 @@ export class RankCandidate extends Message<RankCandidate> {
   score = 0;
 
   /**
-   * @generated from field: google.protobuf.Struct metadata = 4;
+   * @generated from field: bytes metadata_json = 4;
    */
-  metadata?: Struct;
+  metadataJson = new Uint8Array(0);
 
   constructor(data?: PartialMessage<RankCandidate>) {
     super();
@@ -1172,7 +1172,7 @@ export class RankCandidate extends Message<RankCandidate> {
     { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "text", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "score", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
-    { no: 4, name: "metadata", kind: "message", T: Struct },
+    { no: 4, name: "metadata_json", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RankCandidate {
@@ -1431,9 +1431,9 @@ export class ExportMemoryRecord extends Message<ExportMemoryRecord> {
   text = "";
 
   /**
-   * @generated from field: google.protobuf.Struct metadata = 4;
+   * @generated from field: bytes metadata_json = 4;
    */
-  metadata?: Struct;
+  metadataJson = new Uint8Array(0);
 
   constructor(data?: PartialMessage<ExportMemoryRecord>) {
     super();
@@ -1446,7 +1446,7 @@ export class ExportMemoryRecord extends Message<ExportMemoryRecord> {
     { no: 1, name: "collection", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "text", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "metadata", kind: "message", T: Struct },
+    { no: 4, name: "metadata_json", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ExportMemoryRecord {
@@ -1560,9 +1560,9 @@ export class InsertTextRequest extends Message<InsertTextRequest> {
   text = "";
 
   /**
-   * @generated from field: google.protobuf.Struct metadata = 4;
+   * @generated from field: bytes metadata_json = 4;
    */
-  metadata?: Struct;
+  metadataJson = new Uint8Array(0);
 
   constructor(data?: PartialMessage<InsertTextRequest>) {
     super();
@@ -1575,7 +1575,7 @@ export class InsertTextRequest extends Message<InsertTextRequest> {
     { no: 1, name: "collection", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "text", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "metadata", kind: "message", T: Struct },
+    { no: 4, name: "metadata_json", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InsertTextRequest {
@@ -1652,9 +1652,9 @@ export class InsertSessionTurnRequest extends Message<InsertSessionTurnRequest> 
   text = "";
 
   /**
-   * @generated from field: google.protobuf.Struct metadata = 4;
+   * @generated from field: bytes metadata_json = 4;
    */
-  metadata?: Struct;
+  metadataJson = new Uint8Array(0);
 
   constructor(data?: PartialMessage<InsertSessionTurnRequest>) {
     super();
@@ -1667,7 +1667,7 @@ export class InsertSessionTurnRequest extends Message<InsertSessionTurnRequest> 
     { no: 1, name: "session_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "text", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "metadata", kind: "message", T: Struct },
+    { no: 4, name: "metadata_json", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InsertSessionTurnRequest {

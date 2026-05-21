@@ -2,7 +2,7 @@
 // @generated from file libravdb/ipc/v1/rpc.proto (package libravdb.ipc.v1, syntax proto3)
 /* eslint-disable */
 // @ts-nocheck
-import { Message, proto3, protoInt64, Struct } from "@bufbuild/protobuf";
+import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
 /**
  * IngestMode controls whether a call replaces all existing nodes for the source_doc
  * or appends/merges them without deleting anything.
@@ -195,9 +195,9 @@ export class SearchResult extends Message {
      */
     text = "";
     /**
-     * @generated from field: google.protobuf.Struct metadata = 4;
+     * @generated from field: bytes metadata_json = 4;
      */
-    metadata;
+    metadataJson = new Uint8Array(0);
     /**
      * @generated from field: uint64 version = 5;
      */
@@ -212,7 +212,7 @@ export class SearchResult extends Message {
         { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
         { no: 2, name: "score", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
         { no: 3, name: "text", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-        { no: 4, name: "metadata", kind: "message", T: Struct },
+        { no: 4, name: "metadata_json", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
         { no: 5, name: "version", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
     ]);
     static fromBinary(bytes, options) {
@@ -336,9 +336,9 @@ export class DreamPromotionEntry extends Message {
      */
     sourceLine = 0;
     /**
-     * @generated from field: google.protobuf.Struct metadata = 8;
+     * @generated from field: bytes metadata_json = 8;
      */
-    metadata;
+    metadataJson = new Uint8Array(0);
     constructor(data) {
         super();
         proto3.util.initPartial(data, this);
@@ -353,7 +353,7 @@ export class DreamPromotionEntry extends Message {
         { no: 5, name: "section", kind: "scalar", T: 9 /* ScalarType.STRING */ },
         { no: 6, name: "line", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
         { no: 7, name: "source_line", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-        { no: 8, name: "metadata", kind: "message", T: Struct },
+        { no: 8, name: "metadata_json", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
     ]);
     static fromBinary(bytes, options) {
         return new DreamPromotionEntry().fromBinary(bytes, options);
@@ -966,9 +966,9 @@ export class RankCandidate extends Message {
      */
     score = 0;
     /**
-     * @generated from field: google.protobuf.Struct metadata = 4;
+     * @generated from field: bytes metadata_json = 4;
      */
-    metadata;
+    metadataJson = new Uint8Array(0);
     constructor(data) {
         super();
         proto3.util.initPartial(data, this);
@@ -979,7 +979,7 @@ export class RankCandidate extends Message {
         { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
         { no: 2, name: "text", kind: "scalar", T: 9 /* ScalarType.STRING */ },
         { no: 3, name: "score", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
-        { no: 4, name: "metadata", kind: "message", T: Struct },
+        { no: 4, name: "metadata_json", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
     ]);
     static fromBinary(bytes, options) {
         return new RankCandidate().fromBinary(bytes, options);
@@ -1192,9 +1192,9 @@ export class ExportMemoryRecord extends Message {
      */
     text = "";
     /**
-     * @generated from field: google.protobuf.Struct metadata = 4;
+     * @generated from field: bytes metadata_json = 4;
      */
-    metadata;
+    metadataJson = new Uint8Array(0);
     constructor(data) {
         super();
         proto3.util.initPartial(data, this);
@@ -1205,7 +1205,7 @@ export class ExportMemoryRecord extends Message {
         { no: 1, name: "collection", kind: "scalar", T: 9 /* ScalarType.STRING */ },
         { no: 2, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
         { no: 3, name: "text", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-        { no: 4, name: "metadata", kind: "message", T: Struct },
+        { no: 4, name: "metadata_json", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
     ]);
     static fromBinary(bytes, options) {
         return new ExportMemoryRecord().fromBinary(bytes, options);
@@ -1297,9 +1297,9 @@ export class InsertTextRequest extends Message {
      */
     text = "";
     /**
-     * @generated from field: google.protobuf.Struct metadata = 4;
+     * @generated from field: bytes metadata_json = 4;
      */
-    metadata;
+    metadataJson = new Uint8Array(0);
     constructor(data) {
         super();
         proto3.util.initPartial(data, this);
@@ -1310,7 +1310,7 @@ export class InsertTextRequest extends Message {
         { no: 1, name: "collection", kind: "scalar", T: 9 /* ScalarType.STRING */ },
         { no: 2, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
         { no: 3, name: "text", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-        { no: 4, name: "metadata", kind: "message", T: Struct },
+        { no: 4, name: "metadata_json", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
     ]);
     static fromBinary(bytes, options) {
         return new InsertTextRequest().fromBinary(bytes, options);
@@ -1372,9 +1372,9 @@ export class InsertSessionTurnRequest extends Message {
      */
     text = "";
     /**
-     * @generated from field: google.protobuf.Struct metadata = 4;
+     * @generated from field: bytes metadata_json = 4;
      */
-    metadata;
+    metadataJson = new Uint8Array(0);
     constructor(data) {
         super();
         proto3.util.initPartial(data, this);
@@ -1385,7 +1385,7 @@ export class InsertSessionTurnRequest extends Message {
         { no: 1, name: "session_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
         { no: 2, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
         { no: 3, name: "text", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-        { no: 4, name: "metadata", kind: "message", T: Struct },
+        { no: 4, name: "metadata_json", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
     ]);
     static fromBinary(bytes, options) {
         return new InsertSessionTurnRequest().fromBinary(bytes, options);
