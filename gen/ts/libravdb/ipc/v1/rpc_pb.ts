@@ -1273,6 +1273,11 @@ export class CompactSessionResponse extends Message<CompactSessionResponse> {
    */
   meanConfidence = 0;
 
+  /**
+   * @generated from field: string summary_text = 7;
+   */
+  summaryText = "";
+
   constructor(data?: PartialMessage<CompactSessionResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1287,6 +1292,7 @@ export class CompactSessionResponse extends Message<CompactSessionResponse> {
     { no: 4, name: "turns_removed", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 5, name: "summary_method", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "mean_confidence", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
+    { no: 7, name: "summary_text", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CompactSessionResponse {

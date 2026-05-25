@@ -265,6 +265,7 @@ message CompactSessionResponse {
   int32 turns_removed = 4;
   string summary_method = 5;
   double mean_confidence = 6;
+  string summary_text = 7;
 }
 
 // compact.GatingSignals (libravdbd/compact/gate.go) — gating_scalar RPC.

@@ -282,20 +282,22 @@ class HealthResponse(_message.Message):
     def __init__(self, ok: bool = ..., message: _Optional[str] = ...) -> None: ...
 
 class CompactSessionResponse(_message.Message):
-    __slots__ = ("did_compact", "clusters_formed", "clusters_declined", "turns_removed", "summary_method", "mean_confidence")
+    __slots__ = ("did_compact", "clusters_formed", "clusters_declined", "turns_removed", "summary_method", "mean_confidence", "summary_text")
     DID_COMPACT_FIELD_NUMBER: _ClassVar[int]
     CLUSTERS_FORMED_FIELD_NUMBER: _ClassVar[int]
     CLUSTERS_DECLINED_FIELD_NUMBER: _ClassVar[int]
     TURNS_REMOVED_FIELD_NUMBER: _ClassVar[int]
     SUMMARY_METHOD_FIELD_NUMBER: _ClassVar[int]
     MEAN_CONFIDENCE_FIELD_NUMBER: _ClassVar[int]
+    SUMMARY_TEXT_FIELD_NUMBER: _ClassVar[int]
     did_compact: bool
     clusters_formed: int
     clusters_declined: int
     turns_removed: int
     summary_method: str
     mean_confidence: float
-    def __init__(self, did_compact: bool = ..., clusters_formed: _Optional[int] = ..., clusters_declined: _Optional[int] = ..., turns_removed: _Optional[int] = ..., summary_method: _Optional[str] = ..., mean_confidence: _Optional[float] = ...) -> None: ...
+    summary_text: str
+    def __init__(self, did_compact: bool = ..., clusters_formed: _Optional[int] = ..., clusters_declined: _Optional[int] = ..., turns_removed: _Optional[int] = ..., summary_method: _Optional[str] = ..., mean_confidence: _Optional[float] = ..., summary_text: _Optional[str] = ...) -> None: ...
 
 class GatingScalarResponse(_message.Message):
     __slots__ = ("g", "t", "h", "r", "d", "input_freq", "mem_saturation", "p", "a", "dtech", "gconv", "gtech")

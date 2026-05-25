@@ -1,4 +1,4 @@
-module github.com/zephyr-systems/libravdb-contracts
+module github.com/zephyr-systems/libravdb-contracts/v2
 
 go 1.25.1
 
