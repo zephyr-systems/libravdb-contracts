@@ -1497,6 +1497,13 @@ export declare class CompactSessionRequest extends Message<CompactSessionRequest
      * @generated from field: int32 current_token_count = 7;
      */
     currentTokenCount: number;
+    /**
+     * Model's context window size in tokens. Enables daemon-side 80% threshold
+     * calculation when client doesn't send force=true.
+     *
+     * @generated from field: int32 context_window_size = 8;
+     */
+    contextWindowSize: number;
     constructor(data?: PartialMessage<CompactSessionRequest>);
     static readonly runtime: typeof proto3;
     static readonly typeName = "libravdb.ipc.v1.CompactSessionRequest";

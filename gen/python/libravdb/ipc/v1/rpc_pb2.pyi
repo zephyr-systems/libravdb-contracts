@@ -583,7 +583,7 @@ class DeleteBatchResponse(_message.Message):
     def __init__(self, ok: bool = ...) -> None: ...
 
 class CompactSessionRequest(_message.Message):
-    __slots__ = ("session_id", "force", "target_size", "continuity_min_turns", "continuity_tail_budget_tokens", "continuity_prior_context_tokens", "current_token_count")
+    __slots__ = ("session_id", "force", "target_size", "continuity_min_turns", "continuity_tail_budget_tokens", "continuity_prior_context_tokens", "current_token_count", "context_window_size")
     SESSION_ID_FIELD_NUMBER: _ClassVar[int]
     FORCE_FIELD_NUMBER: _ClassVar[int]
     TARGET_SIZE_FIELD_NUMBER: _ClassVar[int]
@@ -591,6 +591,7 @@ class CompactSessionRequest(_message.Message):
     CONTINUITY_TAIL_BUDGET_TOKENS_FIELD_NUMBER: _ClassVar[int]
     CONTINUITY_PRIOR_CONTEXT_TOKENS_FIELD_NUMBER: _ClassVar[int]
     CURRENT_TOKEN_COUNT_FIELD_NUMBER: _ClassVar[int]
+    CONTEXT_WINDOW_SIZE_FIELD_NUMBER: _ClassVar[int]
     session_id: str
     force: bool
     target_size: int
@@ -598,7 +599,8 @@ class CompactSessionRequest(_message.Message):
     continuity_tail_budget_tokens: int
     continuity_prior_context_tokens: int
     current_token_count: int
-    def __init__(self, session_id: _Optional[str] = ..., force: bool = ..., target_size: _Optional[int] = ..., continuity_min_turns: _Optional[int] = ..., continuity_tail_budget_tokens: _Optional[int] = ..., continuity_prior_context_tokens: _Optional[int] = ..., current_token_count: _Optional[int] = ...) -> None: ...
+    context_window_size: int
+    def __init__(self, session_id: _Optional[str] = ..., force: bool = ..., target_size: _Optional[int] = ..., continuity_min_turns: _Optional[int] = ..., continuity_tail_budget_tokens: _Optional[int] = ..., continuity_prior_context_tokens: _Optional[int] = ..., current_token_count: _Optional[int] = ..., context_window_size: _Optional[int] = ...) -> None: ...
 
 class GatingScalarRequest(_message.Message):
     __slots__ = ("user_id", "text")

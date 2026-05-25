@@ -2721,6 +2721,14 @@ export class CompactSessionRequest extends Message<CompactSessionRequest> {
    */
   currentTokenCount = 0;
 
+  /**
+   * Model's context window size in tokens. Enables daemon-side 80% threshold
+   * calculation when client doesn't send force=true.
+   *
+   * @generated from field: int32 context_window_size = 8;
+   */
+  contextWindowSize = 0;
+
   constructor(data?: PartialMessage<CompactSessionRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -2736,6 +2744,7 @@ export class CompactSessionRequest extends Message<CompactSessionRequest> {
     { no: 5, name: "continuity_tail_budget_tokens", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 6, name: "continuity_prior_context_tokens", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 7, name: "current_token_count", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 8, name: "context_window_size", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CompactSessionRequest {
