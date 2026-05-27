@@ -672,6 +672,58 @@ export class KernelMessage extends Message<KernelMessage> {
 }
 
 /**
+ * A cursor specifically for tracking the monotonic state of session turn ingestion.
+ * Prevents duplicate ingestions and guarantees sequence integrity across restarts.
+ *
+ * @generated from message libravdb.ipc.v1.SessionSyncCursor
+ */
+export class SessionSyncCursor extends Message<SessionSyncCursor> {
+  /**
+   * @generated from field: int64 last_processed_index = 1;
+   */
+  lastProcessedIndex = protoInt64.zero;
+
+  /**
+   * @generated from field: int64 session_version = 2;
+   */
+  sessionVersion = protoInt64.zero;
+
+  /**
+   * @generated from field: string manifest_tail_hash = 3;
+   */
+  manifestTailHash = "";
+
+  constructor(data?: PartialMessage<SessionSyncCursor>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "libravdb.ipc.v1.SessionSyncCursor";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "last_processed_index", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 2, name: "session_version", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 3, name: "manifest_tail_hash", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SessionSyncCursor {
+    return new SessionSyncCursor().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SessionSyncCursor {
+    return new SessionSyncCursor().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SessionSyncCursor {
+    return new SessionSyncCursor().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SessionSyncCursor | PlainMessage<SessionSyncCursor> | undefined, b: SessionSyncCursor | PlainMessage<SessionSyncCursor> | undefined): boolean {
+    return proto3.util.equals(SessionSyncCursor, a, b);
+  }
+}
+
+/**
  * assemble_context_internal debug is arbitrary JSON in the current daemon.
  *
  * @generated from message libravdb.ipc.v1.AssembleContextInternalResponse
@@ -3471,6 +3523,11 @@ export class AfterTurnKernelRequest extends Message<AfterTurnKernelRequest> {
    */
   isHeartbeat = false;
 
+  /**
+   * @generated from field: libravdb.ipc.v1.SessionSyncCursor cursor = 7;
+   */
+  cursor?: SessionSyncCursor;
+
   constructor(data?: PartialMessage<AfterTurnKernelRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -3485,6 +3542,7 @@ export class AfterTurnKernelRequest extends Message<AfterTurnKernelRequest> {
     { no: 4, name: "messages", kind: "message", T: KernelMessage, repeated: true },
     { no: 5, name: "pre_prompt_message_count", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 6, name: "is_heartbeat", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 7, name: "cursor", kind: "message", T: SessionSyncCursor },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AfterTurnKernelRequest {
@@ -3518,6 +3576,11 @@ export class AfterTurnKernelResponse extends Message<AfterTurnKernelResponse> {
    */
   predictions: PredictedContext[] = [];
 
+  /**
+   * @generated from field: libravdb.ipc.v1.SessionSyncCursor cursor = 3;
+   */
+  cursor?: SessionSyncCursor;
+
   constructor(data?: PartialMessage<AfterTurnKernelResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -3528,6 +3591,7 @@ export class AfterTurnKernelResponse extends Message<AfterTurnKernelResponse> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "ok", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 2, name: "predictions", kind: "message", T: PredictedContext, repeated: true },
+    { no: 3, name: "cursor", kind: "message", T: SessionSyncCursor },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AfterTurnKernelResponse {

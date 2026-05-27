@@ -147,6 +147,16 @@ class KernelMessage(_message.Message):
     id: str
     def __init__(self, role: _Optional[str] = ..., content: _Optional[str] = ..., id: _Optional[str] = ...) -> None: ...
 
+class SessionSyncCursor(_message.Message):
+    __slots__ = ("last_processed_index", "session_version", "manifest_tail_hash")
+    LAST_PROCESSED_INDEX_FIELD_NUMBER: _ClassVar[int]
+    SESSION_VERSION_FIELD_NUMBER: _ClassVar[int]
+    MANIFEST_TAIL_HASH_FIELD_NUMBER: _ClassVar[int]
+    last_processed_index: int
+    session_version: int
+    manifest_tail_hash: str
+    def __init__(self, last_processed_index: _Optional[int] = ..., session_version: _Optional[int] = ..., manifest_tail_hash: _Optional[str] = ...) -> None: ...
+
 class AssembleContextInternalResponse(_message.Message):
     __slots__ = ("messages", "estimated_tokens", "system_prompt_addition", "debug")
     MESSAGES_FIELD_NUMBER: _ClassVar[int]
@@ -745,28 +755,32 @@ class IngestMessageKernelResponse(_message.Message):
     def __init__(self, ok: bool = ..., ingested: _Optional[int] = ...) -> None: ...
 
 class AfterTurnKernelRequest(_message.Message):
-    __slots__ = ("session_id", "session_key", "user_id", "messages", "pre_prompt_message_count", "is_heartbeat")
+    __slots__ = ("session_id", "session_key", "user_id", "messages", "pre_prompt_message_count", "is_heartbeat", "cursor")
     SESSION_ID_FIELD_NUMBER: _ClassVar[int]
     SESSION_KEY_FIELD_NUMBER: _ClassVar[int]
     USER_ID_FIELD_NUMBER: _ClassVar[int]
     MESSAGES_FIELD_NUMBER: _ClassVar[int]
     PRE_PROMPT_MESSAGE_COUNT_FIELD_NUMBER: _ClassVar[int]
     IS_HEARTBEAT_FIELD_NUMBER: _ClassVar[int]
+    CURSOR_FIELD_NUMBER: _ClassVar[int]
     session_id: str
     session_key: str
     user_id: str
     messages: _containers.RepeatedCompositeFieldContainer[KernelMessage]
     pre_prompt_message_count: int
     is_heartbeat: bool
-    def __init__(self, session_id: _Optional[str] = ..., session_key: _Optional[str] = ..., user_id: _Optional[str] = ..., messages: _Optional[_Iterable[_Union[KernelMessage, _Mapping]]] = ..., pre_prompt_message_count: _Optional[int] = ..., is_heartbeat: bool = ...) -> None: ...
+    cursor: SessionSyncCursor
+    def __init__(self, session_id: _Optional[str] = ..., session_key: _Optional[str] = ..., user_id: _Optional[str] = ..., messages: _Optional[_Iterable[_Union[KernelMessage, _Mapping]]] = ..., pre_prompt_message_count: _Optional[int] = ..., is_heartbeat: bool = ..., cursor: _Optional[_Union[SessionSyncCursor, _Mapping]] = ...) -> None: ...
 
 class AfterTurnKernelResponse(_message.Message):
-    __slots__ = ("ok", "predictions")
+    __slots__ = ("ok", "predictions", "cursor")
     OK_FIELD_NUMBER: _ClassVar[int]
     PREDICTIONS_FIELD_NUMBER: _ClassVar[int]
+    CURSOR_FIELD_NUMBER: _ClassVar[int]
     ok: bool
     predictions: _containers.RepeatedCompositeFieldContainer[PredictedContext]
-    def __init__(self, ok: bool = ..., predictions: _Optional[_Iterable[_Union[PredictedContext, _Mapping]]] = ...) -> None: ...
+    cursor: SessionSyncCursor
+    def __init__(self, ok: bool = ..., predictions: _Optional[_Iterable[_Union[PredictedContext, _Mapping]]] = ..., cursor: _Optional[_Union[SessionSyncCursor, _Mapping]] = ...) -> None: ...
 
 class AssembleContextInternalRequest(_message.Message):
     __slots__ = ("session_id", "session_key", "user_id", "messages", "token_budget", "prompt", "emit_debug", "config")

@@ -127,6 +127,14 @@ message KernelMessage {
   string id = 3;
 }
 
+// A cursor specifically for tracking the monotonic state of session turn ingestion.
+// Prevents duplicate ingestions and guarantees sequence integrity across restarts.
+message SessionSyncCursor {
+  int64 last_processed_index = 1;
+  int64 session_version = 2;
+  string manifest_tail_hash = 3;
+}
+
 // assemble_context_internal debug is arbitrary JSON in the current daemon.
 message AssembleContextInternalResponse {
   repeated KernelMessage messages = 1;
@@ -558,11 +566,13 @@ message AfterTurnKernelRequest {
   repeated KernelMessage messages = 4;
   int32 pre_prompt_message_count = 5;
   bool is_heartbeat = 6;
+  SessionSyncCursor cursor = 7;
 }
 
 message AfterTurnKernelResponse {
   bool ok = 1;
   repeated PredictedContext predictions = 2;
+  SessionSyncCursor cursor = 3;
 }
 
 message AssembleContextInternalRequest {
