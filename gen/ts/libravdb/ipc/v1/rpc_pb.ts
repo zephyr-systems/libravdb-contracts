@@ -3926,6 +3926,307 @@ export class CognitiveMetricsRequest extends Message<CognitiveMetricsRequest> {
 }
 
 /**
+ * @generated from message libravdb.ipc.v1.TenantStatus
+ */
+export class TenantStatus extends Message<TenantStatus> {
+  /**
+   * @generated from field: string tenant_key = 1;
+   */
+  tenantKey = "";
+
+  /**
+   * "active", "idle"
+   *
+   * @generated from field: string status = 2;
+   */
+  status = "";
+
+  /**
+   * @generated from field: int64 size_bytes = 3;
+   */
+  sizeBytes = protoInt64.zero;
+
+  /**
+   * @generated from field: int64 last_active_ms = 4;
+   */
+  lastActiveMs = protoInt64.zero;
+
+  /**
+   * @generated from field: int32 open_sessions = 5;
+   */
+  openSessions = 0;
+
+  /**
+   * @generated from field: bool unregistered = 6;
+   */
+  unregistered = false;
+
+  constructor(data?: PartialMessage<TenantStatus>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "libravdb.ipc.v1.TenantStatus";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "tenant_key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "status", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "size_bytes", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 4, name: "last_active_ms", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 5, name: "open_sessions", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 6, name: "unregistered", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TenantStatus {
+    return new TenantStatus().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TenantStatus {
+    return new TenantStatus().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TenantStatus {
+    return new TenantStatus().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TenantStatus | PlainMessage<TenantStatus> | undefined, b: TenantStatus | PlainMessage<TenantStatus> | undefined): boolean {
+    return proto3.util.equals(TenantStatus, a, b);
+  }
+}
+
+/**
+ * @generated from message libravdb.ipc.v1.DaemonStatusRequest
+ */
+export class DaemonStatusRequest extends Message<DaemonStatusRequest> {
+  constructor(data?: PartialMessage<DaemonStatusRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "libravdb.ipc.v1.DaemonStatusRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DaemonStatusRequest {
+    return new DaemonStatusRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DaemonStatusRequest {
+    return new DaemonStatusRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DaemonStatusRequest {
+    return new DaemonStatusRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DaemonStatusRequest | PlainMessage<DaemonStatusRequest> | undefined, b: DaemonStatusRequest | PlainMessage<DaemonStatusRequest> | undefined): boolean {
+    return proto3.util.equals(DaemonStatusRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message libravdb.ipc.v1.DaemonStatusResponse
+ */
+export class DaemonStatusResponse extends Message<DaemonStatusResponse> {
+  /**
+   * @generated from field: bool ok = 1;
+   */
+  ok = false;
+
+  /**
+   * @generated from field: string version = 2;
+   */
+  version = "";
+
+  /**
+   * @generated from field: string uptime = 3;
+   */
+  uptime = "";
+
+  /**
+   * @generated from field: string backend = 4;
+   */
+  backend = "";
+
+  /**
+   * @generated from field: int64 global_db_size = 5;
+   */
+  globalDbSize = protoInt64.zero;
+
+  /**
+   * @generated from field: bool global_db_healthy = 6;
+   */
+  globalDbHealthy = false;
+
+  /**
+   * @generated from field: repeated libravdb.ipc.v1.TenantStatus tenants = 7;
+   */
+  tenants: TenantStatus[] = [];
+
+  /**
+   * @generated from field: int64 cache_size = 8;
+   */
+  cacheSize = protoInt64.zero;
+
+  /**
+   * @generated from field: int64 cache_max_size = 9;
+   */
+  cacheMaxSize = protoInt64.zero;
+
+  /**
+   * @generated from field: int32 cache_entries = 10;
+   */
+  cacheEntries = 0;
+
+  /**
+   * @generated from field: double cache_hit_rate = 11;
+   */
+  cacheHitRate = 0;
+
+  /**
+   * @generated from field: int64 cache_savings = 12;
+   */
+  cacheSavings = protoInt64.zero;
+
+  /**
+   * @generated from field: string tenant_mode = 13;
+   */
+  tenantMode = "";
+
+  /**
+   * @generated from field: int32 max_open_tenants = 14;
+   */
+  maxOpenTenants = 0;
+
+  /**
+   * @generated from field: int32 current_open_tenants = 15;
+   */
+  currentOpenTenants = 0;
+
+  constructor(data?: PartialMessage<DaemonStatusResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "libravdb.ipc.v1.DaemonStatusResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "ok", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 2, name: "version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "uptime", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "backend", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "global_db_size", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 6, name: "global_db_healthy", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 7, name: "tenants", kind: "message", T: TenantStatus, repeated: true },
+    { no: 8, name: "cache_size", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 9, name: "cache_max_size", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 10, name: "cache_entries", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 11, name: "cache_hit_rate", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
+    { no: 12, name: "cache_savings", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 13, name: "tenant_mode", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 14, name: "max_open_tenants", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 15, name: "current_open_tenants", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DaemonStatusResponse {
+    return new DaemonStatusResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DaemonStatusResponse {
+    return new DaemonStatusResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DaemonStatusResponse {
+    return new DaemonStatusResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DaemonStatusResponse | PlainMessage<DaemonStatusResponse> | undefined, b: DaemonStatusResponse | PlainMessage<DaemonStatusResponse> | undefined): boolean {
+    return proto3.util.equals(DaemonStatusResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message libravdb.ipc.v1.EvictTenantRequest
+ */
+export class EvictTenantRequest extends Message<EvictTenantRequest> {
+  /**
+   * @generated from field: string tenant_key = 1;
+   */
+  tenantKey = "";
+
+  constructor(data?: PartialMessage<EvictTenantRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "libravdb.ipc.v1.EvictTenantRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "tenant_key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EvictTenantRequest {
+    return new EvictTenantRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EvictTenantRequest {
+    return new EvictTenantRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EvictTenantRequest {
+    return new EvictTenantRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: EvictTenantRequest | PlainMessage<EvictTenantRequest> | undefined, b: EvictTenantRequest | PlainMessage<EvictTenantRequest> | undefined): boolean {
+    return proto3.util.equals(EvictTenantRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message libravdb.ipc.v1.EvictTenantResponse
+ */
+export class EvictTenantResponse extends Message<EvictTenantResponse> {
+  /**
+   * @generated from field: bool ok = 1;
+   */
+  ok = false;
+
+  /**
+   * @generated from field: string message = 2;
+   */
+  message = "";
+
+  constructor(data?: PartialMessage<EvictTenantResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "libravdb.ipc.v1.EvictTenantResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "ok", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 2, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EvictTenantResponse {
+    return new EvictTenantResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EvictTenantResponse {
+    return new EvictTenantResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EvictTenantResponse {
+    return new EvictTenantResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: EvictTenantResponse | PlainMessage<EvictTenantResponse> | undefined, b: EvictTenantResponse | PlainMessage<EvictTenantResponse> | undefined): boolean {
+    return proto3.util.equals(EvictTenantResponse, a, b);
+  }
+}
+
+/**
  * @generated from message libravdb.ipc.v1.CognitiveMetricsResponse
  */
 export class CognitiveMetricsResponse extends Message<CognitiveMetricsResponse> {

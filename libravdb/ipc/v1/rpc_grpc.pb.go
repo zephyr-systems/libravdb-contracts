@@ -21,6 +21,8 @@ const _ = grpc.SupportPackageIsVersion7
 const (
 	LibravDB_Health_FullMethodName                  = "/libravdb.ipc.v1.LibravDB/Health"
 	LibravDB_Status_FullMethodName                  = "/libravdb.ipc.v1.LibravDB/Status"
+	LibravDB_DaemonStatus_FullMethodName            = "/libravdb.ipc.v1.LibravDB/DaemonStatus"
+	LibravDB_EvictTenant_FullMethodName             = "/libravdb.ipc.v1.LibravDB/EvictTenant"
 	LibravDB_Flush_FullMethodName                   = "/libravdb.ipc.v1.LibravDB/Flush"
 	LibravDB_SessionLifecycleHint_FullMethodName    = "/libravdb.ipc.v1.LibravDB/SessionLifecycleHint"
 	LibravDB_ListLifecycleJournal_FullMethodName    = "/libravdb.ipc.v1.LibravDB/ListLifecycleJournal"
@@ -61,6 +63,8 @@ type LibravDBClient interface {
 	// Session lifecycle
 	Health(ctx context.Context, in *HealthRequest, opts ...grpc.CallOption) (*HealthResponse, error)
 	Status(ctx context.Context, in *MemoryStatusRequest, opts ...grpc.CallOption) (*MemoryStatusResponse, error)
+	DaemonStatus(ctx context.Context, in *DaemonStatusRequest, opts ...grpc.CallOption) (*DaemonStatusResponse, error)
+	EvictTenant(ctx context.Context, in *EvictTenantRequest, opts ...grpc.CallOption) (*EvictTenantResponse, error)
 	Flush(ctx context.Context, in *FlushRequest, opts ...grpc.CallOption) (*FlushResponse, error)
 	SessionLifecycleHint(ctx context.Context, in *SessionLifecycleHintRequest, opts ...grpc.CallOption) (*SessionLifecycleHintResponse, error)
 	ListLifecycleJournal(ctx context.Context, in *ListLifecycleJournalRequest, opts ...grpc.CallOption) (*ListLifecycleJournalResponse, error)
@@ -126,6 +130,24 @@ func (c *libravDBClient) Health(ctx context.Context, in *HealthRequest, opts ...
 func (c *libravDBClient) Status(ctx context.Context, in *MemoryStatusRequest, opts ...grpc.CallOption) (*MemoryStatusResponse, error) {
 	out := new(MemoryStatusResponse)
 	err := c.cc.Invoke(ctx, LibravDB_Status_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *libravDBClient) DaemonStatus(ctx context.Context, in *DaemonStatusRequest, opts ...grpc.CallOption) (*DaemonStatusResponse, error) {
+	out := new(DaemonStatusResponse)
+	err := c.cc.Invoke(ctx, LibravDB_DaemonStatus_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *libravDBClient) EvictTenant(ctx context.Context, in *EvictTenantRequest, opts ...grpc.CallOption) (*EvictTenantResponse, error) {
+	out := new(EvictTenantResponse)
+	err := c.cc.Invoke(ctx, LibravDB_EvictTenant_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -418,6 +440,8 @@ type LibravDBServer interface {
 	// Session lifecycle
 	Health(context.Context, *HealthRequest) (*HealthResponse, error)
 	Status(context.Context, *MemoryStatusRequest) (*MemoryStatusResponse, error)
+	DaemonStatus(context.Context, *DaemonStatusRequest) (*DaemonStatusResponse, error)
+	EvictTenant(context.Context, *EvictTenantRequest) (*EvictTenantResponse, error)
 	Flush(context.Context, *FlushRequest) (*FlushResponse, error)
 	SessionLifecycleHint(context.Context, *SessionLifecycleHintRequest) (*SessionLifecycleHintResponse, error)
 	ListLifecycleJournal(context.Context, *ListLifecycleJournalRequest) (*ListLifecycleJournalResponse, error)
@@ -473,6 +497,12 @@ func (UnimplementedLibravDBServer) Health(context.Context, *HealthRequest) (*Hea
 }
 func (UnimplementedLibravDBServer) Status(context.Context, *MemoryStatusRequest) (*MemoryStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Status not implemented")
+}
+func (UnimplementedLibravDBServer) DaemonStatus(context.Context, *DaemonStatusRequest) (*DaemonStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DaemonStatus not implemented")
+}
+func (UnimplementedLibravDBServer) EvictTenant(context.Context, *EvictTenantRequest) (*EvictTenantResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EvictTenant not implemented")
 }
 func (UnimplementedLibravDBServer) Flush(context.Context, *FlushRequest) (*FlushResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Flush not implemented")
@@ -612,6 +642,42 @@ func _LibravDB_Status_Handler(srv interface{}, ctx context.Context, dec func(int
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(LibravDBServer).Status(ctx, req.(*MemoryStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LibravDB_DaemonStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DaemonStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LibravDBServer).DaemonStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LibravDB_DaemonStatus_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LibravDBServer).DaemonStatus(ctx, req.(*DaemonStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LibravDB_EvictTenant_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EvictTenantRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LibravDBServer).EvictTenant(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LibravDB_EvictTenant_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LibravDBServer).EvictTenant(ctx, req.(*EvictTenantRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1188,6 +1254,14 @@ var LibravDB_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Status",
 			Handler:    _LibravDB_Status_Handler,
+		},
+		{
+			MethodName: "DaemonStatus",
+			Handler:    _LibravDB_DaemonStatus_Handler,
+		},
+		{
+			MethodName: "EvictTenant",
+			Handler:    _LibravDB_EvictTenant_Handler,
 		},
 		{
 			MethodName: "Flush",

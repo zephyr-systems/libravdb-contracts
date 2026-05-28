@@ -848,6 +848,74 @@ class CognitiveMetricsRequest(_message.Message):
     __slots__ = ()
     def __init__(self) -> None: ...
 
+class TenantStatus(_message.Message):
+    __slots__ = ("tenant_key", "status", "size_bytes", "last_active_ms", "open_sessions", "unregistered")
+    TENANT_KEY_FIELD_NUMBER: _ClassVar[int]
+    STATUS_FIELD_NUMBER: _ClassVar[int]
+    SIZE_BYTES_FIELD_NUMBER: _ClassVar[int]
+    LAST_ACTIVE_MS_FIELD_NUMBER: _ClassVar[int]
+    OPEN_SESSIONS_FIELD_NUMBER: _ClassVar[int]
+    UNREGISTERED_FIELD_NUMBER: _ClassVar[int]
+    tenant_key: str
+    status: str
+    size_bytes: int
+    last_active_ms: int
+    open_sessions: int
+    unregistered: bool
+    def __init__(self, tenant_key: _Optional[str] = ..., status: _Optional[str] = ..., size_bytes: _Optional[int] = ..., last_active_ms: _Optional[int] = ..., open_sessions: _Optional[int] = ..., unregistered: bool = ...) -> None: ...
+
+class DaemonStatusRequest(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
+
+class DaemonStatusResponse(_message.Message):
+    __slots__ = ("ok", "version", "uptime", "backend", "global_db_size", "global_db_healthy", "tenants", "cache_size", "cache_max_size", "cache_entries", "cache_hit_rate", "cache_savings", "tenant_mode", "max_open_tenants", "current_open_tenants")
+    OK_FIELD_NUMBER: _ClassVar[int]
+    VERSION_FIELD_NUMBER: _ClassVar[int]
+    UPTIME_FIELD_NUMBER: _ClassVar[int]
+    BACKEND_FIELD_NUMBER: _ClassVar[int]
+    GLOBAL_DB_SIZE_FIELD_NUMBER: _ClassVar[int]
+    GLOBAL_DB_HEALTHY_FIELD_NUMBER: _ClassVar[int]
+    TENANTS_FIELD_NUMBER: _ClassVar[int]
+    CACHE_SIZE_FIELD_NUMBER: _ClassVar[int]
+    CACHE_MAX_SIZE_FIELD_NUMBER: _ClassVar[int]
+    CACHE_ENTRIES_FIELD_NUMBER: _ClassVar[int]
+    CACHE_HIT_RATE_FIELD_NUMBER: _ClassVar[int]
+    CACHE_SAVINGS_FIELD_NUMBER: _ClassVar[int]
+    TENANT_MODE_FIELD_NUMBER: _ClassVar[int]
+    MAX_OPEN_TENANTS_FIELD_NUMBER: _ClassVar[int]
+    CURRENT_OPEN_TENANTS_FIELD_NUMBER: _ClassVar[int]
+    ok: bool
+    version: str
+    uptime: str
+    backend: str
+    global_db_size: int
+    global_db_healthy: bool
+    tenants: _containers.RepeatedCompositeFieldContainer[TenantStatus]
+    cache_size: int
+    cache_max_size: int
+    cache_entries: int
+    cache_hit_rate: float
+    cache_savings: int
+    tenant_mode: str
+    max_open_tenants: int
+    current_open_tenants: int
+    def __init__(self, ok: bool = ..., version: _Optional[str] = ..., uptime: _Optional[str] = ..., backend: _Optional[str] = ..., global_db_size: _Optional[int] = ..., global_db_healthy: bool = ..., tenants: _Optional[_Iterable[_Union[TenantStatus, _Mapping]]] = ..., cache_size: _Optional[int] = ..., cache_max_size: _Optional[int] = ..., cache_entries: _Optional[int] = ..., cache_hit_rate: _Optional[float] = ..., cache_savings: _Optional[int] = ..., tenant_mode: _Optional[str] = ..., max_open_tenants: _Optional[int] = ..., current_open_tenants: _Optional[int] = ...) -> None: ...
+
+class EvictTenantRequest(_message.Message):
+    __slots__ = ("tenant_key",)
+    TENANT_KEY_FIELD_NUMBER: _ClassVar[int]
+    tenant_key: str
+    def __init__(self, tenant_key: _Optional[str] = ...) -> None: ...
+
+class EvictTenantResponse(_message.Message):
+    __slots__ = ("ok", "message")
+    OK_FIELD_NUMBER: _ClassVar[int]
+    MESSAGE_FIELD_NUMBER: _ClassVar[int]
+    ok: bool
+    message: str
+    def __init__(self, ok: bool = ..., message: _Optional[str] = ...) -> None: ...
+
 class CognitiveMetricsResponse(_message.Message):
     __slots__ = ("total_nodes", "fallbacks", "identity", "constraint", "decision", "fact", "preference", "episode", "tier_hard", "tier_soft", "tier_variant", "heading_identity", "heading_constraint", "heading_workflow", "heading_background", "heading_preferences", "support_buckets", "circuit_open", "circuit_reason", "use_cognitive_routing")
     TOTAL_NODES_FIELD_NUMBER: _ClassVar[int]

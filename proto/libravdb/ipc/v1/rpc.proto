@@ -619,6 +619,45 @@ message RebuildIndexResponse {
 message CognitiveMetricsRequest {
 }
 
+message TenantStatus {
+  string tenant_key = 1;
+  string status = 2; // "active", "idle"
+  int64 size_bytes = 3;
+  int64 last_active_ms = 4;
+  int32 open_sessions = 5;
+  bool unregistered = 6;
+}
+
+message DaemonStatusRequest {
+}
+
+message DaemonStatusResponse {
+  bool ok = 1;
+  string version = 2;
+  string uptime = 3;
+  string backend = 4;
+  int64 global_db_size = 5;
+  bool global_db_healthy = 6;
+  repeated TenantStatus tenants = 7;
+  int64 cache_size = 8;
+  int64 cache_max_size = 9;
+  int32 cache_entries = 10;
+  double cache_hit_rate = 11;
+  int64 cache_savings = 12;
+  string tenant_mode = 13;
+  int32 max_open_tenants = 14;
+  int32 current_open_tenants = 15;
+}
+
+message EvictTenantRequest {
+  string tenant_key = 1;
+}
+
+message EvictTenantResponse {
+  bool ok = 1;
+  string message = 2;
+}
+
 message CognitiveMetricsResponse {
   int64 total_nodes = 1;
   int64 fallbacks = 2;
@@ -709,6 +748,8 @@ service LibravDB {
   // Session lifecycle
   rpc Health(HealthRequest) returns (HealthResponse);
   rpc Status(MemoryStatusRequest) returns (MemoryStatusResponse);
+  rpc DaemonStatus(DaemonStatusRequest) returns (DaemonStatusResponse);
+  rpc EvictTenant(EvictTenantRequest) returns (EvictTenantResponse);
   rpc Flush(FlushRequest) returns (FlushResponse);
   rpc SessionLifecycleHint(SessionLifecycleHintRequest) returns (SessionLifecycleHintResponse);
   rpc ListLifecycleJournal(ListLifecycleJournalRequest) returns (ListLifecycleJournalResponse);

@@ -29,6 +29,16 @@ class LibravDBStub(object):
                 request_serializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.MemoryStatusRequest.SerializeToString,
                 response_deserializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.MemoryStatusResponse.FromString,
                 _registered_method=True)
+        self.DaemonStatus = channel.unary_unary(
+                '/libravdb.ipc.v1.LibravDB/DaemonStatus',
+                request_serializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.DaemonStatusRequest.SerializeToString,
+                response_deserializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.DaemonStatusResponse.FromString,
+                _registered_method=True)
+        self.EvictTenant = channel.unary_unary(
+                '/libravdb.ipc.v1.LibravDB/EvictTenant',
+                request_serializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.EvictTenantRequest.SerializeToString,
+                response_deserializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.EvictTenantResponse.FromString,
+                _registered_method=True)
         self.Flush = channel.unary_unary(
                 '/libravdb.ipc.v1.LibravDB/Flush',
                 request_serializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.FlushRequest.SerializeToString,
@@ -202,6 +212,18 @@ class LibravDBServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def Status(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DaemonStatus(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def EvictTenant(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -418,6 +440,16 @@ def add_LibravDBServicer_to_server(servicer, server):
                     request_deserializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.MemoryStatusRequest.FromString,
                     response_serializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.MemoryStatusResponse.SerializeToString,
             ),
+            'DaemonStatus': grpc.unary_unary_rpc_method_handler(
+                    servicer.DaemonStatus,
+                    request_deserializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.DaemonStatusRequest.FromString,
+                    response_serializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.DaemonStatusResponse.SerializeToString,
+            ),
+            'EvictTenant': grpc.unary_unary_rpc_method_handler(
+                    servicer.EvictTenant,
+                    request_deserializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.EvictTenantRequest.FromString,
+                    response_serializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.EvictTenantResponse.SerializeToString,
+            ),
             'Flush': grpc.unary_unary_rpc_method_handler(
                     servicer.Flush,
                     request_deserializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.FlushRequest.FromString,
@@ -633,6 +665,60 @@ class LibravDB(object):
             '/libravdb.ipc.v1.LibravDB/Status',
             libravdb_dot_ipc_dot_v1_dot_rpc__pb2.MemoryStatusRequest.SerializeToString,
             libravdb_dot_ipc_dot_v1_dot_rpc__pb2.MemoryStatusResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DaemonStatus(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/libravdb.ipc.v1.LibravDB/DaemonStatus',
+            libravdb_dot_ipc_dot_v1_dot_rpc__pb2.DaemonStatusRequest.SerializeToString,
+            libravdb_dot_ipc_dot_v1_dot_rpc__pb2.DaemonStatusResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def EvictTenant(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/libravdb.ipc.v1.LibravDB/EvictTenant',
+            libravdb_dot_ipc_dot_v1_dot_rpc__pb2.EvictTenantRequest.SerializeToString,
+            libravdb_dot_ipc_dot_v1_dot_rpc__pb2.EvictTenantResponse.FromString,
             options,
             channel_credentials,
             insecure,
