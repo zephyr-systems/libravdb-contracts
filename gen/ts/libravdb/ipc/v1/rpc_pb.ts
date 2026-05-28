@@ -3110,6 +3110,11 @@ export class MemoryStatusResponse extends Message<MemoryStatusResponse> {
    */
   embeddingProfile = "";
 
+  /**
+   * @generated from field: string embedding_backend = 9;
+   */
+  embeddingBackend = "";
+
   constructor(data?: PartialMessage<MemoryStatusResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -3126,6 +3131,7 @@ export class MemoryStatusResponse extends Message<MemoryStatusResponse> {
     { no: 6, name: "gating_threshold", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
     { no: 7, name: "abstractive_ready", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 8, name: "embedding_profile", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 9, name: "embedding_backend", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MemoryStatusResponse {

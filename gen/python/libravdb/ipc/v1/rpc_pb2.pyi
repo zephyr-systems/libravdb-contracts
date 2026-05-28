@@ -671,7 +671,7 @@ class SessionLifecycleHintResponse(_message.Message):
     def __init__(self, ok: bool = ..., hook: _Optional[str] = ..., session_id: _Optional[str] = ..., reason: _Optional[str] = ...) -> None: ...
 
 class MemoryStatusResponse(_message.Message):
-    __slots__ = ("ok", "message", "turn_count", "memory_count", "lifecycle_hint_count", "gating_threshold", "abstractive_ready", "embedding_profile")
+    __slots__ = ("ok", "message", "turn_count", "memory_count", "lifecycle_hint_count", "gating_threshold", "abstractive_ready", "embedding_profile", "embedding_backend")
     OK_FIELD_NUMBER: _ClassVar[int]
     MESSAGE_FIELD_NUMBER: _ClassVar[int]
     TURN_COUNT_FIELD_NUMBER: _ClassVar[int]
@@ -680,6 +680,7 @@ class MemoryStatusResponse(_message.Message):
     GATING_THRESHOLD_FIELD_NUMBER: _ClassVar[int]
     ABSTRACTIVE_READY_FIELD_NUMBER: _ClassVar[int]
     EMBEDDING_PROFILE_FIELD_NUMBER: _ClassVar[int]
+    EMBEDDING_BACKEND_FIELD_NUMBER: _ClassVar[int]
     ok: bool
     message: str
     turn_count: int
@@ -688,7 +689,8 @@ class MemoryStatusResponse(_message.Message):
     gating_threshold: float
     abstractive_ready: bool
     embedding_profile: str
-    def __init__(self, ok: bool = ..., message: _Optional[str] = ..., turn_count: _Optional[int] = ..., memory_count: _Optional[int] = ..., lifecycle_hint_count: _Optional[int] = ..., gating_threshold: _Optional[float] = ..., abstractive_ready: bool = ..., embedding_profile: _Optional[str] = ...) -> None: ...
+    embedding_backend: str
+    def __init__(self, ok: bool = ..., message: _Optional[str] = ..., turn_count: _Optional[int] = ..., memory_count: _Optional[int] = ..., lifecycle_hint_count: _Optional[int] = ..., gating_threshold: _Optional[float] = ..., abstractive_ready: bool = ..., embedding_profile: _Optional[str] = ..., embedding_backend: _Optional[str] = ...) -> None: ...
 
 class ExportMemoryRequest(_message.Message):
     __slots__ = ("user_id", "namespace")

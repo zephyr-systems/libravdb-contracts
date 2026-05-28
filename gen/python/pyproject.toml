@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "libravdb-contracts"
-version = "2.0.11"
+version = "2.0.12"
 description = "LibraVDB IPC protocol types — Python protobuf generated"
 requires-python = ">=3.10"
 dependencies = ["protobuf>=4.21.0", "grpcio>=1.51.0"]

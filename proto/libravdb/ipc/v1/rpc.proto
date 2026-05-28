@@ -513,6 +513,7 @@ message MemoryStatusResponse {
   double gating_threshold = 6;
   bool abstractive_ready = 7;
   string embedding_profile = 8;
+  string embedding_backend = 9;
 }
 
 message ExportMemoryRequest {
