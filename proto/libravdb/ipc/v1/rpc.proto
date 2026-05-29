@@ -274,6 +274,7 @@ message CompactSessionResponse {
   string summary_method = 5;
   double mean_confidence = 6;
   string summary_text = 7;
+  int32 tokens_after = 8; // estimated token count after compaction
 }
 
 // compact.GatingSignals (libravdbd/compact/gate.go) — gating_scalar RPC.

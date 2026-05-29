@@ -1330,6 +1330,13 @@ export class CompactSessionResponse extends Message<CompactSessionResponse> {
    */
   summaryText = "";
 
+  /**
+   * estimated token count after compaction
+   *
+   * @generated from field: int32 tokens_after = 8;
+   */
+  tokensAfter = 0;
+
   constructor(data?: PartialMessage<CompactSessionResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1345,6 +1352,7 @@ export class CompactSessionResponse extends Message<CompactSessionResponse> {
     { no: 5, name: "summary_method", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "mean_confidence", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
     { no: 7, name: "summary_text", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 8, name: "tokens_after", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CompactSessionResponse {
