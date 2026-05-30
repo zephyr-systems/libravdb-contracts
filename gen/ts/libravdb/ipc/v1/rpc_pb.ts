@@ -3504,6 +3504,146 @@ export class IngestMessageKernelResponse extends Message<IngestMessageKernelResp
 }
 
 /**
+ * @generated from message libravdb.ipc.v1.BeforeTurnKernelRequest
+ */
+export class BeforeTurnKernelRequest extends Message<BeforeTurnKernelRequest> {
+  /**
+   * @generated from field: string session_id = 1;
+   */
+  sessionId = "";
+
+  /**
+   * @generated from field: string session_key = 2;
+   */
+  sessionKey = "";
+
+  /**
+   * @generated from field: string user_id = 3;
+   */
+  userId = "";
+
+  /**
+   * recent context window
+   *
+   * @generated from field: repeated libravdb.ipc.v1.KernelMessage messages = 4;
+   */
+  messages: KernelMessage[] = [];
+
+  /**
+   * @generated from field: int32 pre_prompt_message_count = 5;
+   */
+  prePromptMessageCount = 0;
+
+  /**
+   * @generated from field: bool is_heartbeat = 6;
+   */
+  isHeartbeat = false;
+
+  /**
+   * @generated from field: libravdb.ipc.v1.SessionSyncCursor cursor = 7;
+   */
+  cursor?: SessionSyncCursor;
+
+  /**
+   * optional: extracted query terms
+   *
+   * @generated from field: string query_hint = 8;
+   */
+  queryHint = "";
+
+  constructor(data?: PartialMessage<BeforeTurnKernelRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "libravdb.ipc.v1.BeforeTurnKernelRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "session_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "session_key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "user_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "messages", kind: "message", T: KernelMessage, repeated: true },
+    { no: 5, name: "pre_prompt_message_count", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 6, name: "is_heartbeat", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 7, name: "cursor", kind: "message", T: SessionSyncCursor },
+    { no: 8, name: "query_hint", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): BeforeTurnKernelRequest {
+    return new BeforeTurnKernelRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): BeforeTurnKernelRequest {
+    return new BeforeTurnKernelRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): BeforeTurnKernelRequest {
+    return new BeforeTurnKernelRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: BeforeTurnKernelRequest | PlainMessage<BeforeTurnKernelRequest> | undefined, b: BeforeTurnKernelRequest | PlainMessage<BeforeTurnKernelRequest> | undefined): boolean {
+    return proto3.util.equals(BeforeTurnKernelRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message libravdb.ipc.v1.BeforeTurnKernelResponse
+ */
+export class BeforeTurnKernelResponse extends Message<BeforeTurnKernelResponse> {
+  /**
+   * @generated from field: bool ok = 1;
+   */
+  ok = false;
+
+  /**
+   * retrieved memories
+   *
+   * @generated from field: repeated libravdb.ipc.v1.PredictedContext predictions = 2;
+   */
+  predictions: PredictedContext[] = [];
+
+  /**
+   * @generated from field: libravdb.ipc.v1.SessionSyncCursor cursor = 3;
+   */
+  cursor?: SessionSyncCursor;
+
+  /**
+   * @generated from field: bool cross_session_recall_triggered = 4;
+   */
+  crossSessionRecallTriggered = false;
+
+  constructor(data?: PartialMessage<BeforeTurnKernelResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "libravdb.ipc.v1.BeforeTurnKernelResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "ok", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 2, name: "predictions", kind: "message", T: PredictedContext, repeated: true },
+    { no: 3, name: "cursor", kind: "message", T: SessionSyncCursor },
+    { no: 4, name: "cross_session_recall_triggered", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): BeforeTurnKernelResponse {
+    return new BeforeTurnKernelResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): BeforeTurnKernelResponse {
+    return new BeforeTurnKernelResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): BeforeTurnKernelResponse {
+    return new BeforeTurnKernelResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: BeforeTurnKernelResponse | PlainMessage<BeforeTurnKernelResponse> | undefined, b: BeforeTurnKernelResponse | PlainMessage<BeforeTurnKernelResponse> | undefined): boolean {
+    return proto3.util.equals(BeforeTurnKernelResponse, a, b);
+  }
+}
+
+/**
  * @generated from message libravdb.ipc.v1.AfterTurnKernelRequest
  */
 export class AfterTurnKernelRequest extends Message<AfterTurnKernelRequest> {

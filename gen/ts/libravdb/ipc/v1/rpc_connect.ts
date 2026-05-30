@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { AfterTurnKernelRequest, AfterTurnKernelResponse, AssembleContextInternalRequest, AssembleContextInternalResponse, BootstrapSessionKernelRequest, BootstrapSessionKernelResponse, BumpAccessCountsRequest, BumpAccessCountsResponse, CognitiveMetricsRequest, CognitiveMetricsResponse, CompactSessionRequest, CompactSessionResponse, DaemonStatusRequest, DaemonStatusResponse, DeleteAuthoredDocumentRequest, DeleteAuthoredDocumentResponse, DeleteBatchRequest, DeleteBatchResponse, DeleteRequest, DeleteResponse, DreamPromotionResponse, EnsureCollectionsRequest, EnsureCollectionsResponse, EvictTenantRequest, EvictTenantResponse, ExpandSummaryRequest, ExpandSummaryResponse, ExportMemoryRequest, ExportMemoryResponse, FlushNamespaceRequest, FlushNamespaceResponse, FlushRequest, FlushResponse, GatingScalarRequest, GatingScalarResponse, HealthRequest, HealthResponse, IngestMarkdownDocumentRequest, IngestMarkdownDocumentResponse, IngestMessageKernelRequest, IngestMessageKernelResponse, InsertSessionTurnRequest, InsertSessionTurnResponse, InsertTextRequest, InsertTextResponse, ListByMetaRequest, ListByMetaResponse, ListCollectionRequest, ListCollectionResponse, ListLifecycleJournalRequest, ListLifecycleJournalResponse, MarkMemorySupersededRequest, MarkMemorySupersededResponse, MemoryStatusRequest, MemoryStatusResponse, PromoteDreamEntriesRequest, QueryRawSessionRequest, QueryRawSessionResponse, RankCandidatesRequest, RankCandidatesResponse, RebuildIndexRequest, RebuildIndexResponse, ReindexAuthoredDocumentRequest, ReindexAuthoredDocumentResponse, SearchTextCollectionsRequest, SearchTextRequest, SearchTextResponse, SessionLifecycleHintRequest, SessionLifecycleHintResponse } from "./rpc_pb.js";
+import { AfterTurnKernelRequest, AfterTurnKernelResponse, AssembleContextInternalRequest, AssembleContextInternalResponse, BeforeTurnKernelRequest, BeforeTurnKernelResponse, BootstrapSessionKernelRequest, BootstrapSessionKernelResponse, BumpAccessCountsRequest, BumpAccessCountsResponse, CognitiveMetricsRequest, CognitiveMetricsResponse, CompactSessionRequest, CompactSessionResponse, DaemonStatusRequest, DaemonStatusResponse, DeleteAuthoredDocumentRequest, DeleteAuthoredDocumentResponse, DeleteBatchRequest, DeleteBatchResponse, DeleteRequest, DeleteResponse, DreamPromotionResponse, EnsureCollectionsRequest, EnsureCollectionsResponse, EvictTenantRequest, EvictTenantResponse, ExpandSummaryRequest, ExpandSummaryResponse, ExportMemoryRequest, ExportMemoryResponse, FlushNamespaceRequest, FlushNamespaceResponse, FlushRequest, FlushResponse, GatingScalarRequest, GatingScalarResponse, HealthRequest, HealthResponse, IngestMarkdownDocumentRequest, IngestMarkdownDocumentResponse, IngestMessageKernelRequest, IngestMessageKernelResponse, InsertSessionTurnRequest, InsertSessionTurnResponse, InsertTextRequest, InsertTextResponse, ListByMetaRequest, ListByMetaResponse, ListCollectionRequest, ListCollectionResponse, ListLifecycleJournalRequest, ListLifecycleJournalResponse, MarkMemorySupersededRequest, MarkMemorySupersededResponse, MemoryStatusRequest, MemoryStatusResponse, PromoteDreamEntriesRequest, QueryRawSessionRequest, QueryRawSessionResponse, RankCandidatesRequest, RankCandidatesResponse, RebuildIndexRequest, RebuildIndexResponse, ReindexAuthoredDocumentRequest, ReindexAuthoredDocumentResponse, SearchTextCollectionsRequest, SearchTextRequest, SearchTextResponse, SessionLifecycleHintRequest, SessionLifecycleHintResponse } from "./rpc_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -311,6 +311,15 @@ export const LibravDB = {
       name: "IngestMessageKernel",
       I: IngestMessageKernelRequest,
       O: IngestMessageKernelResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc libravdb.ipc.v1.LibravDB.BeforeTurnKernel
+     */
+    beforeTurnKernel: {
+      name: "BeforeTurnKernel",
+      I: BeforeTurnKernelRequest,
+      O: BeforeTurnKernelResponse,
       kind: MethodKind.Unary,
     },
     /**

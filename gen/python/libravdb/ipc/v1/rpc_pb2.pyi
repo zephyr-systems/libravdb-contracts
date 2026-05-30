@@ -758,6 +758,38 @@ class IngestMessageKernelResponse(_message.Message):
     ingested: int
     def __init__(self, ok: bool = ..., ingested: _Optional[int] = ...) -> None: ...
 
+class BeforeTurnKernelRequest(_message.Message):
+    __slots__ = ("session_id", "session_key", "user_id", "messages", "pre_prompt_message_count", "is_heartbeat", "cursor", "query_hint")
+    SESSION_ID_FIELD_NUMBER: _ClassVar[int]
+    SESSION_KEY_FIELD_NUMBER: _ClassVar[int]
+    USER_ID_FIELD_NUMBER: _ClassVar[int]
+    MESSAGES_FIELD_NUMBER: _ClassVar[int]
+    PRE_PROMPT_MESSAGE_COUNT_FIELD_NUMBER: _ClassVar[int]
+    IS_HEARTBEAT_FIELD_NUMBER: _ClassVar[int]
+    CURSOR_FIELD_NUMBER: _ClassVar[int]
+    QUERY_HINT_FIELD_NUMBER: _ClassVar[int]
+    session_id: str
+    session_key: str
+    user_id: str
+    messages: _containers.RepeatedCompositeFieldContainer[KernelMessage]
+    pre_prompt_message_count: int
+    is_heartbeat: bool
+    cursor: SessionSyncCursor
+    query_hint: str
+    def __init__(self, session_id: _Optional[str] = ..., session_key: _Optional[str] = ..., user_id: _Optional[str] = ..., messages: _Optional[_Iterable[_Union[KernelMessage, _Mapping]]] = ..., pre_prompt_message_count: _Optional[int] = ..., is_heartbeat: bool = ..., cursor: _Optional[_Union[SessionSyncCursor, _Mapping]] = ..., query_hint: _Optional[str] = ...) -> None: ...
+
+class BeforeTurnKernelResponse(_message.Message):
+    __slots__ = ("ok", "predictions", "cursor", "cross_session_recall_triggered")
+    OK_FIELD_NUMBER: _ClassVar[int]
+    PREDICTIONS_FIELD_NUMBER: _ClassVar[int]
+    CURSOR_FIELD_NUMBER: _ClassVar[int]
+    CROSS_SESSION_RECALL_TRIGGERED_FIELD_NUMBER: _ClassVar[int]
+    ok: bool
+    predictions: _containers.RepeatedCompositeFieldContainer[PredictedContext]
+    cursor: SessionSyncCursor
+    cross_session_recall_triggered: bool
+    def __init__(self, ok: bool = ..., predictions: _Optional[_Iterable[_Union[PredictedContext, _Mapping]]] = ..., cursor: _Optional[_Union[SessionSyncCursor, _Mapping]] = ..., cross_session_recall_triggered: bool = ...) -> None: ...
+
 class AfterTurnKernelRequest(_message.Message):
     __slots__ = ("session_id", "session_key", "user_id", "messages", "pre_prompt_message_count", "is_heartbeat", "cursor")
     SESSION_ID_FIELD_NUMBER: _ClassVar[int]

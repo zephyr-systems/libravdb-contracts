@@ -50,6 +50,7 @@ const (
 	LibravDB_RebuildIndex_FullMethodName            = "/libravdb.ipc.v1.LibravDB/RebuildIndex"
 	LibravDB_BootstrapSessionKernel_FullMethodName  = "/libravdb.ipc.v1.LibravDB/BootstrapSessionKernel"
 	LibravDB_IngestMessageKernel_FullMethodName     = "/libravdb.ipc.v1.LibravDB/IngestMessageKernel"
+	LibravDB_BeforeTurnKernel_FullMethodName        = "/libravdb.ipc.v1.LibravDB/BeforeTurnKernel"
 	LibravDB_AfterTurnKernel_FullMethodName         = "/libravdb.ipc.v1.LibravDB/AfterTurnKernel"
 	LibravDB_AssembleContextInternal_FullMethodName = "/libravdb.ipc.v1.LibravDB/AssembleContextInternal"
 	LibravDB_RankCandidates_FullMethodName          = "/libravdb.ipc.v1.LibravDB/RankCandidates"
@@ -102,6 +103,7 @@ type LibravDBClient interface {
 	// Kernel
 	BootstrapSessionKernel(ctx context.Context, in *BootstrapSessionKernelRequest, opts ...grpc.CallOption) (*BootstrapSessionKernelResponse, error)
 	IngestMessageKernel(ctx context.Context, in *IngestMessageKernelRequest, opts ...grpc.CallOption) (*IngestMessageKernelResponse, error)
+	BeforeTurnKernel(ctx context.Context, in *BeforeTurnKernelRequest, opts ...grpc.CallOption) (*BeforeTurnKernelResponse, error)
 	AfterTurnKernel(ctx context.Context, in *AfterTurnKernelRequest, opts ...grpc.CallOption) (*AfterTurnKernelResponse, error)
 	AssembleContextInternal(ctx context.Context, in *AssembleContextInternalRequest, opts ...grpc.CallOption) (*AssembleContextInternalResponse, error)
 	// Ranking
@@ -397,6 +399,15 @@ func (c *libravDBClient) IngestMessageKernel(ctx context.Context, in *IngestMess
 	return out, nil
 }
 
+func (c *libravDBClient) BeforeTurnKernel(ctx context.Context, in *BeforeTurnKernelRequest, opts ...grpc.CallOption) (*BeforeTurnKernelResponse, error) {
+	out := new(BeforeTurnKernelResponse)
+	err := c.cc.Invoke(ctx, LibravDB_BeforeTurnKernel_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *libravDBClient) AfterTurnKernel(ctx context.Context, in *AfterTurnKernelRequest, opts ...grpc.CallOption) (*AfterTurnKernelResponse, error) {
 	out := new(AfterTurnKernelResponse)
 	err := c.cc.Invoke(ctx, LibravDB_AfterTurnKernel_FullMethodName, in, out, opts...)
@@ -479,6 +490,7 @@ type LibravDBServer interface {
 	// Kernel
 	BootstrapSessionKernel(context.Context, *BootstrapSessionKernelRequest) (*BootstrapSessionKernelResponse, error)
 	IngestMessageKernel(context.Context, *IngestMessageKernelRequest) (*IngestMessageKernelResponse, error)
+	BeforeTurnKernel(context.Context, *BeforeTurnKernelRequest) (*BeforeTurnKernelResponse, error)
 	AfterTurnKernel(context.Context, *AfterTurnKernelRequest) (*AfterTurnKernelResponse, error)
 	AssembleContextInternal(context.Context, *AssembleContextInternalRequest) (*AssembleContextInternalResponse, error)
 	// Ranking
@@ -584,6 +596,9 @@ func (UnimplementedLibravDBServer) BootstrapSessionKernel(context.Context, *Boot
 }
 func (UnimplementedLibravDBServer) IngestMessageKernel(context.Context, *IngestMessageKernelRequest) (*IngestMessageKernelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method IngestMessageKernel not implemented")
+}
+func (UnimplementedLibravDBServer) BeforeTurnKernel(context.Context, *BeforeTurnKernelRequest) (*BeforeTurnKernelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BeforeTurnKernel not implemented")
 }
 func (UnimplementedLibravDBServer) AfterTurnKernel(context.Context, *AfterTurnKernelRequest) (*AfterTurnKernelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AfterTurnKernel not implemented")
@@ -1168,6 +1183,24 @@ func _LibravDB_IngestMessageKernel_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _LibravDB_BeforeTurnKernel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BeforeTurnKernelRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LibravDBServer).BeforeTurnKernel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LibravDB_BeforeTurnKernel_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LibravDBServer).BeforeTurnKernel(ctx, req.(*BeforeTurnKernelRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _LibravDB_AfterTurnKernel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AfterTurnKernelRequest)
 	if err := dec(in); err != nil {
@@ -1370,6 +1403,10 @@ var LibravDB_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "IngestMessageKernel",
 			Handler:    _LibravDB_IngestMessageKernel_Handler,
+		},
+		{
+			MethodName: "BeforeTurnKernel",
+			Handler:    _LibravDB_BeforeTurnKernel_Handler,
 		},
 		{
 			MethodName: "AfterTurnKernel",

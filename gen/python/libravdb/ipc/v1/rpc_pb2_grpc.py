@@ -174,6 +174,11 @@ class LibravDBStub(object):
                 request_serializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.IngestMessageKernelRequest.SerializeToString,
                 response_deserializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.IngestMessageKernelResponse.FromString,
                 _registered_method=True)
+        self.BeforeTurnKernel = channel.unary_unary(
+                '/libravdb.ipc.v1.LibravDB/BeforeTurnKernel',
+                request_serializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.BeforeTurnKernelRequest.SerializeToString,
+                response_deserializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.BeforeTurnKernelResponse.FromString,
+                _registered_method=True)
         self.AfterTurnKernel = channel.unary_unary(
                 '/libravdb.ipc.v1.LibravDB/AfterTurnKernel',
                 request_serializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.AfterTurnKernelRequest.SerializeToString,
@@ -401,6 +406,12 @@ class LibravDBServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def BeforeTurnKernel(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def AfterTurnKernel(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -584,6 +595,11 @@ def add_LibravDBServicer_to_server(servicer, server):
                     servicer.IngestMessageKernel,
                     request_deserializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.IngestMessageKernelRequest.FromString,
                     response_serializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.IngestMessageKernelResponse.SerializeToString,
+            ),
+            'BeforeTurnKernel': grpc.unary_unary_rpc_method_handler(
+                    servicer.BeforeTurnKernel,
+                    request_deserializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.BeforeTurnKernelRequest.FromString,
+                    response_serializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.BeforeTurnKernelResponse.SerializeToString,
             ),
             'AfterTurnKernel': grpc.unary_unary_rpc_method_handler(
                     servicer.AfterTurnKernel,
@@ -1448,6 +1464,33 @@ class LibravDB(object):
             '/libravdb.ipc.v1.LibravDB/IngestMessageKernel',
             libravdb_dot_ipc_dot_v1_dot_rpc__pb2.IngestMessageKernelRequest.SerializeToString,
             libravdb_dot_ipc_dot_v1_dot_rpc__pb2.IngestMessageKernelResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def BeforeTurnKernel(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/libravdb.ipc.v1.LibravDB/BeforeTurnKernel',
+            libravdb_dot_ipc_dot_v1_dot_rpc__pb2.BeforeTurnKernelRequest.SerializeToString,
+            libravdb_dot_ipc_dot_v1_dot_rpc__pb2.BeforeTurnKernelResponse.FromString,
             options,
             channel_credentials,
             insecure,

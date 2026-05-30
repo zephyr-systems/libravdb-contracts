@@ -561,6 +561,24 @@ message IngestMessageKernelResponse {
   int32 ingested = 2;
 }
 
+message BeforeTurnKernelRequest {
+  string session_id = 1;
+  string session_key = 2;
+  string user_id = 3;
+  repeated KernelMessage messages = 4;  // recent context window
+  int32 pre_prompt_message_count = 5;
+  bool is_heartbeat = 6;
+  SessionSyncCursor cursor = 7;
+  string query_hint = 8;  // optional: extracted query terms
+}
+
+message BeforeTurnKernelResponse {
+  bool ok = 1;
+  repeated PredictedContext predictions = 2;  // retrieved memories
+  SessionSyncCursor cursor = 3;
+  bool cross_session_recall_triggered = 4;
+}
+
 message AfterTurnKernelRequest {
   string session_id = 1;
   string session_key = 2;
@@ -799,6 +817,7 @@ service LibravDB {
   // Kernel
   rpc BootstrapSessionKernel(BootstrapSessionKernelRequest) returns (BootstrapSessionKernelResponse);
   rpc IngestMessageKernel(IngestMessageKernelRequest) returns (IngestMessageKernelResponse);
+  rpc BeforeTurnKernel(BeforeTurnKernelRequest) returns (BeforeTurnKernelResponse);
   rpc AfterTurnKernel(AfterTurnKernelRequest) returns (AfterTurnKernelResponse);
   rpc AssembleContextInternal(AssembleContextInternalRequest) returns (AssembleContextInternalResponse);
 
