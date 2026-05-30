@@ -149,6 +149,11 @@ class LibravDBStub(object):
                 request_serializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.CompactSessionRequest.SerializeToString,
                 response_deserializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.CompactSessionResponse.FromString,
                 _registered_method=True)
+        self.SummarizeMessages = channel.unary_unary(
+                '/libravdb.ipc.v1.LibravDB/SummarizeMessages',
+                request_serializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.SummarizeMessagesRequest.SerializeToString,
+                response_deserializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.SummarizeMessagesResponse.FromString,
+                _registered_method=True)
         self.ExpandSummary = channel.unary_unary(
                 '/libravdb.ipc.v1.LibravDB/ExpandSummary',
                 request_serializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.ExpandSummaryRequest.SerializeToString,
@@ -374,6 +379,12 @@ class LibravDBServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SummarizeMessages(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def ExpandSummary(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -570,6 +581,11 @@ def add_LibravDBServicer_to_server(servicer, server):
                     servicer.CompactSession,
                     request_deserializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.CompactSessionRequest.FromString,
                     response_serializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.CompactSessionResponse.SerializeToString,
+            ),
+            'SummarizeMessages': grpc.unary_unary_rpc_method_handler(
+                    servicer.SummarizeMessages,
+                    request_deserializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.SummarizeMessagesRequest.FromString,
+                    response_serializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.SummarizeMessagesResponse.SerializeToString,
             ),
             'ExpandSummary': grpc.unary_unary_rpc_method_handler(
                     servicer.ExpandSummary,
@@ -1329,6 +1345,33 @@ class LibravDB(object):
             '/libravdb.ipc.v1.LibravDB/CompactSession',
             libravdb_dot_ipc_dot_v1_dot_rpc__pb2.CompactSessionRequest.SerializeToString,
             libravdb_dot_ipc_dot_v1_dot_rpc__pb2.CompactSessionResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def SummarizeMessages(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/libravdb.ipc.v1.LibravDB/SummarizeMessages',
+            libravdb_dot_ipc_dot_v1_dot_rpc__pb2.SummarizeMessagesRequest.SerializeToString,
+            libravdb_dot_ipc_dot_v1_dot_rpc__pb2.SummarizeMessagesResponse.FromString,
             options,
             channel_credentials,
             insecure,

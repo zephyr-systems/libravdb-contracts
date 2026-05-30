@@ -311,6 +311,26 @@ class CompactSessionResponse(_message.Message):
     tokens_after: int
     def __init__(self, did_compact: bool = ..., clusters_formed: _Optional[int] = ..., clusters_declined: _Optional[int] = ..., turns_removed: _Optional[int] = ..., summary_method: _Optional[str] = ..., mean_confidence: _Optional[float] = ..., summary_text: _Optional[str] = ..., tokens_after: _Optional[int] = ...) -> None: ...
 
+class SummarizeMessagesRequest(_message.Message):
+    __slots__ = ("messages", "max_output_tokens")
+    MESSAGES_FIELD_NUMBER: _ClassVar[int]
+    MAX_OUTPUT_TOKENS_FIELD_NUMBER: _ClassVar[int]
+    messages: _containers.RepeatedCompositeFieldContainer[KernelMessage]
+    max_output_tokens: int
+    def __init__(self, messages: _Optional[_Iterable[_Union[KernelMessage, _Mapping]]] = ..., max_output_tokens: _Optional[int] = ...) -> None: ...
+
+class SummarizeMessagesResponse(_message.Message):
+    __slots__ = ("summary_text", "summary_method", "confidence", "source_count")
+    SUMMARY_TEXT_FIELD_NUMBER: _ClassVar[int]
+    SUMMARY_METHOD_FIELD_NUMBER: _ClassVar[int]
+    CONFIDENCE_FIELD_NUMBER: _ClassVar[int]
+    SOURCE_COUNT_FIELD_NUMBER: _ClassVar[int]
+    summary_text: str
+    summary_method: str
+    confidence: float
+    source_count: int
+    def __init__(self, summary_text: _Optional[str] = ..., summary_method: _Optional[str] = ..., confidence: _Optional[float] = ..., source_count: _Optional[int] = ...) -> None: ...
+
 class GatingScalarResponse(_message.Message):
     __slots__ = ("g", "t", "h", "r", "d", "input_freq", "mem_saturation", "p", "a", "dtech", "gconv", "gtech")
     G_FIELD_NUMBER: _ClassVar[int]

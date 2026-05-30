@@ -385,6 +385,34 @@ export declare class KernelMessage extends Message<KernelMessage> {
     static equals(a: KernelMessage | PlainMessage<KernelMessage> | undefined, b: KernelMessage | PlainMessage<KernelMessage> | undefined): boolean;
 }
 /**
+ * A cursor specifically for tracking the monotonic state of session turn ingestion.
+ * Prevents duplicate ingestions and guarantees sequence integrity across restarts.
+ *
+ * @generated from message libravdb.ipc.v1.SessionSyncCursor
+ */
+export declare class SessionSyncCursor extends Message<SessionSyncCursor> {
+    /**
+     * @generated from field: int64 last_processed_index = 1;
+     */
+    lastProcessedIndex: bigint;
+    /**
+     * @generated from field: int64 session_version = 2;
+     */
+    sessionVersion: bigint;
+    /**
+     * @generated from field: string manifest_tail_hash = 3;
+     */
+    manifestTailHash: string;
+    constructor(data?: PartialMessage<SessionSyncCursor>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.SessionSyncCursor";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SessionSyncCursor;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SessionSyncCursor;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SessionSyncCursor;
+    static equals(a: SessionSyncCursor | PlainMessage<SessionSyncCursor> | undefined, b: SessionSyncCursor | PlainMessage<SessionSyncCursor> | undefined): boolean;
+}
+/**
  * assemble_context_internal debug is arbitrary JSON in the current daemon.
  *
  * @generated from message libravdb.ipc.v1.AssembleContextInternalResponse
@@ -748,6 +776,16 @@ export declare class CompactSessionResponse extends Message<CompactSessionRespon
      * @generated from field: double mean_confidence = 6;
      */
     meanConfidence: number;
+    /**
+     * @generated from field: string summary_text = 7;
+     */
+    summaryText: string;
+    /**
+     * estimated token count after compaction
+     *
+     * @generated from field: int32 tokens_after = 8;
+     */
+    tokensAfter: number;
     constructor(data?: PartialMessage<CompactSessionResponse>);
     static readonly runtime: typeof proto3;
     static readonly typeName = "libravdb.ipc.v1.CompactSessionResponse";
@@ -756,6 +794,58 @@ export declare class CompactSessionResponse extends Message<CompactSessionRespon
     static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CompactSessionResponse;
     static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CompactSessionResponse;
     static equals(a: CompactSessionResponse | PlainMessage<CompactSessionResponse> | undefined, b: CompactSessionResponse | PlainMessage<CompactSessionResponse> | undefined): boolean;
+}
+/**
+ * SummarizeMessages — pluggable compaction summarization backend.
+ *
+ * @generated from message libravdb.ipc.v1.SummarizeMessagesRequest
+ */
+export declare class SummarizeMessagesRequest extends Message<SummarizeMessagesRequest> {
+    /**
+     * @generated from field: repeated libravdb.ipc.v1.KernelMessage messages = 1;
+     */
+    messages: KernelMessage[];
+    /**
+     * @generated from field: int32 max_output_tokens = 2;
+     */
+    maxOutputTokens: number;
+    constructor(data?: PartialMessage<SummarizeMessagesRequest>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.SummarizeMessagesRequest";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SummarizeMessagesRequest;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SummarizeMessagesRequest;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SummarizeMessagesRequest;
+    static equals(a: SummarizeMessagesRequest | PlainMessage<SummarizeMessagesRequest> | undefined, b: SummarizeMessagesRequest | PlainMessage<SummarizeMessagesRequest> | undefined): boolean;
+}
+/**
+ * @generated from message libravdb.ipc.v1.SummarizeMessagesResponse
+ */
+export declare class SummarizeMessagesResponse extends Message<SummarizeMessagesResponse> {
+    /**
+     * @generated from field: string summary_text = 1;
+     */
+    summaryText: string;
+    /**
+     * @generated from field: string summary_method = 2;
+     */
+    summaryMethod: string;
+    /**
+     * @generated from field: double confidence = 3;
+     */
+    confidence: number;
+    /**
+     * @generated from field: int32 source_count = 4;
+     */
+    sourceCount: number;
+    constructor(data?: PartialMessage<SummarizeMessagesResponse>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.SummarizeMessagesResponse";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SummarizeMessagesResponse;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SummarizeMessagesResponse;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SummarizeMessagesResponse;
+    static equals(a: SummarizeMessagesResponse | PlainMessage<SummarizeMessagesResponse> | undefined, b: SummarizeMessagesResponse | PlainMessage<SummarizeMessagesResponse> | undefined): boolean;
 }
 /**
  * compact.GatingSignals (libravdbd/compact/gate.go) — gating_scalar RPC.
@@ -1681,6 +1771,10 @@ export declare class MemoryStatusResponse extends Message<MemoryStatusResponse> 
      * @generated from field: string embedding_profile = 8;
      */
     embeddingProfile: string;
+    /**
+     * @generated from field: string embedding_backend = 9;
+     */
+    embeddingBackend: string;
     constructor(data?: PartialMessage<MemoryStatusResponse>);
     static readonly runtime: typeof proto3;
     static readonly typeName = "libravdb.ipc.v1.MemoryStatusResponse";
@@ -1859,6 +1953,86 @@ export declare class IngestMessageKernelResponse extends Message<IngestMessageKe
     static equals(a: IngestMessageKernelResponse | PlainMessage<IngestMessageKernelResponse> | undefined, b: IngestMessageKernelResponse | PlainMessage<IngestMessageKernelResponse> | undefined): boolean;
 }
 /**
+ * @generated from message libravdb.ipc.v1.BeforeTurnKernelRequest
+ */
+export declare class BeforeTurnKernelRequest extends Message<BeforeTurnKernelRequest> {
+    /**
+     * @generated from field: string session_id = 1;
+     */
+    sessionId: string;
+    /**
+     * @generated from field: string session_key = 2;
+     */
+    sessionKey: string;
+    /**
+     * @generated from field: string user_id = 3;
+     */
+    userId: string;
+    /**
+     * recent context window
+     *
+     * @generated from field: repeated libravdb.ipc.v1.KernelMessage messages = 4;
+     */
+    messages: KernelMessage[];
+    /**
+     * @generated from field: int32 pre_prompt_message_count = 5;
+     */
+    prePromptMessageCount: number;
+    /**
+     * @generated from field: bool is_heartbeat = 6;
+     */
+    isHeartbeat: boolean;
+    /**
+     * @generated from field: libravdb.ipc.v1.SessionSyncCursor cursor = 7;
+     */
+    cursor?: SessionSyncCursor;
+    /**
+     * optional: extracted query terms
+     *
+     * @generated from field: string query_hint = 8;
+     */
+    queryHint: string;
+    constructor(data?: PartialMessage<BeforeTurnKernelRequest>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.BeforeTurnKernelRequest";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): BeforeTurnKernelRequest;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): BeforeTurnKernelRequest;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): BeforeTurnKernelRequest;
+    static equals(a: BeforeTurnKernelRequest | PlainMessage<BeforeTurnKernelRequest> | undefined, b: BeforeTurnKernelRequest | PlainMessage<BeforeTurnKernelRequest> | undefined): boolean;
+}
+/**
+ * @generated from message libravdb.ipc.v1.BeforeTurnKernelResponse
+ */
+export declare class BeforeTurnKernelResponse extends Message<BeforeTurnKernelResponse> {
+    /**
+     * @generated from field: bool ok = 1;
+     */
+    ok: boolean;
+    /**
+     * retrieved memories
+     *
+     * @generated from field: repeated libravdb.ipc.v1.PredictedContext predictions = 2;
+     */
+    predictions: PredictedContext[];
+    /**
+     * @generated from field: libravdb.ipc.v1.SessionSyncCursor cursor = 3;
+     */
+    cursor?: SessionSyncCursor;
+    /**
+     * @generated from field: bool cross_session_recall_triggered = 4;
+     */
+    crossSessionRecallTriggered: boolean;
+    constructor(data?: PartialMessage<BeforeTurnKernelResponse>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.BeforeTurnKernelResponse";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): BeforeTurnKernelResponse;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): BeforeTurnKernelResponse;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): BeforeTurnKernelResponse;
+    static equals(a: BeforeTurnKernelResponse | PlainMessage<BeforeTurnKernelResponse> | undefined, b: BeforeTurnKernelResponse | PlainMessage<BeforeTurnKernelResponse> | undefined): boolean;
+}
+/**
  * @generated from message libravdb.ipc.v1.AfterTurnKernelRequest
  */
 export declare class AfterTurnKernelRequest extends Message<AfterTurnKernelRequest> {
@@ -1886,6 +2060,10 @@ export declare class AfterTurnKernelRequest extends Message<AfterTurnKernelReque
      * @generated from field: bool is_heartbeat = 6;
      */
     isHeartbeat: boolean;
+    /**
+     * @generated from field: libravdb.ipc.v1.SessionSyncCursor cursor = 7;
+     */
+    cursor?: SessionSyncCursor;
     constructor(data?: PartialMessage<AfterTurnKernelRequest>);
     static readonly runtime: typeof proto3;
     static readonly typeName = "libravdb.ipc.v1.AfterTurnKernelRequest";
@@ -1907,6 +2085,10 @@ export declare class AfterTurnKernelResponse extends Message<AfterTurnKernelResp
      * @generated from field: repeated libravdb.ipc.v1.PredictedContext predictions = 2;
      */
     predictions: PredictedContext[];
+    /**
+     * @generated from field: libravdb.ipc.v1.SessionSyncCursor cursor = 3;
+     */
+    cursor?: SessionSyncCursor;
     constructor(data?: PartialMessage<AfterTurnKernelResponse>);
     static readonly runtime: typeof proto3;
     static readonly typeName = "libravdb.ipc.v1.AfterTurnKernelResponse";
@@ -2079,6 +2261,169 @@ export declare class CognitiveMetricsRequest extends Message<CognitiveMetricsReq
     static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CognitiveMetricsRequest;
     static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CognitiveMetricsRequest;
     static equals(a: CognitiveMetricsRequest | PlainMessage<CognitiveMetricsRequest> | undefined, b: CognitiveMetricsRequest | PlainMessage<CognitiveMetricsRequest> | undefined): boolean;
+}
+/**
+ * @generated from message libravdb.ipc.v1.TenantStatus
+ */
+export declare class TenantStatus extends Message<TenantStatus> {
+    /**
+     * @generated from field: string tenant_key = 1;
+     */
+    tenantKey: string;
+    /**
+     * "active", "idle"
+     *
+     * @generated from field: string status = 2;
+     */
+    status: string;
+    /**
+     * @generated from field: int64 size_bytes = 3;
+     */
+    sizeBytes: bigint;
+    /**
+     * @generated from field: int64 last_active_ms = 4;
+     */
+    lastActiveMs: bigint;
+    /**
+     * @generated from field: int32 open_sessions = 5;
+     */
+    openSessions: number;
+    /**
+     * @generated from field: bool unregistered = 6;
+     */
+    unregistered: boolean;
+    constructor(data?: PartialMessage<TenantStatus>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.TenantStatus";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TenantStatus;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TenantStatus;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TenantStatus;
+    static equals(a: TenantStatus | PlainMessage<TenantStatus> | undefined, b: TenantStatus | PlainMessage<TenantStatus> | undefined): boolean;
+}
+/**
+ * @generated from message libravdb.ipc.v1.DaemonStatusRequest
+ */
+export declare class DaemonStatusRequest extends Message<DaemonStatusRequest> {
+    constructor(data?: PartialMessage<DaemonStatusRequest>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.DaemonStatusRequest";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DaemonStatusRequest;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DaemonStatusRequest;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DaemonStatusRequest;
+    static equals(a: DaemonStatusRequest | PlainMessage<DaemonStatusRequest> | undefined, b: DaemonStatusRequest | PlainMessage<DaemonStatusRequest> | undefined): boolean;
+}
+/**
+ * @generated from message libravdb.ipc.v1.DaemonStatusResponse
+ */
+export declare class DaemonStatusResponse extends Message<DaemonStatusResponse> {
+    /**
+     * @generated from field: bool ok = 1;
+     */
+    ok: boolean;
+    /**
+     * @generated from field: string version = 2;
+     */
+    version: string;
+    /**
+     * @generated from field: string uptime = 3;
+     */
+    uptime: string;
+    /**
+     * @generated from field: string backend = 4;
+     */
+    backend: string;
+    /**
+     * @generated from field: int64 global_db_size = 5;
+     */
+    globalDbSize: bigint;
+    /**
+     * @generated from field: bool global_db_healthy = 6;
+     */
+    globalDbHealthy: boolean;
+    /**
+     * @generated from field: repeated libravdb.ipc.v1.TenantStatus tenants = 7;
+     */
+    tenants: TenantStatus[];
+    /**
+     * @generated from field: int64 cache_size = 8;
+     */
+    cacheSize: bigint;
+    /**
+     * @generated from field: int64 cache_max_size = 9;
+     */
+    cacheMaxSize: bigint;
+    /**
+     * @generated from field: int32 cache_entries = 10;
+     */
+    cacheEntries: number;
+    /**
+     * @generated from field: double cache_hit_rate = 11;
+     */
+    cacheHitRate: number;
+    /**
+     * @generated from field: int64 cache_savings = 12;
+     */
+    cacheSavings: bigint;
+    /**
+     * @generated from field: string tenant_mode = 13;
+     */
+    tenantMode: string;
+    /**
+     * @generated from field: int32 max_open_tenants = 14;
+     */
+    maxOpenTenants: number;
+    /**
+     * @generated from field: int32 current_open_tenants = 15;
+     */
+    currentOpenTenants: number;
+    constructor(data?: PartialMessage<DaemonStatusResponse>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.DaemonStatusResponse";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DaemonStatusResponse;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DaemonStatusResponse;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DaemonStatusResponse;
+    static equals(a: DaemonStatusResponse | PlainMessage<DaemonStatusResponse> | undefined, b: DaemonStatusResponse | PlainMessage<DaemonStatusResponse> | undefined): boolean;
+}
+/**
+ * @generated from message libravdb.ipc.v1.EvictTenantRequest
+ */
+export declare class EvictTenantRequest extends Message<EvictTenantRequest> {
+    /**
+     * @generated from field: string tenant_key = 1;
+     */
+    tenantKey: string;
+    constructor(data?: PartialMessage<EvictTenantRequest>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.EvictTenantRequest";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EvictTenantRequest;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EvictTenantRequest;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EvictTenantRequest;
+    static equals(a: EvictTenantRequest | PlainMessage<EvictTenantRequest> | undefined, b: EvictTenantRequest | PlainMessage<EvictTenantRequest> | undefined): boolean;
+}
+/**
+ * @generated from message libravdb.ipc.v1.EvictTenantResponse
+ */
+export declare class EvictTenantResponse extends Message<EvictTenantResponse> {
+    /**
+     * @generated from field: bool ok = 1;
+     */
+    ok: boolean;
+    /**
+     * @generated from field: string message = 2;
+     */
+    message: string;
+    constructor(data?: PartialMessage<EvictTenantResponse>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.EvictTenantResponse";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EvictTenantResponse;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EvictTenantResponse;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EvictTenantResponse;
+    static equals(a: EvictTenantResponse | PlainMessage<EvictTenantResponse> | undefined, b: EvictTenantResponse | PlainMessage<EvictTenantResponse> | undefined): boolean;
 }
 /**
  * @generated from message libravdb.ipc.v1.CognitiveMetricsResponse

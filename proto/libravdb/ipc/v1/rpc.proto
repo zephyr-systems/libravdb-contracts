@@ -277,6 +277,19 @@ message CompactSessionResponse {
   int32 tokens_after = 8; // estimated token count after compaction
 }
 
+// SummarizeMessages — pluggable compaction summarization backend.
+message SummarizeMessagesRequest {
+  repeated KernelMessage messages = 1;
+  int32 max_output_tokens = 2;
+}
+
+message SummarizeMessagesResponse {
+  string summary_text = 1;
+  string summary_method = 2;
+  double confidence = 3;
+  int32 source_count = 4;
+}
+
 // compact.GatingSignals (libravdbd/compact/gate.go) — gating_scalar RPC.
 message GatingScalarResponse {
   double g = 1;
@@ -808,6 +821,7 @@ service LibravDB {
 
   // Session
   rpc CompactSession(CompactSessionRequest) returns (CompactSessionResponse);
+  rpc SummarizeMessages(SummarizeMessagesRequest) returns (SummarizeMessagesResponse);
   rpc ExpandSummary(ExpandSummaryRequest) returns (ExpandSummaryResponse);
   rpc QueryRawSession(QueryRawSessionRequest) returns (QueryRawSessionResponse);
 

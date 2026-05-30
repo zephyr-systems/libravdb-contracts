@@ -1,4 +1,4 @@
-import { AfterTurnKernelRequest, AfterTurnKernelResponse, AssembleContextInternalRequest, AssembleContextInternalResponse, BootstrapSessionKernelRequest, BootstrapSessionKernelResponse, BumpAccessCountsRequest, BumpAccessCountsResponse, CognitiveMetricsRequest, CognitiveMetricsResponse, CompactSessionRequest, CompactSessionResponse, DeleteAuthoredDocumentRequest, DeleteAuthoredDocumentResponse, DeleteBatchRequest, DeleteBatchResponse, DeleteRequest, DeleteResponse, DreamPromotionResponse, EnsureCollectionsRequest, EnsureCollectionsResponse, ExpandSummaryRequest, ExpandSummaryResponse, ExportMemoryRequest, ExportMemoryResponse, FlushNamespaceRequest, FlushNamespaceResponse, FlushRequest, FlushResponse, GatingScalarRequest, GatingScalarResponse, HealthRequest, HealthResponse, IngestMarkdownDocumentRequest, IngestMarkdownDocumentResponse, IngestMessageKernelRequest, IngestMessageKernelResponse, InsertSessionTurnRequest, InsertSessionTurnResponse, InsertTextRequest, InsertTextResponse, ListByMetaRequest, ListByMetaResponse, ListCollectionRequest, ListCollectionResponse, ListLifecycleJournalRequest, ListLifecycleJournalResponse, MarkMemorySupersededRequest, MarkMemorySupersededResponse, MemoryStatusRequest, MemoryStatusResponse, PromoteDreamEntriesRequest, QueryRawSessionRequest, QueryRawSessionResponse, RankCandidatesRequest, RankCandidatesResponse, RebuildIndexRequest, RebuildIndexResponse, ReindexAuthoredDocumentRequest, ReindexAuthoredDocumentResponse, SearchTextCollectionsRequest, SearchTextRequest, SearchTextResponse, SessionLifecycleHintRequest, SessionLifecycleHintResponse } from "./rpc_pb.js";
+import { AfterTurnKernelRequest, AfterTurnKernelResponse, AssembleContextInternalRequest, AssembleContextInternalResponse, BeforeTurnKernelRequest, BeforeTurnKernelResponse, BootstrapSessionKernelRequest, BootstrapSessionKernelResponse, BumpAccessCountsRequest, BumpAccessCountsResponse, CognitiveMetricsRequest, CognitiveMetricsResponse, CompactSessionRequest, CompactSessionResponse, DaemonStatusRequest, DaemonStatusResponse, DeleteAuthoredDocumentRequest, DeleteAuthoredDocumentResponse, DeleteBatchRequest, DeleteBatchResponse, DeleteRequest, DeleteResponse, DreamPromotionResponse, EnsureCollectionsRequest, EnsureCollectionsResponse, EvictTenantRequest, EvictTenantResponse, ExpandSummaryRequest, ExpandSummaryResponse, ExportMemoryRequest, ExportMemoryResponse, FlushNamespaceRequest, FlushNamespaceResponse, FlushRequest, FlushResponse, GatingScalarRequest, GatingScalarResponse, HealthRequest, HealthResponse, IngestMarkdownDocumentRequest, IngestMarkdownDocumentResponse, IngestMessageKernelRequest, IngestMessageKernelResponse, InsertSessionTurnRequest, InsertSessionTurnResponse, InsertTextRequest, InsertTextResponse, ListByMetaRequest, ListByMetaResponse, ListCollectionRequest, ListCollectionResponse, ListLifecycleJournalRequest, ListLifecycleJournalResponse, MarkMemorySupersededRequest, MarkMemorySupersededResponse, MemoryStatusRequest, MemoryStatusResponse, PromoteDreamEntriesRequest, QueryRawSessionRequest, QueryRawSessionResponse, RankCandidatesRequest, RankCandidatesResponse, RebuildIndexRequest, RebuildIndexResponse, ReindexAuthoredDocumentRequest, ReindexAuthoredDocumentResponse, SearchTextCollectionsRequest, SearchTextRequest, SearchTextResponse, SessionLifecycleHintRequest, SessionLifecycleHintResponse, SummarizeMessagesRequest, SummarizeMessagesResponse } from "./rpc_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 /**
  * @generated from service libravdb.ipc.v1.LibravDB
@@ -24,6 +24,24 @@ export declare const LibravDB: {
             readonly name: "Status";
             readonly I: typeof MemoryStatusRequest;
             readonly O: typeof MemoryStatusResponse;
+            readonly kind: MethodKind.Unary;
+        };
+        /**
+         * @generated from rpc libravdb.ipc.v1.LibravDB.DaemonStatus
+         */
+        readonly daemonStatus: {
+            readonly name: "DaemonStatus";
+            readonly I: typeof DaemonStatusRequest;
+            readonly O: typeof DaemonStatusResponse;
+            readonly kind: MethodKind.Unary;
+        };
+        /**
+         * @generated from rpc libravdb.ipc.v1.LibravDB.EvictTenant
+         */
+        readonly evictTenant: {
+            readonly name: "EvictTenant";
+            readonly I: typeof EvictTenantRequest;
+            readonly O: typeof EvictTenantResponse;
             readonly kind: MethodKind.Unary;
         };
         /**
@@ -241,6 +259,15 @@ export declare const LibravDB: {
             readonly kind: MethodKind.Unary;
         };
         /**
+         * @generated from rpc libravdb.ipc.v1.LibravDB.SummarizeMessages
+         */
+        readonly summarizeMessages: {
+            readonly name: "SummarizeMessages";
+            readonly I: typeof SummarizeMessagesRequest;
+            readonly O: typeof SummarizeMessagesResponse;
+            readonly kind: MethodKind.Unary;
+        };
+        /**
          * @generated from rpc libravdb.ipc.v1.LibravDB.ExpandSummary
          */
         readonly expandSummary: {
@@ -287,6 +314,15 @@ export declare const LibravDB: {
             readonly name: "IngestMessageKernel";
             readonly I: typeof IngestMessageKernelRequest;
             readonly O: typeof IngestMessageKernelResponse;
+            readonly kind: MethodKind.Unary;
+        };
+        /**
+         * @generated from rpc libravdb.ipc.v1.LibravDB.BeforeTurnKernel
+         */
+        readonly beforeTurnKernel: {
+            readonly name: "BeforeTurnKernel";
+            readonly I: typeof BeforeTurnKernelRequest;
+            readonly O: typeof BeforeTurnKernelResponse;
             readonly kind: MethodKind.Unary;
         };
         /**

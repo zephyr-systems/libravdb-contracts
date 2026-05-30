@@ -1373,6 +1373,106 @@ export class CompactSessionResponse extends Message<CompactSessionResponse> {
 }
 
 /**
+ * SummarizeMessages — pluggable compaction summarization backend.
+ *
+ * @generated from message libravdb.ipc.v1.SummarizeMessagesRequest
+ */
+export class SummarizeMessagesRequest extends Message<SummarizeMessagesRequest> {
+  /**
+   * @generated from field: repeated libravdb.ipc.v1.KernelMessage messages = 1;
+   */
+  messages: KernelMessage[] = [];
+
+  /**
+   * @generated from field: int32 max_output_tokens = 2;
+   */
+  maxOutputTokens = 0;
+
+  constructor(data?: PartialMessage<SummarizeMessagesRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "libravdb.ipc.v1.SummarizeMessagesRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "messages", kind: "message", T: KernelMessage, repeated: true },
+    { no: 2, name: "max_output_tokens", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SummarizeMessagesRequest {
+    return new SummarizeMessagesRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SummarizeMessagesRequest {
+    return new SummarizeMessagesRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SummarizeMessagesRequest {
+    return new SummarizeMessagesRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SummarizeMessagesRequest | PlainMessage<SummarizeMessagesRequest> | undefined, b: SummarizeMessagesRequest | PlainMessage<SummarizeMessagesRequest> | undefined): boolean {
+    return proto3.util.equals(SummarizeMessagesRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message libravdb.ipc.v1.SummarizeMessagesResponse
+ */
+export class SummarizeMessagesResponse extends Message<SummarizeMessagesResponse> {
+  /**
+   * @generated from field: string summary_text = 1;
+   */
+  summaryText = "";
+
+  /**
+   * @generated from field: string summary_method = 2;
+   */
+  summaryMethod = "";
+
+  /**
+   * @generated from field: double confidence = 3;
+   */
+  confidence = 0;
+
+  /**
+   * @generated from field: int32 source_count = 4;
+   */
+  sourceCount = 0;
+
+  constructor(data?: PartialMessage<SummarizeMessagesResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "libravdb.ipc.v1.SummarizeMessagesResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "summary_text", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "summary_method", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "confidence", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
+    { no: 4, name: "source_count", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SummarizeMessagesResponse {
+    return new SummarizeMessagesResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SummarizeMessagesResponse {
+    return new SummarizeMessagesResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SummarizeMessagesResponse {
+    return new SummarizeMessagesResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SummarizeMessagesResponse | PlainMessage<SummarizeMessagesResponse> | undefined, b: SummarizeMessagesResponse | PlainMessage<SummarizeMessagesResponse> | undefined): boolean {
+    return proto3.util.equals(SummarizeMessagesResponse, a, b);
+  }
+}
+
+/**
  * compact.GatingSignals (libravdbd/compact/gate.go) — gating_scalar RPC.
  *
  * @generated from message libravdb.ipc.v1.GatingScalarResponse

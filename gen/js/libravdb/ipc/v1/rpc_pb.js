@@ -561,6 +561,49 @@ export class KernelMessage extends Message {
     }
 }
 /**
+ * A cursor specifically for tracking the monotonic state of session turn ingestion.
+ * Prevents duplicate ingestions and guarantees sequence integrity across restarts.
+ *
+ * @generated from message libravdb.ipc.v1.SessionSyncCursor
+ */
+export class SessionSyncCursor extends Message {
+    /**
+     * @generated from field: int64 last_processed_index = 1;
+     */
+    lastProcessedIndex = protoInt64.zero;
+    /**
+     * @generated from field: int64 session_version = 2;
+     */
+    sessionVersion = protoInt64.zero;
+    /**
+     * @generated from field: string manifest_tail_hash = 3;
+     */
+    manifestTailHash = "";
+    constructor(data) {
+        super();
+        proto3.util.initPartial(data, this);
+    }
+    static runtime = proto3;
+    static typeName = "libravdb.ipc.v1.SessionSyncCursor";
+    static fields = proto3.util.newFieldList(() => [
+        { no: 1, name: "last_processed_index", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+        { no: 2, name: "session_version", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+        { no: 3, name: "manifest_tail_hash", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    ]);
+    static fromBinary(bytes, options) {
+        return new SessionSyncCursor().fromBinary(bytes, options);
+    }
+    static fromJson(jsonValue, options) {
+        return new SessionSyncCursor().fromJson(jsonValue, options);
+    }
+    static fromJsonString(jsonString, options) {
+        return new SessionSyncCursor().fromJsonString(jsonString, options);
+    }
+    static equals(a, b) {
+        return proto3.util.equals(SessionSyncCursor, a, b);
+    }
+}
+/**
  * assemble_context_internal debug is arbitrary JSON in the current daemon.
  *
  * @generated from message libravdb.ipc.v1.AssembleContextInternalResponse
@@ -1061,6 +1104,16 @@ export class CompactSessionResponse extends Message {
      * @generated from field: double mean_confidence = 6;
      */
     meanConfidence = 0;
+    /**
+     * @generated from field: string summary_text = 7;
+     */
+    summaryText = "";
+    /**
+     * estimated token count after compaction
+     *
+     * @generated from field: int32 tokens_after = 8;
+     */
+    tokensAfter = 0;
     constructor(data) {
         super();
         proto3.util.initPartial(data, this);
@@ -1074,6 +1127,8 @@ export class CompactSessionResponse extends Message {
         { no: 4, name: "turns_removed", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
         { no: 5, name: "summary_method", kind: "scalar", T: 9 /* ScalarType.STRING */ },
         { no: 6, name: "mean_confidence", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
+        { no: 7, name: "summary_text", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+        { no: 8, name: "tokens_after", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     ]);
     static fromBinary(bytes, options) {
         return new CompactSessionResponse().fromBinary(bytes, options);
@@ -1086,6 +1141,88 @@ export class CompactSessionResponse extends Message {
     }
     static equals(a, b) {
         return proto3.util.equals(CompactSessionResponse, a, b);
+    }
+}
+/**
+ * SummarizeMessages — pluggable compaction summarization backend.
+ *
+ * @generated from message libravdb.ipc.v1.SummarizeMessagesRequest
+ */
+export class SummarizeMessagesRequest extends Message {
+    /**
+     * @generated from field: repeated libravdb.ipc.v1.KernelMessage messages = 1;
+     */
+    messages = [];
+    /**
+     * @generated from field: int32 max_output_tokens = 2;
+     */
+    maxOutputTokens = 0;
+    constructor(data) {
+        super();
+        proto3.util.initPartial(data, this);
+    }
+    static runtime = proto3;
+    static typeName = "libravdb.ipc.v1.SummarizeMessagesRequest";
+    static fields = proto3.util.newFieldList(() => [
+        { no: 1, name: "messages", kind: "message", T: KernelMessage, repeated: true },
+        { no: 2, name: "max_output_tokens", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    ]);
+    static fromBinary(bytes, options) {
+        return new SummarizeMessagesRequest().fromBinary(bytes, options);
+    }
+    static fromJson(jsonValue, options) {
+        return new SummarizeMessagesRequest().fromJson(jsonValue, options);
+    }
+    static fromJsonString(jsonString, options) {
+        return new SummarizeMessagesRequest().fromJsonString(jsonString, options);
+    }
+    static equals(a, b) {
+        return proto3.util.equals(SummarizeMessagesRequest, a, b);
+    }
+}
+/**
+ * @generated from message libravdb.ipc.v1.SummarizeMessagesResponse
+ */
+export class SummarizeMessagesResponse extends Message {
+    /**
+     * @generated from field: string summary_text = 1;
+     */
+    summaryText = "";
+    /**
+     * @generated from field: string summary_method = 2;
+     */
+    summaryMethod = "";
+    /**
+     * @generated from field: double confidence = 3;
+     */
+    confidence = 0;
+    /**
+     * @generated from field: int32 source_count = 4;
+     */
+    sourceCount = 0;
+    constructor(data) {
+        super();
+        proto3.util.initPartial(data, this);
+    }
+    static runtime = proto3;
+    static typeName = "libravdb.ipc.v1.SummarizeMessagesResponse";
+    static fields = proto3.util.newFieldList(() => [
+        { no: 1, name: "summary_text", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+        { no: 2, name: "summary_method", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+        { no: 3, name: "confidence", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
+        { no: 4, name: "source_count", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    ]);
+    static fromBinary(bytes, options) {
+        return new SummarizeMessagesResponse().fromBinary(bytes, options);
+    }
+    static fromJson(jsonValue, options) {
+        return new SummarizeMessagesResponse().fromJson(jsonValue, options);
+    }
+    static fromJsonString(jsonString, options) {
+        return new SummarizeMessagesResponse().fromJsonString(jsonString, options);
+    }
+    static equals(a, b) {
+        return proto3.util.equals(SummarizeMessagesResponse, a, b);
     }
 }
 /**
@@ -2517,6 +2654,10 @@ export class MemoryStatusResponse extends Message {
      * @generated from field: string embedding_profile = 8;
      */
     embeddingProfile = "";
+    /**
+     * @generated from field: string embedding_backend = 9;
+     */
+    embeddingBackend = "";
     constructor(data) {
         super();
         proto3.util.initPartial(data, this);
@@ -2532,6 +2673,7 @@ export class MemoryStatusResponse extends Message {
         { no: 6, name: "gating_threshold", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
         { no: 7, name: "abstractive_ready", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
         { no: 8, name: "embedding_profile", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+        { no: 9, name: "embedding_backend", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     ]);
     static fromBinary(bytes, options) {
         return new MemoryStatusResponse().fromBinary(bytes, options);
@@ -2827,6 +2969,122 @@ export class IngestMessageKernelResponse extends Message {
     }
 }
 /**
+ * @generated from message libravdb.ipc.v1.BeforeTurnKernelRequest
+ */
+export class BeforeTurnKernelRequest extends Message {
+    /**
+     * @generated from field: string session_id = 1;
+     */
+    sessionId = "";
+    /**
+     * @generated from field: string session_key = 2;
+     */
+    sessionKey = "";
+    /**
+     * @generated from field: string user_id = 3;
+     */
+    userId = "";
+    /**
+     * recent context window
+     *
+     * @generated from field: repeated libravdb.ipc.v1.KernelMessage messages = 4;
+     */
+    messages = [];
+    /**
+     * @generated from field: int32 pre_prompt_message_count = 5;
+     */
+    prePromptMessageCount = 0;
+    /**
+     * @generated from field: bool is_heartbeat = 6;
+     */
+    isHeartbeat = false;
+    /**
+     * @generated from field: libravdb.ipc.v1.SessionSyncCursor cursor = 7;
+     */
+    cursor;
+    /**
+     * optional: extracted query terms
+     *
+     * @generated from field: string query_hint = 8;
+     */
+    queryHint = "";
+    constructor(data) {
+        super();
+        proto3.util.initPartial(data, this);
+    }
+    static runtime = proto3;
+    static typeName = "libravdb.ipc.v1.BeforeTurnKernelRequest";
+    static fields = proto3.util.newFieldList(() => [
+        { no: 1, name: "session_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+        { no: 2, name: "session_key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+        { no: 3, name: "user_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+        { no: 4, name: "messages", kind: "message", T: KernelMessage, repeated: true },
+        { no: 5, name: "pre_prompt_message_count", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+        { no: 6, name: "is_heartbeat", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+        { no: 7, name: "cursor", kind: "message", T: SessionSyncCursor },
+        { no: 8, name: "query_hint", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    ]);
+    static fromBinary(bytes, options) {
+        return new BeforeTurnKernelRequest().fromBinary(bytes, options);
+    }
+    static fromJson(jsonValue, options) {
+        return new BeforeTurnKernelRequest().fromJson(jsonValue, options);
+    }
+    static fromJsonString(jsonString, options) {
+        return new BeforeTurnKernelRequest().fromJsonString(jsonString, options);
+    }
+    static equals(a, b) {
+        return proto3.util.equals(BeforeTurnKernelRequest, a, b);
+    }
+}
+/**
+ * @generated from message libravdb.ipc.v1.BeforeTurnKernelResponse
+ */
+export class BeforeTurnKernelResponse extends Message {
+    /**
+     * @generated from field: bool ok = 1;
+     */
+    ok = false;
+    /**
+     * retrieved memories
+     *
+     * @generated from field: repeated libravdb.ipc.v1.PredictedContext predictions = 2;
+     */
+    predictions = [];
+    /**
+     * @generated from field: libravdb.ipc.v1.SessionSyncCursor cursor = 3;
+     */
+    cursor;
+    /**
+     * @generated from field: bool cross_session_recall_triggered = 4;
+     */
+    crossSessionRecallTriggered = false;
+    constructor(data) {
+        super();
+        proto3.util.initPartial(data, this);
+    }
+    static runtime = proto3;
+    static typeName = "libravdb.ipc.v1.BeforeTurnKernelResponse";
+    static fields = proto3.util.newFieldList(() => [
+        { no: 1, name: "ok", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+        { no: 2, name: "predictions", kind: "message", T: PredictedContext, repeated: true },
+        { no: 3, name: "cursor", kind: "message", T: SessionSyncCursor },
+        { no: 4, name: "cross_session_recall_triggered", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    ]);
+    static fromBinary(bytes, options) {
+        return new BeforeTurnKernelResponse().fromBinary(bytes, options);
+    }
+    static fromJson(jsonValue, options) {
+        return new BeforeTurnKernelResponse().fromJson(jsonValue, options);
+    }
+    static fromJsonString(jsonString, options) {
+        return new BeforeTurnKernelResponse().fromJsonString(jsonString, options);
+    }
+    static equals(a, b) {
+        return proto3.util.equals(BeforeTurnKernelResponse, a, b);
+    }
+}
+/**
  * @generated from message libravdb.ipc.v1.AfterTurnKernelRequest
  */
 export class AfterTurnKernelRequest extends Message {
@@ -2854,6 +3112,10 @@ export class AfterTurnKernelRequest extends Message {
      * @generated from field: bool is_heartbeat = 6;
      */
     isHeartbeat = false;
+    /**
+     * @generated from field: libravdb.ipc.v1.SessionSyncCursor cursor = 7;
+     */
+    cursor;
     constructor(data) {
         super();
         proto3.util.initPartial(data, this);
@@ -2867,6 +3129,7 @@ export class AfterTurnKernelRequest extends Message {
         { no: 4, name: "messages", kind: "message", T: KernelMessage, repeated: true },
         { no: 5, name: "pre_prompt_message_count", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
         { no: 6, name: "is_heartbeat", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+        { no: 7, name: "cursor", kind: "message", T: SessionSyncCursor },
     ]);
     static fromBinary(bytes, options) {
         return new AfterTurnKernelRequest().fromBinary(bytes, options);
@@ -2893,6 +3156,10 @@ export class AfterTurnKernelResponse extends Message {
      * @generated from field: repeated libravdb.ipc.v1.PredictedContext predictions = 2;
      */
     predictions = [];
+    /**
+     * @generated from field: libravdb.ipc.v1.SessionSyncCursor cursor = 3;
+     */
+    cursor;
     constructor(data) {
         super();
         proto3.util.initPartial(data, this);
@@ -2902,6 +3169,7 @@ export class AfterTurnKernelResponse extends Message {
     static fields = proto3.util.newFieldList(() => [
         { no: 1, name: "ok", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
         { no: 2, name: "predictions", kind: "message", T: PredictedContext, repeated: true },
+        { no: 3, name: "cursor", kind: "message", T: SessionSyncCursor },
     ]);
     static fromBinary(bytes, options) {
         return new AfterTurnKernelResponse().fromBinary(bytes, options);
@@ -3170,6 +3438,252 @@ export class CognitiveMetricsRequest extends Message {
     }
     static equals(a, b) {
         return proto3.util.equals(CognitiveMetricsRequest, a, b);
+    }
+}
+/**
+ * @generated from message libravdb.ipc.v1.TenantStatus
+ */
+export class TenantStatus extends Message {
+    /**
+     * @generated from field: string tenant_key = 1;
+     */
+    tenantKey = "";
+    /**
+     * "active", "idle"
+     *
+     * @generated from field: string status = 2;
+     */
+    status = "";
+    /**
+     * @generated from field: int64 size_bytes = 3;
+     */
+    sizeBytes = protoInt64.zero;
+    /**
+     * @generated from field: int64 last_active_ms = 4;
+     */
+    lastActiveMs = protoInt64.zero;
+    /**
+     * @generated from field: int32 open_sessions = 5;
+     */
+    openSessions = 0;
+    /**
+     * @generated from field: bool unregistered = 6;
+     */
+    unregistered = false;
+    constructor(data) {
+        super();
+        proto3.util.initPartial(data, this);
+    }
+    static runtime = proto3;
+    static typeName = "libravdb.ipc.v1.TenantStatus";
+    static fields = proto3.util.newFieldList(() => [
+        { no: 1, name: "tenant_key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+        { no: 2, name: "status", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+        { no: 3, name: "size_bytes", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+        { no: 4, name: "last_active_ms", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+        { no: 5, name: "open_sessions", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+        { no: 6, name: "unregistered", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    ]);
+    static fromBinary(bytes, options) {
+        return new TenantStatus().fromBinary(bytes, options);
+    }
+    static fromJson(jsonValue, options) {
+        return new TenantStatus().fromJson(jsonValue, options);
+    }
+    static fromJsonString(jsonString, options) {
+        return new TenantStatus().fromJsonString(jsonString, options);
+    }
+    static equals(a, b) {
+        return proto3.util.equals(TenantStatus, a, b);
+    }
+}
+/**
+ * @generated from message libravdb.ipc.v1.DaemonStatusRequest
+ */
+export class DaemonStatusRequest extends Message {
+    constructor(data) {
+        super();
+        proto3.util.initPartial(data, this);
+    }
+    static runtime = proto3;
+    static typeName = "libravdb.ipc.v1.DaemonStatusRequest";
+    static fields = proto3.util.newFieldList(() => []);
+    static fromBinary(bytes, options) {
+        return new DaemonStatusRequest().fromBinary(bytes, options);
+    }
+    static fromJson(jsonValue, options) {
+        return new DaemonStatusRequest().fromJson(jsonValue, options);
+    }
+    static fromJsonString(jsonString, options) {
+        return new DaemonStatusRequest().fromJsonString(jsonString, options);
+    }
+    static equals(a, b) {
+        return proto3.util.equals(DaemonStatusRequest, a, b);
+    }
+}
+/**
+ * @generated from message libravdb.ipc.v1.DaemonStatusResponse
+ */
+export class DaemonStatusResponse extends Message {
+    /**
+     * @generated from field: bool ok = 1;
+     */
+    ok = false;
+    /**
+     * @generated from field: string version = 2;
+     */
+    version = "";
+    /**
+     * @generated from field: string uptime = 3;
+     */
+    uptime = "";
+    /**
+     * @generated from field: string backend = 4;
+     */
+    backend = "";
+    /**
+     * @generated from field: int64 global_db_size = 5;
+     */
+    globalDbSize = protoInt64.zero;
+    /**
+     * @generated from field: bool global_db_healthy = 6;
+     */
+    globalDbHealthy = false;
+    /**
+     * @generated from field: repeated libravdb.ipc.v1.TenantStatus tenants = 7;
+     */
+    tenants = [];
+    /**
+     * @generated from field: int64 cache_size = 8;
+     */
+    cacheSize = protoInt64.zero;
+    /**
+     * @generated from field: int64 cache_max_size = 9;
+     */
+    cacheMaxSize = protoInt64.zero;
+    /**
+     * @generated from field: int32 cache_entries = 10;
+     */
+    cacheEntries = 0;
+    /**
+     * @generated from field: double cache_hit_rate = 11;
+     */
+    cacheHitRate = 0;
+    /**
+     * @generated from field: int64 cache_savings = 12;
+     */
+    cacheSavings = protoInt64.zero;
+    /**
+     * @generated from field: string tenant_mode = 13;
+     */
+    tenantMode = "";
+    /**
+     * @generated from field: int32 max_open_tenants = 14;
+     */
+    maxOpenTenants = 0;
+    /**
+     * @generated from field: int32 current_open_tenants = 15;
+     */
+    currentOpenTenants = 0;
+    constructor(data) {
+        super();
+        proto3.util.initPartial(data, this);
+    }
+    static runtime = proto3;
+    static typeName = "libravdb.ipc.v1.DaemonStatusResponse";
+    static fields = proto3.util.newFieldList(() => [
+        { no: 1, name: "ok", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+        { no: 2, name: "version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+        { no: 3, name: "uptime", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+        { no: 4, name: "backend", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+        { no: 5, name: "global_db_size", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+        { no: 6, name: "global_db_healthy", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+        { no: 7, name: "tenants", kind: "message", T: TenantStatus, repeated: true },
+        { no: 8, name: "cache_size", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+        { no: 9, name: "cache_max_size", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+        { no: 10, name: "cache_entries", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+        { no: 11, name: "cache_hit_rate", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
+        { no: 12, name: "cache_savings", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+        { no: 13, name: "tenant_mode", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+        { no: 14, name: "max_open_tenants", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+        { no: 15, name: "current_open_tenants", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    ]);
+    static fromBinary(bytes, options) {
+        return new DaemonStatusResponse().fromBinary(bytes, options);
+    }
+    static fromJson(jsonValue, options) {
+        return new DaemonStatusResponse().fromJson(jsonValue, options);
+    }
+    static fromJsonString(jsonString, options) {
+        return new DaemonStatusResponse().fromJsonString(jsonString, options);
+    }
+    static equals(a, b) {
+        return proto3.util.equals(DaemonStatusResponse, a, b);
+    }
+}
+/**
+ * @generated from message libravdb.ipc.v1.EvictTenantRequest
+ */
+export class EvictTenantRequest extends Message {
+    /**
+     * @generated from field: string tenant_key = 1;
+     */
+    tenantKey = "";
+    constructor(data) {
+        super();
+        proto3.util.initPartial(data, this);
+    }
+    static runtime = proto3;
+    static typeName = "libravdb.ipc.v1.EvictTenantRequest";
+    static fields = proto3.util.newFieldList(() => [
+        { no: 1, name: "tenant_key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    ]);
+    static fromBinary(bytes, options) {
+        return new EvictTenantRequest().fromBinary(bytes, options);
+    }
+    static fromJson(jsonValue, options) {
+        return new EvictTenantRequest().fromJson(jsonValue, options);
+    }
+    static fromJsonString(jsonString, options) {
+        return new EvictTenantRequest().fromJsonString(jsonString, options);
+    }
+    static equals(a, b) {
+        return proto3.util.equals(EvictTenantRequest, a, b);
+    }
+}
+/**
+ * @generated from message libravdb.ipc.v1.EvictTenantResponse
+ */
+export class EvictTenantResponse extends Message {
+    /**
+     * @generated from field: bool ok = 1;
+     */
+    ok = false;
+    /**
+     * @generated from field: string message = 2;
+     */
+    message = "";
+    constructor(data) {
+        super();
+        proto3.util.initPartial(data, this);
+    }
+    static runtime = proto3;
+    static typeName = "libravdb.ipc.v1.EvictTenantResponse";
+    static fields = proto3.util.newFieldList(() => [
+        { no: 1, name: "ok", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+        { no: 2, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    ]);
+    static fromBinary(bytes, options) {
+        return new EvictTenantResponse().fromBinary(bytes, options);
+    }
+    static fromJson(jsonValue, options) {
+        return new EvictTenantResponse().fromJson(jsonValue, options);
+    }
+    static fromJsonString(jsonString, options) {
+        return new EvictTenantResponse().fromJsonString(jsonString, options);
+    }
+    static equals(a, b) {
+        return proto3.util.equals(EvictTenantResponse, a, b);
     }
 }
 /**

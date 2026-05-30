@@ -45,6 +45,7 @@ const (
 	LibravDB_Delete_FullMethodName                  = "/libravdb.ipc.v1.LibravDB/Delete"
 	LibravDB_DeleteBatch_FullMethodName             = "/libravdb.ipc.v1.LibravDB/DeleteBatch"
 	LibravDB_CompactSession_FullMethodName          = "/libravdb.ipc.v1.LibravDB/CompactSession"
+	LibravDB_SummarizeMessages_FullMethodName       = "/libravdb.ipc.v1.LibravDB/SummarizeMessages"
 	LibravDB_ExpandSummary_FullMethodName           = "/libravdb.ipc.v1.LibravDB/ExpandSummary"
 	LibravDB_QueryRawSession_FullMethodName         = "/libravdb.ipc.v1.LibravDB/QueryRawSession"
 	LibravDB_RebuildIndex_FullMethodName            = "/libravdb.ipc.v1.LibravDB/RebuildIndex"
@@ -96,6 +97,7 @@ type LibravDBClient interface {
 	DeleteBatch(ctx context.Context, in *DeleteBatchRequest, opts ...grpc.CallOption) (*DeleteBatchResponse, error)
 	// Session
 	CompactSession(ctx context.Context, in *CompactSessionRequest, opts ...grpc.CallOption) (*CompactSessionResponse, error)
+	SummarizeMessages(ctx context.Context, in *SummarizeMessagesRequest, opts ...grpc.CallOption) (*SummarizeMessagesResponse, error)
 	ExpandSummary(ctx context.Context, in *ExpandSummaryRequest, opts ...grpc.CallOption) (*ExpandSummaryResponse, error)
 	QueryRawSession(ctx context.Context, in *QueryRawSessionRequest, opts ...grpc.CallOption) (*QueryRawSessionResponse, error)
 	// Index
@@ -354,6 +356,15 @@ func (c *libravDBClient) CompactSession(ctx context.Context, in *CompactSessionR
 	return out, nil
 }
 
+func (c *libravDBClient) SummarizeMessages(ctx context.Context, in *SummarizeMessagesRequest, opts ...grpc.CallOption) (*SummarizeMessagesResponse, error) {
+	out := new(SummarizeMessagesResponse)
+	err := c.cc.Invoke(ctx, LibravDB_SummarizeMessages_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *libravDBClient) ExpandSummary(ctx context.Context, in *ExpandSummaryRequest, opts ...grpc.CallOption) (*ExpandSummaryResponse, error) {
 	out := new(ExpandSummaryResponse)
 	err := c.cc.Invoke(ctx, LibravDB_ExpandSummary_FullMethodName, in, out, opts...)
@@ -483,6 +494,7 @@ type LibravDBServer interface {
 	DeleteBatch(context.Context, *DeleteBatchRequest) (*DeleteBatchResponse, error)
 	// Session
 	CompactSession(context.Context, *CompactSessionRequest) (*CompactSessionResponse, error)
+	SummarizeMessages(context.Context, *SummarizeMessagesRequest) (*SummarizeMessagesResponse, error)
 	ExpandSummary(context.Context, *ExpandSummaryRequest) (*ExpandSummaryResponse, error)
 	QueryRawSession(context.Context, *QueryRawSessionRequest) (*QueryRawSessionResponse, error)
 	// Index
@@ -581,6 +593,9 @@ func (UnimplementedLibravDBServer) DeleteBatch(context.Context, *DeleteBatchRequ
 }
 func (UnimplementedLibravDBServer) CompactSession(context.Context, *CompactSessionRequest) (*CompactSessionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CompactSession not implemented")
+}
+func (UnimplementedLibravDBServer) SummarizeMessages(context.Context, *SummarizeMessagesRequest) (*SummarizeMessagesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SummarizeMessages not implemented")
 }
 func (UnimplementedLibravDBServer) ExpandSummary(context.Context, *ExpandSummaryRequest) (*ExpandSummaryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ExpandSummary not implemented")
@@ -1093,6 +1108,24 @@ func _LibravDB_CompactSession_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _LibravDB_SummarizeMessages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SummarizeMessagesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LibravDBServer).SummarizeMessages(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LibravDB_SummarizeMessages_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LibravDBServer).SummarizeMessages(ctx, req.(*SummarizeMessagesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _LibravDB_ExpandSummary_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ExpandSummaryRequest)
 	if err := dec(in); err != nil {
@@ -1383,6 +1416,10 @@ var LibravDB_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CompactSession",
 			Handler:    _LibravDB_CompactSession_Handler,
+		},
+		{
+			MethodName: "SummarizeMessages",
+			Handler:    _LibravDB_SummarizeMessages_Handler,
 		},
 		{
 			MethodName: "ExpandSummary",
