@@ -2378,6 +2378,30 @@ export declare class DaemonStatusResponse extends Message<DaemonStatusResponse> 
      * @generated from field: int32 current_open_tenants = 15;
      */
     currentOpenTenants: number;
+    /**
+     * seconds from daemon start to embedder ready
+     *
+     * @generated from field: double embed_init_secs = 16;
+     */
+    embedInitSecs: number;
+    /**
+     * runtime.NumGoroutine() from daemon
+     *
+     * @generated from field: int32 num_goroutines = 17;
+     */
+    numGoroutines: number;
+    /**
+     * GOGC env value ("100", "off", etc.)
+     *
+     * @generated from field: string go_gc = 18;
+     */
+    goGc: string;
+    /**
+     * GOMEMLIMIT env value ("8GiB", "", etc.)
+     *
+     * @generated from field: string go_memlimit = 19;
+     */
+    goMemlimit: string;
     constructor(data?: PartialMessage<DaemonStatusResponse>);
     static readonly runtime: typeof proto3;
     static readonly typeName = "libravdb.ipc.v1.DaemonStatusResponse";

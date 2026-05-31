@@ -925,7 +925,7 @@ class DaemonStatusRequest(_message.Message):
     def __init__(self) -> None: ...
 
 class DaemonStatusResponse(_message.Message):
-    __slots__ = ("ok", "version", "uptime", "backend", "global_db_size", "global_db_healthy", "tenants", "cache_size", "cache_max_size", "cache_entries", "cache_hit_rate", "cache_savings", "tenant_mode", "max_open_tenants", "current_open_tenants")
+    __slots__ = ("ok", "version", "uptime", "backend", "global_db_size", "global_db_healthy", "tenants", "cache_size", "cache_max_size", "cache_entries", "cache_hit_rate", "cache_savings", "tenant_mode", "max_open_tenants", "current_open_tenants", "embed_init_secs", "num_goroutines", "go_gc", "go_memlimit")
     OK_FIELD_NUMBER: _ClassVar[int]
     VERSION_FIELD_NUMBER: _ClassVar[int]
     UPTIME_FIELD_NUMBER: _ClassVar[int]
@@ -941,6 +941,10 @@ class DaemonStatusResponse(_message.Message):
     TENANT_MODE_FIELD_NUMBER: _ClassVar[int]
     MAX_OPEN_TENANTS_FIELD_NUMBER: _ClassVar[int]
     CURRENT_OPEN_TENANTS_FIELD_NUMBER: _ClassVar[int]
+    EMBED_INIT_SECS_FIELD_NUMBER: _ClassVar[int]
+    NUM_GOROUTINES_FIELD_NUMBER: _ClassVar[int]
+    GO_GC_FIELD_NUMBER: _ClassVar[int]
+    GO_MEMLIMIT_FIELD_NUMBER: _ClassVar[int]
     ok: bool
     version: str
     uptime: str
@@ -956,7 +960,11 @@ class DaemonStatusResponse(_message.Message):
     tenant_mode: str
     max_open_tenants: int
     current_open_tenants: int
-    def __init__(self, ok: bool = ..., version: _Optional[str] = ..., uptime: _Optional[str] = ..., backend: _Optional[str] = ..., global_db_size: _Optional[int] = ..., global_db_healthy: bool = ..., tenants: _Optional[_Iterable[_Union[TenantStatus, _Mapping]]] = ..., cache_size: _Optional[int] = ..., cache_max_size: _Optional[int] = ..., cache_entries: _Optional[int] = ..., cache_hit_rate: _Optional[float] = ..., cache_savings: _Optional[int] = ..., tenant_mode: _Optional[str] = ..., max_open_tenants: _Optional[int] = ..., current_open_tenants: _Optional[int] = ...) -> None: ...
+    embed_init_secs: float
+    num_goroutines: int
+    go_gc: str
+    go_memlimit: str
+    def __init__(self, ok: bool = ..., version: _Optional[str] = ..., uptime: _Optional[str] = ..., backend: _Optional[str] = ..., global_db_size: _Optional[int] = ..., global_db_healthy: bool = ..., tenants: _Optional[_Iterable[_Union[TenantStatus, _Mapping]]] = ..., cache_size: _Optional[int] = ..., cache_max_size: _Optional[int] = ..., cache_entries: _Optional[int] = ..., cache_hit_rate: _Optional[float] = ..., cache_savings: _Optional[int] = ..., tenant_mode: _Optional[str] = ..., max_open_tenants: _Optional[int] = ..., current_open_tenants: _Optional[int] = ..., embed_init_secs: _Optional[float] = ..., num_goroutines: _Optional[int] = ..., go_gc: _Optional[str] = ..., go_memlimit: _Optional[str] = ...) -> None: ...
 
 class EvictTenantRequest(_message.Message):
     __slots__ = ("tenant_key",)

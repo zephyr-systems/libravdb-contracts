@@ -3585,6 +3585,30 @@ export class DaemonStatusResponse extends Message {
      * @generated from field: int32 current_open_tenants = 15;
      */
     currentOpenTenants = 0;
+    /**
+     * seconds from daemon start to embedder ready
+     *
+     * @generated from field: double embed_init_secs = 16;
+     */
+    embedInitSecs = 0;
+    /**
+     * runtime.NumGoroutine() from daemon
+     *
+     * @generated from field: int32 num_goroutines = 17;
+     */
+    numGoroutines = 0;
+    /**
+     * GOGC env value ("100", "off", etc.)
+     *
+     * @generated from field: string go_gc = 18;
+     */
+    goGc = "";
+    /**
+     * GOMEMLIMIT env value ("8GiB", "", etc.)
+     *
+     * @generated from field: string go_memlimit = 19;
+     */
+    goMemlimit = "";
     constructor(data) {
         super();
         proto3.util.initPartial(data, this);
@@ -3607,6 +3631,10 @@ export class DaemonStatusResponse extends Message {
         { no: 13, name: "tenant_mode", kind: "scalar", T: 9 /* ScalarType.STRING */ },
         { no: 14, name: "max_open_tenants", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
         { no: 15, name: "current_open_tenants", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+        { no: 16, name: "embed_init_secs", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
+        { no: 17, name: "num_goroutines", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+        { no: 18, name: "go_gc", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+        { no: 19, name: "go_memlimit", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     ]);
     static fromBinary(bytes, options) {
         return new DaemonStatusResponse().fromBinary(bytes, options);

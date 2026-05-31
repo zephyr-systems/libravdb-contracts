@@ -680,6 +680,10 @@ message DaemonStatusResponse {
   string tenant_mode = 13;
   int32 max_open_tenants = 14;
   int32 current_open_tenants = 15;
+  double embed_init_secs = 16;    // seconds from daemon start to embedder ready
+  int32 num_goroutines = 17;       // runtime.NumGoroutine() from daemon
+  string go_gc = 18;              // GOGC env value ("100", "off", etc.)
+  string go_memlimit = 19;       // GOMEMLIMIT env value ("8GiB", "", etc.)
 }
 
 message EvictTenantRequest {
