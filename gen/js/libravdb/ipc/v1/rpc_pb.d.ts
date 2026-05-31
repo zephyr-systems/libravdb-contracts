@@ -685,6 +685,10 @@ export declare class AssembleConfigOverrides extends Message<AssembleConfigOverr
      * @generated from field: optional double section7_recency_access_lambda = 31;
      */
     section7RecencyAccessLambda?: number;
+    /**
+     * @generated from field: optional double section7_authority_access_weight = 32;
+     */
+    section7AuthorityAccessWeight?: number;
     constructor(data?: PartialMessage<AssembleConfigOverrides>);
     static readonly runtime: typeof proto3;
     static readonly typeName = "libravdb.ipc.v1.AssembleConfigOverrides";

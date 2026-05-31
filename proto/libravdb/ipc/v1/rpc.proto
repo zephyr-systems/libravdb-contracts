@@ -247,6 +247,7 @@ message AssembleConfigOverrides {
   // These fields are actively consumed by the daemon ranking pipeline.
   optional double section7_authority_salience_weight = 30;
   optional double section7_recency_access_lambda = 31;
+  optional double section7_authority_access_weight = 32;
 
   // RESERVED — field numbers 32+ are available for future use.
   // Do not reassign existing fields to these numbers.

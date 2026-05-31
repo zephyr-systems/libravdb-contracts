@@ -940,6 +940,10 @@ export class AssembleConfigOverrides extends Message {
      * @generated from field: optional double section7_recency_access_lambda = 31;
      */
     section7RecencyAccessLambda;
+    /**
+     * @generated from field: optional double section7_authority_access_weight = 32;
+     */
+    section7AuthorityAccessWeight;
     constructor(data) {
         super();
         proto3.util.initPartial(data, this);
@@ -978,6 +982,7 @@ export class AssembleConfigOverrides extends Message {
         { no: 29, name: "ingestion_gate_threshold", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
         { no: 30, name: "section7_authority_salience_weight", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
         { no: 31, name: "section7_recency_access_lambda", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
+        { no: 32, name: "section7_authority_access_weight", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
     ]);
     static fromBinary(bytes, options) {
         return new AssembleConfigOverrides().fromBinary(bytes, options);
