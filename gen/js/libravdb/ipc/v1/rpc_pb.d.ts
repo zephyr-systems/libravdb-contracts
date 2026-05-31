@@ -1268,6 +1268,18 @@ export declare class SearchTextRequest extends Message<SearchTextRequest> {
      * @generated from field: repeated string exclude_ids = 4;
      */
     excludeIds: string[];
+    /**
+     * optional cognitive kind filter
+     *
+     * @generated from field: string kind = 5;
+     */
+    kind: string;
+    /**
+     * optional signal bitmask names
+     *
+     * @generated from field: repeated string signals = 6;
+     */
+    signals: string[];
     constructor(data?: PartialMessage<SearchTextRequest>);
     static readonly runtime: typeof proto3;
     static readonly typeName = "libravdb.ipc.v1.SearchTextRequest";
@@ -1299,6 +1311,14 @@ export declare class SearchTextCollectionsRequest extends Message<SearchTextColl
     excludeByCollection: {
         [key: string]: StringList;
     };
+    /**
+     * @generated from field: string kind = 5;
+     */
+    kind: string;
+    /**
+     * @generated from field: repeated string signals = 6;
+     */
+    signals: string[];
     constructor(data?: PartialMessage<SearchTextCollectionsRequest>);
     static readonly runtime: typeof proto3;
     static readonly typeName = "libravdb.ipc.v1.SearchTextCollectionsRequest";

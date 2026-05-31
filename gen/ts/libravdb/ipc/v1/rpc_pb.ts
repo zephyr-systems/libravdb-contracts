@@ -2255,6 +2255,20 @@ export class SearchTextRequest extends Message<SearchTextRequest> {
    */
   excludeIds: string[] = [];
 
+  /**
+   * optional cognitive kind filter
+   *
+   * @generated from field: string kind = 5;
+   */
+  kind = "";
+
+  /**
+   * optional signal bitmask names
+   *
+   * @generated from field: repeated string signals = 6;
+   */
+  signals: string[] = [];
+
   constructor(data?: PartialMessage<SearchTextRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -2267,6 +2281,8 @@ export class SearchTextRequest extends Message<SearchTextRequest> {
     { no: 2, name: "text", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "k", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 4, name: "exclude_ids", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 5, name: "kind", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "signals", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SearchTextRequest {
@@ -2310,6 +2326,16 @@ export class SearchTextCollectionsRequest extends Message<SearchTextCollectionsR
    */
   excludeByCollection: { [key: string]: StringList } = {};
 
+  /**
+   * @generated from field: string kind = 5;
+   */
+  kind = "";
+
+  /**
+   * @generated from field: repeated string signals = 6;
+   */
+  signals: string[] = [];
+
   constructor(data?: PartialMessage<SearchTextCollectionsRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -2322,6 +2348,8 @@ export class SearchTextCollectionsRequest extends Message<SearchTextCollectionsR
     { no: 2, name: "text", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "k", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 4, name: "exclude_by_collection", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: StringList} },
+    { no: 5, name: "kind", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "signals", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SearchTextCollectionsRequest {

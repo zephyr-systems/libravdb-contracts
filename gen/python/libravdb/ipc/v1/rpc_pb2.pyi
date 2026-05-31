@@ -494,19 +494,23 @@ class DreamPromotionResponse(_message.Message):
     def __init__(self, promoted: _Optional[int] = ..., rejected: _Optional[int] = ..., feedback: _Optional[_Union[IngestFeedback, _Mapping]] = ...) -> None: ...
 
 class SearchTextRequest(_message.Message):
-    __slots__ = ("collection", "text", "k", "exclude_ids")
+    __slots__ = ("collection", "text", "k", "exclude_ids", "kind", "signals")
     COLLECTION_FIELD_NUMBER: _ClassVar[int]
     TEXT_FIELD_NUMBER: _ClassVar[int]
     K_FIELD_NUMBER: _ClassVar[int]
     EXCLUDE_IDS_FIELD_NUMBER: _ClassVar[int]
+    KIND_FIELD_NUMBER: _ClassVar[int]
+    SIGNALS_FIELD_NUMBER: _ClassVar[int]
     collection: str
     text: str
     k: int
     exclude_ids: _containers.RepeatedScalarFieldContainer[str]
-    def __init__(self, collection: _Optional[str] = ..., text: _Optional[str] = ..., k: _Optional[int] = ..., exclude_ids: _Optional[_Iterable[str]] = ...) -> None: ...
+    kind: str
+    signals: _containers.RepeatedScalarFieldContainer[str]
+    def __init__(self, collection: _Optional[str] = ..., text: _Optional[str] = ..., k: _Optional[int] = ..., exclude_ids: _Optional[_Iterable[str]] = ..., kind: _Optional[str] = ..., signals: _Optional[_Iterable[str]] = ...) -> None: ...
 
 class SearchTextCollectionsRequest(_message.Message):
-    __slots__ = ("collections", "text", "k", "exclude_by_collection")
+    __slots__ = ("collections", "text", "k", "exclude_by_collection", "kind", "signals")
     class ExcludeByCollectionEntry(_message.Message):
         __slots__ = ("key", "value")
         KEY_FIELD_NUMBER: _ClassVar[int]
@@ -518,11 +522,15 @@ class SearchTextCollectionsRequest(_message.Message):
     TEXT_FIELD_NUMBER: _ClassVar[int]
     K_FIELD_NUMBER: _ClassVar[int]
     EXCLUDE_BY_COLLECTION_FIELD_NUMBER: _ClassVar[int]
+    KIND_FIELD_NUMBER: _ClassVar[int]
+    SIGNALS_FIELD_NUMBER: _ClassVar[int]
     collections: _containers.RepeatedScalarFieldContainer[str]
     text: str
     k: int
     exclude_by_collection: _containers.MessageMap[str, StringList]
-    def __init__(self, collections: _Optional[_Iterable[str]] = ..., text: _Optional[str] = ..., k: _Optional[int] = ..., exclude_by_collection: _Optional[_Mapping[str, StringList]] = ...) -> None: ...
+    kind: str
+    signals: _containers.RepeatedScalarFieldContainer[str]
+    def __init__(self, collections: _Optional[_Iterable[str]] = ..., text: _Optional[str] = ..., k: _Optional[int] = ..., exclude_by_collection: _Optional[_Mapping[str, StringList]] = ..., kind: _Optional[str] = ..., signals: _Optional[_Iterable[str]] = ...) -> None: ...
 
 class SearchTextResponse(_message.Message):
     __slots__ = ("results",)

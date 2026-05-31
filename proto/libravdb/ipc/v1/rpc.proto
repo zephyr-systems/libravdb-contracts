@@ -404,6 +404,8 @@ message SearchTextRequest {
   string text = 2;
   int32 k = 3;
   repeated string exclude_ids = 4;
+  string kind = 5;              // optional cognitive kind filter
+  repeated string signals = 6;  // optional signal bitmask names
 }
 
 message SearchTextCollectionsRequest {
@@ -411,6 +413,8 @@ message SearchTextCollectionsRequest {
   string text = 2;
   int32 k = 3;
   map<string, StringList> exclude_by_collection = 4;
+  string kind = 5;
+  repeated string signals = 6;
 }
 
 message SearchTextResponse {
