@@ -2880,6 +2880,10 @@ export declare class ExpandSummaryResponse extends Message<ExpandSummaryResponse
      * @generated from field: string text = 2;
      */
     text: string;
+    /**
+     * @generated from field: bytes metadata_json = 3;
+     */
+    metadataJson: Uint8Array<ArrayBuffer>;
     constructor(data?: PartialMessage<ExpandSummaryResponse>);
     static readonly runtime: typeof proto3;
     static readonly typeName = "libravdb.ipc.v1.ExpandSummaryResponse";

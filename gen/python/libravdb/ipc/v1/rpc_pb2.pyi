@@ -1147,12 +1147,14 @@ class ListByMetaResponse(_message.Message):
     def __init__(self, results: _Optional[_Iterable[_Union[SearchResult, _Mapping]]] = ...) -> None: ...
 
 class ExpandSummaryResponse(_message.Message):
-    __slots__ = ("summary_id", "text")
+    __slots__ = ("summary_id", "text", "metadata_json")
     SUMMARY_ID_FIELD_NUMBER: _ClassVar[int]
     TEXT_FIELD_NUMBER: _ClassVar[int]
+    METADATA_JSON_FIELD_NUMBER: _ClassVar[int]
     summary_id: str
     text: str
-    def __init__(self, summary_id: _Optional[str] = ..., text: _Optional[str] = ...) -> None: ...
+    metadata_json: bytes
+    def __init__(self, summary_id: _Optional[str] = ..., text: _Optional[str] = ..., metadata_json: _Optional[bytes] = ...) -> None: ...
 
 class QueryRawSessionResponse(_message.Message):
     __slots__ = ("messages",)

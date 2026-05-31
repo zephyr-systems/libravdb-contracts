@@ -875,6 +875,7 @@ message ListByMetaResponse {
 message ExpandSummaryResponse {
   string summary_id = 1;
   string text = 2;
+  bytes metadata_json = 3;
 }
 
 message QueryRawSessionResponse {

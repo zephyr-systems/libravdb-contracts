@@ -4350,6 +4350,10 @@ export class ExpandSummaryResponse extends Message {
      * @generated from field: string text = 2;
      */
     text = "";
+    /**
+     * @generated from field: bytes metadata_json = 3;
+     */
+    metadataJson = new Uint8Array(0);
     constructor(data) {
         super();
         proto3.util.initPartial(data, this);
@@ -4359,6 +4363,7 @@ export class ExpandSummaryResponse extends Message {
     static fields = proto3.util.newFieldList(() => [
         { no: 1, name: "summary_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
         { no: 2, name: "text", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+        { no: 3, name: "metadata_json", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
     ]);
     static fromBinary(bytes, options) {
         return new ExpandSummaryResponse().fromBinary(bytes, options);
