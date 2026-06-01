@@ -1080,7 +1080,8 @@ export class HealthResponse extends Message {
     }
 }
 /**
- * compact.Result (libravdbd/compact/summarize.go) — compact_session RPC.
+ * compact.Result (libravdbd/compact/summarize.go) plus engine-owned session
+ * state after the compaction attempt — compact_session RPC.
  *
  * @generated from message libravdb.ipc.v1.CompactSessionResponse
  */
@@ -1114,11 +1115,28 @@ export class CompactSessionResponse extends Message {
      */
     summaryText = "";
     /**
-     * estimated token count after compaction
-     *
      * @generated from field: int32 tokens_after = 8;
      */
     tokensAfter = 0;
+    /**
+     * Engine-owned session state after the compaction attempt.
+     * Zero / false when the daemon is older and does not populate these.
+     *
+     * @generated from field: int64 last_compacted_turn = 9;
+     */
+    lastCompactedTurn = protoInt64.zero;
+    /**
+     * @generated from field: int32 token_accumulator_after = 10;
+     */
+    tokenAccumulatorAfter = 0;
+    /**
+     * @generated from field: int64 total_turns = 11;
+     */
+    totalTurns = protoInt64.zero;
+    /**
+     * @generated from field: bool skipped_no_new_turns = 12;
+     */
+    skippedNoNewTurns = false;
     constructor(data) {
         super();
         proto3.util.initPartial(data, this);
@@ -1134,6 +1152,10 @@ export class CompactSessionResponse extends Message {
         { no: 6, name: "mean_confidence", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
         { no: 7, name: "summary_text", kind: "scalar", T: 9 /* ScalarType.STRING */ },
         { no: 8, name: "tokens_after", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+        { no: 9, name: "last_compacted_turn", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+        { no: 10, name: "token_accumulator_after", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+        { no: 11, name: "total_turns", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+        { no: 12, name: "skipped_no_new_turns", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     ]);
     static fromBinary(bytes, options) {
         return new CompactSessionResponse().fromBinary(bytes, options);

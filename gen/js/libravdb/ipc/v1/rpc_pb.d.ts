@@ -751,7 +751,8 @@ export declare class HealthResponse extends Message<HealthResponse> {
     static equals(a: HealthResponse | PlainMessage<HealthResponse> | undefined, b: HealthResponse | PlainMessage<HealthResponse> | undefined): boolean;
 }
 /**
- * compact.Result (libravdbd/compact/summarize.go) — compact_session RPC.
+ * compact.Result (libravdbd/compact/summarize.go) plus engine-owned session
+ * state after the compaction attempt — compact_session RPC.
  *
  * @generated from message libravdb.ipc.v1.CompactSessionResponse
  */
@@ -785,11 +786,28 @@ export declare class CompactSessionResponse extends Message<CompactSessionRespon
      */
     summaryText: string;
     /**
-     * estimated token count after compaction
-     *
      * @generated from field: int32 tokens_after = 8;
      */
     tokensAfter: number;
+    /**
+     * Engine-owned session state after the compaction attempt.
+     * Zero / false when the daemon is older and does not populate these.
+     *
+     * @generated from field: int64 last_compacted_turn = 9;
+     */
+    lastCompactedTurn: bigint;
+    /**
+     * @generated from field: int32 token_accumulator_after = 10;
+     */
+    tokenAccumulatorAfter: number;
+    /**
+     * @generated from field: int64 total_turns = 11;
+     */
+    totalTurns: bigint;
+    /**
+     * @generated from field: bool skipped_no_new_turns = 12;
+     */
+    skippedNoNewTurns: boolean;
     constructor(data?: PartialMessage<CompactSessionResponse>);
     static readonly runtime: typeof proto3;
     static readonly typeName = "libravdb.ipc.v1.CompactSessionResponse";

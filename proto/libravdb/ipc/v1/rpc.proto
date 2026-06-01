@@ -266,7 +266,8 @@ message HealthResponse {
   string message = 2;
 }
 
-// compact.Result (libravdbd/compact/summarize.go) — compact_session RPC.
+// compact.Result (libravdbd/compact/summarize.go) plus engine-owned session
+// state after the compaction attempt — compact_session RPC.
 message CompactSessionResponse {
   bool did_compact = 1;
   int32 clusters_formed = 2;
@@ -275,7 +276,14 @@ message CompactSessionResponse {
   string summary_method = 5;
   double mean_confidence = 6;
   string summary_text = 7;
-  int32 tokens_after = 8; // estimated token count after compaction
+  int32 tokens_after = 8;
+
+  // Engine-owned session state after the compaction attempt.
+  // Zero / false when the daemon is older and does not populate these.
+  int64 last_compacted_turn = 9;
+  int32 token_accumulator_after = 10;
+  int64 total_turns = 11;
+  bool skipped_no_new_turns = 12;
 }
 
 // SummarizeMessages — pluggable compaction summarization backend.

@@ -294,7 +294,7 @@ class HealthResponse(_message.Message):
     def __init__(self, ok: bool = ..., message: _Optional[str] = ...) -> None: ...
 
 class CompactSessionResponse(_message.Message):
-    __slots__ = ("did_compact", "clusters_formed", "clusters_declined", "turns_removed", "summary_method", "mean_confidence", "summary_text", "tokens_after")
+    __slots__ = ("did_compact", "clusters_formed", "clusters_declined", "turns_removed", "summary_method", "mean_confidence", "summary_text", "tokens_after", "last_compacted_turn", "token_accumulator_after", "total_turns", "skipped_no_new_turns")
     DID_COMPACT_FIELD_NUMBER: _ClassVar[int]
     CLUSTERS_FORMED_FIELD_NUMBER: _ClassVar[int]
     CLUSTERS_DECLINED_FIELD_NUMBER: _ClassVar[int]
@@ -303,6 +303,10 @@ class CompactSessionResponse(_message.Message):
     MEAN_CONFIDENCE_FIELD_NUMBER: _ClassVar[int]
     SUMMARY_TEXT_FIELD_NUMBER: _ClassVar[int]
     TOKENS_AFTER_FIELD_NUMBER: _ClassVar[int]
+    LAST_COMPACTED_TURN_FIELD_NUMBER: _ClassVar[int]
+    TOKEN_ACCUMULATOR_AFTER_FIELD_NUMBER: _ClassVar[int]
+    TOTAL_TURNS_FIELD_NUMBER: _ClassVar[int]
+    SKIPPED_NO_NEW_TURNS_FIELD_NUMBER: _ClassVar[int]
     did_compact: bool
     clusters_formed: int
     clusters_declined: int
@@ -311,7 +315,11 @@ class CompactSessionResponse(_message.Message):
     mean_confidence: float
     summary_text: str
     tokens_after: int
-    def __init__(self, did_compact: bool = ..., clusters_formed: _Optional[int] = ..., clusters_declined: _Optional[int] = ..., turns_removed: _Optional[int] = ..., summary_method: _Optional[str] = ..., mean_confidence: _Optional[float] = ..., summary_text: _Optional[str] = ..., tokens_after: _Optional[int] = ...) -> None: ...
+    last_compacted_turn: int
+    token_accumulator_after: int
+    total_turns: int
+    skipped_no_new_turns: bool
+    def __init__(self, did_compact: bool = ..., clusters_formed: _Optional[int] = ..., clusters_declined: _Optional[int] = ..., turns_removed: _Optional[int] = ..., summary_method: _Optional[str] = ..., mean_confidence: _Optional[float] = ..., summary_text: _Optional[str] = ..., tokens_after: _Optional[int] = ..., last_compacted_turn: _Optional[int] = ..., token_accumulator_after: _Optional[int] = ..., total_turns: _Optional[int] = ..., skipped_no_new_turns: bool = ...) -> None: ...
 
 class SummarizeMessagesRequest(_message.Message):
     __slots__ = ("messages", "max_output_tokens")
