@@ -465,6 +465,40 @@ class DeleteAuthoredDocumentResponse(_message.Message):
     ok: bool
     def __init__(self, ok: bool = ...) -> None: ...
 
+class UpsertUserCardRequest(_message.Message):
+    __slots__ = ("user_id", "card_json")
+    USER_ID_FIELD_NUMBER: _ClassVar[int]
+    CARD_JSON_FIELD_NUMBER: _ClassVar[int]
+    user_id: str
+    card_json: str
+    def __init__(self, user_id: _Optional[str] = ..., card_json: _Optional[str] = ...) -> None: ...
+
+class UpsertUserCardResponse(_message.Message):
+    __slots__ = ("ok", "card_id", "previous_hash")
+    OK_FIELD_NUMBER: _ClassVar[int]
+    CARD_ID_FIELD_NUMBER: _ClassVar[int]
+    PREVIOUS_HASH_FIELD_NUMBER: _ClassVar[int]
+    ok: bool
+    card_id: str
+    previous_hash: str
+    def __init__(self, ok: bool = ..., card_id: _Optional[str] = ..., previous_hash: _Optional[str] = ...) -> None: ...
+
+class GetUserCardRequest(_message.Message):
+    __slots__ = ("user_id",)
+    USER_ID_FIELD_NUMBER: _ClassVar[int]
+    user_id: str
+    def __init__(self, user_id: _Optional[str] = ...) -> None: ...
+
+class GetUserCardResponse(_message.Message):
+    __slots__ = ("card_json", "updated_at", "version")
+    CARD_JSON_FIELD_NUMBER: _ClassVar[int]
+    UPDATED_AT_FIELD_NUMBER: _ClassVar[int]
+    VERSION_FIELD_NUMBER: _ClassVar[int]
+    card_json: str
+    updated_at: int
+    version: int
+    def __init__(self, card_json: _Optional[str] = ..., updated_at: _Optional[int] = ..., version: _Optional[int] = ...) -> None: ...
+
 class PromoteDreamEntriesRequest(_message.Message):
     __slots__ = ("user_id", "source_doc", "source_root", "source_path", "source_kind", "file_hash", "source_size", "source_mtime_ms", "ingest_version", "hash_backend", "entries", "source_ctime_ms")
     USER_ID_FIELD_NUMBER: _ClassVar[int]

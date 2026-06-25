@@ -385,6 +385,32 @@ message DeleteAuthoredDocumentResponse {
   bool ok = 1;
 }
 
+// =============================================================================
+// User Card — persistent identity/profile for bootstrap injection
+// =============================================================================
+
+message UpsertUserCardRequest {
+  string user_id = 1;     // durable user namespace key (e.g. "z3robit@...")
+  string card_json = 2;   // JSON object: { identity: [...], values: [...], history: [...], communication: [...], triggers: [...] }
+                             // Empty string deletes the card.
+}
+
+message UpsertUserCardResponse {
+  bool ok = 1;
+  string card_id = 2;          // always "__user_card__"
+  string previous_hash = 3;    // sha256 hex of previous card (empty on first write)
+}
+
+message GetUserCardRequest {
+  string user_id = 1;
+}
+
+message GetUserCardResponse {
+  string card_json = 1;    // empty if no card exists
+  int64 updated_at = 2;    // Unix milliseconds
+  int32 version = 3;       // monotonic counter, starts at 1
+}
+
 message PromoteDreamEntriesRequest {
   string user_id = 1;
   string source_doc = 2;
@@ -850,6 +876,11 @@ service LibravDB {
   rpc IngestMessageKernel(IngestMessageKernelRequest) returns (IngestMessageKernelResponse);
   rpc BeforeTurnKernel(BeforeTurnKernelRequest) returns (BeforeTurnKernelResponse);
   rpc AfterTurnKernel(AfterTurnKernelRequest) returns (AfterTurnKernelResponse);
+
+  // User Card
+  rpc UpsertUserCard(UpsertUserCardRequest) returns (UpsertUserCardResponse);
+  rpc GetUserCard(GetUserCardRequest) returns (GetUserCardResponse);
+
   rpc AssembleContextInternal(AssembleContextInternalRequest) returns (AssembleContextInternalResponse);
 
   // Ranking

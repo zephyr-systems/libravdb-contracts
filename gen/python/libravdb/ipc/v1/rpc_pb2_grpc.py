@@ -189,6 +189,16 @@ class LibravDBStub(object):
                 request_serializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.AfterTurnKernelRequest.SerializeToString,
                 response_deserializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.AfterTurnKernelResponse.FromString,
                 _registered_method=True)
+        self.UpsertUserCard = channel.unary_unary(
+                '/libravdb.ipc.v1.LibravDB/UpsertUserCard',
+                request_serializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.UpsertUserCardRequest.SerializeToString,
+                response_deserializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.UpsertUserCardResponse.FromString,
+                _registered_method=True)
+        self.GetUserCard = channel.unary_unary(
+                '/libravdb.ipc.v1.LibravDB/GetUserCard',
+                request_serializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.GetUserCardRequest.SerializeToString,
+                response_deserializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.GetUserCardResponse.FromString,
+                _registered_method=True)
         self.AssembleContextInternal = channel.unary_unary(
                 '/libravdb.ipc.v1.LibravDB/AssembleContextInternal',
                 request_serializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.AssembleContextInternalRequest.SerializeToString,
@@ -429,6 +439,19 @@ class LibravDBServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def UpsertUserCard(self, request, context):
+        """User Card
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetUserCard(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def AssembleContextInternal(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -621,6 +644,16 @@ def add_LibravDBServicer_to_server(servicer, server):
                     servicer.AfterTurnKernel,
                     request_deserializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.AfterTurnKernelRequest.FromString,
                     response_serializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.AfterTurnKernelResponse.SerializeToString,
+            ),
+            'UpsertUserCard': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpsertUserCard,
+                    request_deserializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.UpsertUserCardRequest.FromString,
+                    response_serializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.UpsertUserCardResponse.SerializeToString,
+            ),
+            'GetUserCard': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetUserCard,
+                    request_deserializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.GetUserCardRequest.FromString,
+                    response_serializer=libravdb_dot_ipc_dot_v1_dot_rpc__pb2.GetUserCardResponse.SerializeToString,
             ),
             'AssembleContextInternal': grpc.unary_unary_rpc_method_handler(
                     servicer.AssembleContextInternal,
@@ -1561,6 +1594,60 @@ class LibravDB(object):
             '/libravdb.ipc.v1.LibravDB/AfterTurnKernel',
             libravdb_dot_ipc_dot_v1_dot_rpc__pb2.AfterTurnKernelRequest.SerializeToString,
             libravdb_dot_ipc_dot_v1_dot_rpc__pb2.AfterTurnKernelResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def UpsertUserCard(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/libravdb.ipc.v1.LibravDB/UpsertUserCard',
+            libravdb_dot_ipc_dot_v1_dot_rpc__pb2.UpsertUserCardRequest.SerializeToString,
+            libravdb_dot_ipc_dot_v1_dot_rpc__pb2.UpsertUserCardResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetUserCard(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/libravdb.ipc.v1.LibravDB/GetUserCard',
+            libravdb_dot_ipc_dot_v1_dot_rpc__pb2.GetUserCardRequest.SerializeToString,
+            libravdb_dot_ipc_dot_v1_dot_rpc__pb2.GetUserCardResponse.FromString,
             options,
             channel_credentials,
             insecure,

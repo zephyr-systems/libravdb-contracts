@@ -1,5 +1,5 @@
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import { proto3 } from "@bufbuild/protobuf";
 /**
  * IngestMode controls whether a call replaces all existing nodes for the source_doc
  * or appends/merges them without deleting anything.
@@ -1180,6 +1180,108 @@ export declare class DeleteAuthoredDocumentResponse extends Message<DeleteAuthor
     static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DeleteAuthoredDocumentResponse;
     static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeleteAuthoredDocumentResponse;
     static equals(a: DeleteAuthoredDocumentResponse | PlainMessage<DeleteAuthoredDocumentResponse> | undefined, b: DeleteAuthoredDocumentResponse | PlainMessage<DeleteAuthoredDocumentResponse> | undefined): boolean;
+}
+/**
+ * @generated from message libravdb.ipc.v1.UpsertUserCardRequest
+ */
+export declare class UpsertUserCardRequest extends Message<UpsertUserCardRequest> {
+    /**
+     * durable user namespace key (e.g. "z3robit@...")
+     *
+     * @generated from field: string user_id = 1;
+     */
+    userId: string;
+    /**
+     * JSON object: { identity: [...], values: [...], history: [...], communication: [...], triggers: [...] }
+     *
+     * @generated from field: string card_json = 2;
+     */
+    cardJson: string;
+    constructor(data?: PartialMessage<UpsertUserCardRequest>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.UpsertUserCardRequest";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpsertUserCardRequest;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UpsertUserCardRequest;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UpsertUserCardRequest;
+    static equals(a: UpsertUserCardRequest | PlainMessage<UpsertUserCardRequest> | undefined, b: UpsertUserCardRequest | PlainMessage<UpsertUserCardRequest> | undefined): boolean;
+}
+/**
+ * @generated from message libravdb.ipc.v1.UpsertUserCardResponse
+ */
+export declare class UpsertUserCardResponse extends Message<UpsertUserCardResponse> {
+    /**
+     * @generated from field: bool ok = 1;
+     */
+    ok: boolean;
+    /**
+     * always "__user_card__"
+     *
+     * @generated from field: string card_id = 2;
+     */
+    cardId: string;
+    /**
+     * sha256 hex of previous card (empty on first write)
+     *
+     * @generated from field: string previous_hash = 3;
+     */
+    previousHash: string;
+    constructor(data?: PartialMessage<UpsertUserCardResponse>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.UpsertUserCardResponse";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpsertUserCardResponse;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UpsertUserCardResponse;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UpsertUserCardResponse;
+    static equals(a: UpsertUserCardResponse | PlainMessage<UpsertUserCardResponse> | undefined, b: UpsertUserCardResponse | PlainMessage<UpsertUserCardResponse> | undefined): boolean;
+}
+/**
+ * @generated from message libravdb.ipc.v1.GetUserCardRequest
+ */
+export declare class GetUserCardRequest extends Message<GetUserCardRequest> {
+    /**
+     * @generated from field: string user_id = 1;
+     */
+    userId: string;
+    constructor(data?: PartialMessage<GetUserCardRequest>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.GetUserCardRequest";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetUserCardRequest;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetUserCardRequest;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetUserCardRequest;
+    static equals(a: GetUserCardRequest | PlainMessage<GetUserCardRequest> | undefined, b: GetUserCardRequest | PlainMessage<GetUserCardRequest> | undefined): boolean;
+}
+/**
+ * @generated from message libravdb.ipc.v1.GetUserCardResponse
+ */
+export declare class GetUserCardResponse extends Message<GetUserCardResponse> {
+    /**
+     * empty if no card exists
+     *
+     * @generated from field: string card_json = 1;
+     */
+    cardJson: string;
+    /**
+     * Unix milliseconds
+     *
+     * @generated from field: int64 updated_at = 2;
+     */
+    updatedAt: bigint;
+    /**
+     * monotonic counter, starts at 1
+     *
+     * @generated from field: int32 version = 3;
+     */
+    version: number;
+    constructor(data?: PartialMessage<GetUserCardResponse>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.GetUserCardResponse";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetUserCardResponse;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetUserCardResponse;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetUserCardResponse;
+    static equals(a: GetUserCardResponse | PlainMessage<GetUserCardResponse> | undefined, b: GetUserCardResponse | PlainMessage<GetUserCardResponse> | undefined): boolean;
 }
 /**
  * @generated from message libravdb.ipc.v1.PromoteDreamEntriesRequest

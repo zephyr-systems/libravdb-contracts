@@ -2109,6 +2109,198 @@ export class DeleteAuthoredDocumentResponse extends Message<DeleteAuthoredDocume
 }
 
 /**
+ * @generated from message libravdb.ipc.v1.UpsertUserCardRequest
+ */
+export class UpsertUserCardRequest extends Message<UpsertUserCardRequest> {
+  /**
+   * durable user namespace key (e.g. "z3robit@...")
+   *
+   * @generated from field: string user_id = 1;
+   */
+  userId = "";
+
+  /**
+   * JSON object: { identity: [...], values: [...], history: [...], communication: [...], triggers: [...] }
+   *
+   * @generated from field: string card_json = 2;
+   */
+  cardJson = "";
+
+  constructor(data?: PartialMessage<UpsertUserCardRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "libravdb.ipc.v1.UpsertUserCardRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "user_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "card_json", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpsertUserCardRequest {
+    return new UpsertUserCardRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UpsertUserCardRequest {
+    return new UpsertUserCardRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UpsertUserCardRequest {
+    return new UpsertUserCardRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: UpsertUserCardRequest | PlainMessage<UpsertUserCardRequest> | undefined, b: UpsertUserCardRequest | PlainMessage<UpsertUserCardRequest> | undefined): boolean {
+    return proto3.util.equals(UpsertUserCardRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message libravdb.ipc.v1.UpsertUserCardResponse
+ */
+export class UpsertUserCardResponse extends Message<UpsertUserCardResponse> {
+  /**
+   * @generated from field: bool ok = 1;
+   */
+  ok = false;
+
+  /**
+   * always "__user_card__"
+   *
+   * @generated from field: string card_id = 2;
+   */
+  cardId = "";
+
+  /**
+   * sha256 hex of previous card (empty on first write)
+   *
+   * @generated from field: string previous_hash = 3;
+   */
+  previousHash = "";
+
+  constructor(data?: PartialMessage<UpsertUserCardResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "libravdb.ipc.v1.UpsertUserCardResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "ok", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 2, name: "card_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "previous_hash", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpsertUserCardResponse {
+    return new UpsertUserCardResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UpsertUserCardResponse {
+    return new UpsertUserCardResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UpsertUserCardResponse {
+    return new UpsertUserCardResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: UpsertUserCardResponse | PlainMessage<UpsertUserCardResponse> | undefined, b: UpsertUserCardResponse | PlainMessage<UpsertUserCardResponse> | undefined): boolean {
+    return proto3.util.equals(UpsertUserCardResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message libravdb.ipc.v1.GetUserCardRequest
+ */
+export class GetUserCardRequest extends Message<GetUserCardRequest> {
+  /**
+   * @generated from field: string user_id = 1;
+   */
+  userId = "";
+
+  constructor(data?: PartialMessage<GetUserCardRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "libravdb.ipc.v1.GetUserCardRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "user_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetUserCardRequest {
+    return new GetUserCardRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetUserCardRequest {
+    return new GetUserCardRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetUserCardRequest {
+    return new GetUserCardRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetUserCardRequest | PlainMessage<GetUserCardRequest> | undefined, b: GetUserCardRequest | PlainMessage<GetUserCardRequest> | undefined): boolean {
+    return proto3.util.equals(GetUserCardRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message libravdb.ipc.v1.GetUserCardResponse
+ */
+export class GetUserCardResponse extends Message<GetUserCardResponse> {
+  /**
+   * empty if no card exists
+   *
+   * @generated from field: string card_json = 1;
+   */
+  cardJson = "";
+
+  /**
+   * Unix milliseconds
+   *
+   * @generated from field: int64 updated_at = 2;
+   */
+  updatedAt = protoInt64.zero;
+
+  /**
+   * monotonic counter, starts at 1
+   *
+   * @generated from field: int32 version = 3;
+   */
+  version = 0;
+
+  constructor(data?: PartialMessage<GetUserCardResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "libravdb.ipc.v1.GetUserCardResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "card_json", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "updated_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 3, name: "version", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetUserCardResponse {
+    return new GetUserCardResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetUserCardResponse {
+    return new GetUserCardResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetUserCardResponse {
+    return new GetUserCardResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetUserCardResponse | PlainMessage<GetUserCardResponse> | undefined, b: GetUserCardResponse | PlainMessage<GetUserCardResponse> | undefined): boolean {
+    return proto3.util.equals(GetUserCardResponse, a, b);
+  }
+}
+
+/**
  * @generated from message libravdb.ipc.v1.PromoteDreamEntriesRequest
  */
 export class PromoteDreamEntriesRequest extends Message<PromoteDreamEntriesRequest> {

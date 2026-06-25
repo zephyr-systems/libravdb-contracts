@@ -53,6 +53,8 @@ const (
 	LibravDB_IngestMessageKernel_FullMethodName     = "/libravdb.ipc.v1.LibravDB/IngestMessageKernel"
 	LibravDB_BeforeTurnKernel_FullMethodName        = "/libravdb.ipc.v1.LibravDB/BeforeTurnKernel"
 	LibravDB_AfterTurnKernel_FullMethodName         = "/libravdb.ipc.v1.LibravDB/AfterTurnKernel"
+	LibravDB_UpsertUserCard_FullMethodName          = "/libravdb.ipc.v1.LibravDB/UpsertUserCard"
+	LibravDB_GetUserCard_FullMethodName             = "/libravdb.ipc.v1.LibravDB/GetUserCard"
 	LibravDB_AssembleContextInternal_FullMethodName = "/libravdb.ipc.v1.LibravDB/AssembleContextInternal"
 	LibravDB_RankCandidates_FullMethodName          = "/libravdb.ipc.v1.LibravDB/RankCandidates"
 	LibravDB_CognitiveMetrics_FullMethodName        = "/libravdb.ipc.v1.LibravDB/CognitiveMetrics"
@@ -107,6 +109,9 @@ type LibravDBClient interface {
 	IngestMessageKernel(ctx context.Context, in *IngestMessageKernelRequest, opts ...grpc.CallOption) (*IngestMessageKernelResponse, error)
 	BeforeTurnKernel(ctx context.Context, in *BeforeTurnKernelRequest, opts ...grpc.CallOption) (*BeforeTurnKernelResponse, error)
 	AfterTurnKernel(ctx context.Context, in *AfterTurnKernelRequest, opts ...grpc.CallOption) (*AfterTurnKernelResponse, error)
+	// User Card
+	UpsertUserCard(ctx context.Context, in *UpsertUserCardRequest, opts ...grpc.CallOption) (*UpsertUserCardResponse, error)
+	GetUserCard(ctx context.Context, in *GetUserCardRequest, opts ...grpc.CallOption) (*GetUserCardResponse, error)
 	AssembleContextInternal(ctx context.Context, in *AssembleContextInternalRequest, opts ...grpc.CallOption) (*AssembleContextInternalResponse, error)
 	// Ranking
 	RankCandidates(ctx context.Context, in *RankCandidatesRequest, opts ...grpc.CallOption) (*RankCandidatesResponse, error)
@@ -428,6 +433,24 @@ func (c *libravDBClient) AfterTurnKernel(ctx context.Context, in *AfterTurnKerne
 	return out, nil
 }
 
+func (c *libravDBClient) UpsertUserCard(ctx context.Context, in *UpsertUserCardRequest, opts ...grpc.CallOption) (*UpsertUserCardResponse, error) {
+	out := new(UpsertUserCardResponse)
+	err := c.cc.Invoke(ctx, LibravDB_UpsertUserCard_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *libravDBClient) GetUserCard(ctx context.Context, in *GetUserCardRequest, opts ...grpc.CallOption) (*GetUserCardResponse, error) {
+	out := new(GetUserCardResponse)
+	err := c.cc.Invoke(ctx, LibravDB_GetUserCard_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *libravDBClient) AssembleContextInternal(ctx context.Context, in *AssembleContextInternalRequest, opts ...grpc.CallOption) (*AssembleContextInternalResponse, error) {
 	out := new(AssembleContextInternalResponse)
 	err := c.cc.Invoke(ctx, LibravDB_AssembleContextInternal_FullMethodName, in, out, opts...)
@@ -504,6 +527,9 @@ type LibravDBServer interface {
 	IngestMessageKernel(context.Context, *IngestMessageKernelRequest) (*IngestMessageKernelResponse, error)
 	BeforeTurnKernel(context.Context, *BeforeTurnKernelRequest) (*BeforeTurnKernelResponse, error)
 	AfterTurnKernel(context.Context, *AfterTurnKernelRequest) (*AfterTurnKernelResponse, error)
+	// User Card
+	UpsertUserCard(context.Context, *UpsertUserCardRequest) (*UpsertUserCardResponse, error)
+	GetUserCard(context.Context, *GetUserCardRequest) (*GetUserCardResponse, error)
 	AssembleContextInternal(context.Context, *AssembleContextInternalRequest) (*AssembleContextInternalResponse, error)
 	// Ranking
 	RankCandidates(context.Context, *RankCandidatesRequest) (*RankCandidatesResponse, error)
@@ -617,6 +643,12 @@ func (UnimplementedLibravDBServer) BeforeTurnKernel(context.Context, *BeforeTurn
 }
 func (UnimplementedLibravDBServer) AfterTurnKernel(context.Context, *AfterTurnKernelRequest) (*AfterTurnKernelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AfterTurnKernel not implemented")
+}
+func (UnimplementedLibravDBServer) UpsertUserCard(context.Context, *UpsertUserCardRequest) (*UpsertUserCardResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpsertUserCard not implemented")
+}
+func (UnimplementedLibravDBServer) GetUserCard(context.Context, *GetUserCardRequest) (*GetUserCardResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserCard not implemented")
 }
 func (UnimplementedLibravDBServer) AssembleContextInternal(context.Context, *AssembleContextInternalRequest) (*AssembleContextInternalResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AssembleContextInternal not implemented")
@@ -1252,6 +1284,42 @@ func _LibravDB_AfterTurnKernel_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _LibravDB_UpsertUserCard_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpsertUserCardRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LibravDBServer).UpsertUserCard(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LibravDB_UpsertUserCard_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LibravDBServer).UpsertUserCard(ctx, req.(*UpsertUserCardRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LibravDB_GetUserCard_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserCardRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LibravDBServer).GetUserCard(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LibravDB_GetUserCard_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LibravDBServer).GetUserCard(ctx, req.(*GetUserCardRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _LibravDB_AssembleContextInternal_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AssembleContextInternalRequest)
 	if err := dec(in); err != nil {
@@ -1448,6 +1516,14 @@ var LibravDB_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AfterTurnKernel",
 			Handler:    _LibravDB_AfterTurnKernel_Handler,
+		},
+		{
+			MethodName: "UpsertUserCard",
+			Handler:    _LibravDB_UpsertUserCard_Handler,
+		},
+		{
+			MethodName: "GetUserCard",
+			Handler:    _LibravDB_GetUserCard_Handler,
 		},
 		{
 			MethodName: "AssembleContextInternal",
