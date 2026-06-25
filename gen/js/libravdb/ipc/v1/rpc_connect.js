@@ -2,7 +2,7 @@
 // @generated from file libravdb/ipc/v1/rpc.proto (package libravdb.ipc.v1, syntax proto3)
 /* eslint-disable */
 // @ts-nocheck
-import { AfterTurnKernelRequest, AfterTurnKernelResponse, AssembleContextInternalRequest, AssembleContextInternalResponse, BeforeTurnKernelRequest, BeforeTurnKernelResponse, BootstrapSessionKernelRequest, BootstrapSessionKernelResponse, BumpAccessCountsRequest, BumpAccessCountsResponse, CognitiveMetricsRequest, CognitiveMetricsResponse, CompactSessionRequest, CompactSessionResponse, DaemonStatusRequest, DaemonStatusResponse, DeleteAuthoredDocumentRequest, DeleteAuthoredDocumentResponse, DeleteBatchRequest, DeleteBatchResponse, DeleteRequest, DeleteResponse, DreamPromotionResponse, EnsureCollectionsRequest, EnsureCollectionsResponse, EvictTenantRequest, EvictTenantResponse, ExpandSummaryRequest, ExpandSummaryResponse, ExportMemoryRequest, ExportMemoryResponse, FlushNamespaceRequest, FlushNamespaceResponse, FlushRequest, FlushResponse, GatingScalarRequest, GatingScalarResponse, HealthRequest, HealthResponse, IngestMarkdownDocumentRequest, IngestMarkdownDocumentResponse, IngestMessageKernelRequest, IngestMessageKernelResponse, InsertSessionTurnRequest, InsertSessionTurnResponse, InsertTextRequest, InsertTextResponse, ListByMetaRequest, ListByMetaResponse, ListCollectionRequest, ListCollectionResponse, ListLifecycleJournalRequest, ListLifecycleJournalResponse, MarkMemorySupersededRequest, MarkMemorySupersededResponse, MemoryStatusRequest, MemoryStatusResponse, PromoteDreamEntriesRequest, QueryRawSessionRequest, QueryRawSessionResponse, RankCandidatesRequest, RankCandidatesResponse, RebuildIndexRequest, RebuildIndexResponse, ReindexAuthoredDocumentRequest, ReindexAuthoredDocumentResponse, SearchTextCollectionsRequest, SearchTextRequest, SearchTextResponse, SessionLifecycleHintRequest, SessionLifecycleHintResponse, SummarizeMessagesRequest, SummarizeMessagesResponse } from "./rpc_pb.js";
+import { AfterTurnKernelRequest, AfterTurnKernelResponse, AssembleContextInternalRequest, AssembleContextInternalResponse, BeforeTurnKernelRequest, BeforeTurnKernelResponse, BootstrapSessionKernelRequest, BootstrapSessionKernelResponse, BumpAccessCountsRequest, BumpAccessCountsResponse, CognitiveMetricsRequest, CognitiveMetricsResponse, CompactSessionRequest, CompactSessionResponse, DaemonStatusRequest, DaemonStatusResponse, DeleteAuthoredDocumentRequest, DeleteAuthoredDocumentResponse, DeleteBatchRequest, DeleteBatchResponse, DeleteRequest, DeleteResponse, DreamPromotionResponse, EnsureCollectionsRequest, EnsureCollectionsResponse, EvictTenantRequest, EvictTenantResponse, ExpandSummaryRequest, ExpandSummaryResponse, ExportMemoryRequest, ExportMemoryResponse, FlushNamespaceRequest, FlushNamespaceResponse, FlushRequest, FlushResponse, GatingScalarRequest, GatingScalarResponse, GetUserCardRequest, GetUserCardResponse, HealthRequest, HealthResponse, IngestMarkdownDocumentRequest, IngestMarkdownDocumentResponse, IngestMessageKernelRequest, IngestMessageKernelResponse, InsertSessionTurnRequest, InsertSessionTurnResponse, InsertTextRequest, InsertTextResponse, ListByMetaRequest, ListByMetaResponse, ListCollectionRequest, ListCollectionResponse, ListLifecycleJournalRequest, ListLifecycleJournalResponse, MarkMemorySupersededRequest, MarkMemorySupersededResponse, MemoryStatusRequest, MemoryStatusResponse, PromoteDreamEntriesRequest, QueryRawSessionRequest, QueryRawSessionResponse, RankCandidatesRequest, RankCandidatesResponse, RebuildIndexRequest, RebuildIndexResponse, ReindexAuthoredDocumentRequest, ReindexAuthoredDocumentResponse, SearchTextCollectionsRequest, SearchTextRequest, SearchTextResponse, SessionLifecycleHintRequest, SessionLifecycleHintResponse, SummarizeMessagesRequest, SummarizeMessagesResponse, UpsertUserCardRequest, UpsertUserCardResponse } from "./rpc_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 /**
  * @generated from service libravdb.ipc.v1.LibravDB
@@ -336,6 +336,26 @@ export const LibravDB = {
             name: "AfterTurnKernel",
             I: AfterTurnKernelRequest,
             O: AfterTurnKernelResponse,
+            kind: MethodKind.Unary,
+        },
+        /**
+         * User Card
+         *
+         * @generated from rpc libravdb.ipc.v1.LibravDB.UpsertUserCard
+         */
+        upsertUserCard: {
+            name: "UpsertUserCard",
+            I: UpsertUserCardRequest,
+            O: UpsertUserCardResponse,
+            kind: MethodKind.Unary,
+        },
+        /**
+         * @generated from rpc libravdb.ipc.v1.LibravDB.GetUserCard
+         */
+        getUserCard: {
+            name: "GetUserCard",
+            I: GetUserCardRequest,
+            O: GetUserCardResponse,
             kind: MethodKind.Unary,
         },
         /**

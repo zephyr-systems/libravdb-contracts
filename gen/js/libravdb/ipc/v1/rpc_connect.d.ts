@@ -1,4 +1,4 @@
-import { AfterTurnKernelRequest, AfterTurnKernelResponse, AssembleContextInternalRequest, AssembleContextInternalResponse, BeforeTurnKernelRequest, BeforeTurnKernelResponse, BootstrapSessionKernelRequest, BootstrapSessionKernelResponse, BumpAccessCountsRequest, BumpAccessCountsResponse, CognitiveMetricsRequest, CognitiveMetricsResponse, CompactSessionRequest, CompactSessionResponse, DaemonStatusRequest, DaemonStatusResponse, DeleteAuthoredDocumentRequest, DeleteAuthoredDocumentResponse, DeleteBatchRequest, DeleteBatchResponse, DeleteRequest, DeleteResponse, DreamPromotionResponse, EnsureCollectionsRequest, EnsureCollectionsResponse, EvictTenantRequest, EvictTenantResponse, ExpandSummaryRequest, ExpandSummaryResponse, ExportMemoryRequest, ExportMemoryResponse, FlushNamespaceRequest, FlushNamespaceResponse, FlushRequest, FlushResponse, GatingScalarRequest, GatingScalarResponse, HealthRequest, HealthResponse, IngestMarkdownDocumentRequest, IngestMarkdownDocumentResponse, IngestMessageKernelRequest, IngestMessageKernelResponse, InsertSessionTurnRequest, InsertSessionTurnResponse, InsertTextRequest, InsertTextResponse, ListByMetaRequest, ListByMetaResponse, ListCollectionRequest, ListCollectionResponse, ListLifecycleJournalRequest, ListLifecycleJournalResponse, MarkMemorySupersededRequest, MarkMemorySupersededResponse, MemoryStatusRequest, MemoryStatusResponse, PromoteDreamEntriesRequest, QueryRawSessionRequest, QueryRawSessionResponse, RankCandidatesRequest, RankCandidatesResponse, RebuildIndexRequest, RebuildIndexResponse, ReindexAuthoredDocumentRequest, ReindexAuthoredDocumentResponse, SearchTextCollectionsRequest, SearchTextRequest, SearchTextResponse, SessionLifecycleHintRequest, SessionLifecycleHintResponse, SummarizeMessagesRequest, SummarizeMessagesResponse } from "./rpc_pb.js";
+import { AfterTurnKernelRequest, AfterTurnKernelResponse, AssembleContextInternalRequest, AssembleContextInternalResponse, BeforeTurnKernelRequest, BeforeTurnKernelResponse, BootstrapSessionKernelRequest, BootstrapSessionKernelResponse, BumpAccessCountsRequest, BumpAccessCountsResponse, CognitiveMetricsRequest, CognitiveMetricsResponse, CompactSessionRequest, CompactSessionResponse, DaemonStatusRequest, DaemonStatusResponse, DeleteAuthoredDocumentRequest, DeleteAuthoredDocumentResponse, DeleteBatchRequest, DeleteBatchResponse, DeleteRequest, DeleteResponse, DreamPromotionResponse, EnsureCollectionsRequest, EnsureCollectionsResponse, EvictTenantRequest, EvictTenantResponse, ExpandSummaryRequest, ExpandSummaryResponse, ExportMemoryRequest, ExportMemoryResponse, FlushNamespaceRequest, FlushNamespaceResponse, FlushRequest, FlushResponse, GatingScalarRequest, GatingScalarResponse, GetUserCardRequest, GetUserCardResponse, HealthRequest, HealthResponse, IngestMarkdownDocumentRequest, IngestMarkdownDocumentResponse, IngestMessageKernelRequest, IngestMessageKernelResponse, InsertSessionTurnRequest, InsertSessionTurnResponse, InsertTextRequest, InsertTextResponse, ListByMetaRequest, ListByMetaResponse, ListCollectionRequest, ListCollectionResponse, ListLifecycleJournalRequest, ListLifecycleJournalResponse, MarkMemorySupersededRequest, MarkMemorySupersededResponse, MemoryStatusRequest, MemoryStatusResponse, PromoteDreamEntriesRequest, QueryRawSessionRequest, QueryRawSessionResponse, RankCandidatesRequest, RankCandidatesResponse, RebuildIndexRequest, RebuildIndexResponse, ReindexAuthoredDocumentRequest, ReindexAuthoredDocumentResponse, SearchTextCollectionsRequest, SearchTextRequest, SearchTextResponse, SessionLifecycleHintRequest, SessionLifecycleHintResponse, SummarizeMessagesRequest, SummarizeMessagesResponse, UpsertUserCardRequest, UpsertUserCardResponse } from "./rpc_pb.js";
 /**
  * @generated from service libravdb.ipc.v1.LibravDB
  */
@@ -331,6 +331,26 @@ export declare const LibravDB: {
             readonly name: "AfterTurnKernel";
             readonly I: typeof AfterTurnKernelRequest;
             readonly O: typeof AfterTurnKernelResponse;
+            readonly kind: any;
+        };
+        /**
+         * User Card
+         *
+         * @generated from rpc libravdb.ipc.v1.LibravDB.UpsertUserCard
+         */
+        readonly upsertUserCard: {
+            readonly name: "UpsertUserCard";
+            readonly I: typeof UpsertUserCardRequest;
+            readonly O: typeof UpsertUserCardResponse;
+            readonly kind: any;
+        };
+        /**
+         * @generated from rpc libravdb.ipc.v1.LibravDB.GetUserCard
+         */
+        readonly getUserCard: {
+            readonly name: "GetUserCard";
+            readonly I: typeof GetUserCardRequest;
+            readonly O: typeof GetUserCardResponse;
             readonly kind: any;
         };
         /**

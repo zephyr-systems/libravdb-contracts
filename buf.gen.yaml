@@ -19,10 +19,10 @@ plugins:
       - target=ts
 
   # TypeScript gRPC service client (Connect-ES)
-  # - remote: buf.build/connectrpc/connect-es:v2.1.2
-  #   out: gen/ts
-  #   opt:
-  #     - target=ts
+  - remote: buf.build/connectrpc/es:v1.4.0
+    out: gen/ts
+    opt:
+      - target=ts
 
   # Python message types
   - remote: buf.build/protocolbuffers/python:v28.3

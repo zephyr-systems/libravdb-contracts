@@ -32,6 +32,7 @@
   "devDependencies": {
     "@bufbuild/buf": "^1.69.0",
     "@bufbuild/protoc-gen-es": "^2.10.0",
+    "@connectrpc/protoc-gen-connect-es": "^1.7.0",
     "@types/node": "^20.11.0",
     "typescript": "^5.0.0"
   },
