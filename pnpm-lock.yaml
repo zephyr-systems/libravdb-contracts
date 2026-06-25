@@ -9,15 +9,15 @@ importers:
   .:
     dependencies:
       '@bufbuild/protobuf':
-        specifier: ^1.7.2
-        version: 1.7.2
+        specifier: ^2.7.0
+        version: 2.10.0
     devDependencies:
       '@bufbuild/buf':
         specifier: ^1.69.0
         version: 1.69.0
       '@bufbuild/protoc-gen-es':
-        specifier: 2.10.0
-        version: 2.10.0(@bufbuild/protobuf@1.7.2)
+        specifier: ^2.10.0
+        version: 2.10.0(@bufbuild/protobuf@2.10.0)
       '@types/node':
         specifier: ^20.11.0
         version: 20.19.39
@@ -73,9 +73,6 @@ packages:
     resolution: {integrity: sha512-hWk7cW6Z/7g6jpybePaf15QUUFd2+s4lJCeaAkBeo3tWPGoSgNJaJdMqIUy2y99uYy4yMjq9GYmjc5dSrfIn5A==}
     engines: {node: '>=12'}
     hasBin: true
-
-  '@bufbuild/protobuf@1.7.2':
-    resolution: {integrity: sha512-i5GE2Dk5ekdlK1TR7SugY4LWRrKSfb5T1Qn4unpIMbfxoeGKERKQ59HG3iYewacGD10SR7UzevfPnh6my4tNmQ==}
 
   '@bufbuild/protobuf@2.10.0':
     resolution: {integrity: sha512-fdRs9PSrBF7QUntpZpq6BTw58fhgGJojgg39m9oFOJGZT+nip9b0so5cYY1oWl5pvemDLr0cPPsH46vwThEbpQ==}
@@ -159,15 +156,13 @@ snapshots:
       '@bufbuild/buf-win32-arm64': 1.69.0
       '@bufbuild/buf-win32-x64': 1.69.0
 
-  '@bufbuild/protobuf@1.7.2': {}
-
   '@bufbuild/protobuf@2.10.0': {}
 
-  '@bufbuild/protoc-gen-es@2.10.0(@bufbuild/protobuf@1.7.2)':
+  '@bufbuild/protoc-gen-es@2.10.0(@bufbuild/protobuf@2.10.0)':
     dependencies:
       '@bufbuild/protoplugin': 2.10.0
     optionalDependencies:
-      '@bufbuild/protobuf': 1.7.2
+      '@bufbuild/protobuf': 2.10.0
     transitivePeerDependencies:
       - supports-color
 
