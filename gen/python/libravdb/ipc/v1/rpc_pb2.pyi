@@ -599,14 +599,16 @@ class ListCollectionRequest(_message.Message):
     def __init__(self, collection: _Optional[str] = ...) -> None: ...
 
 class ExpandSummaryRequest(_message.Message):
-    __slots__ = ("session_id", "summary_id", "max_depth")
+    __slots__ = ("session_id", "summary_id", "max_depth", "record_id")
     SESSION_ID_FIELD_NUMBER: _ClassVar[int]
     SUMMARY_ID_FIELD_NUMBER: _ClassVar[int]
     MAX_DEPTH_FIELD_NUMBER: _ClassVar[int]
+    RECORD_ID_FIELD_NUMBER: _ClassVar[int]
     session_id: str
     summary_id: str
     max_depth: int
-    def __init__(self, session_id: _Optional[str] = ..., summary_id: _Optional[str] = ..., max_depth: _Optional[int] = ...) -> None: ...
+    record_id: str
+    def __init__(self, session_id: _Optional[str] = ..., summary_id: _Optional[str] = ..., max_depth: _Optional[int] = ..., record_id: _Optional[str] = ...) -> None: ...
 
 class QueryRawSessionRequest(_message.Message):
     __slots__ = ("session_id", "text", "k", "exclude_ids")
@@ -1199,14 +1201,36 @@ class ListByMetaResponse(_message.Message):
     def __init__(self, results: _Optional[_Iterable[_Union[SearchResult, _Mapping]]] = ...) -> None: ...
 
 class ExpandSummaryResponse(_message.Message):
-    __slots__ = ("summary_id", "text", "metadata_json")
+    __slots__ = ("summary_id", "text", "metadata_json", "why_ids", "how_ids", "hop_targets", "connected")
     SUMMARY_ID_FIELD_NUMBER: _ClassVar[int]
     TEXT_FIELD_NUMBER: _ClassVar[int]
     METADATA_JSON_FIELD_NUMBER: _ClassVar[int]
+    WHY_IDS_FIELD_NUMBER: _ClassVar[int]
+    HOW_IDS_FIELD_NUMBER: _ClassVar[int]
+    HOP_TARGETS_FIELD_NUMBER: _ClassVar[int]
+    CONNECTED_FIELD_NUMBER: _ClassVar[int]
     summary_id: str
     text: str
     metadata_json: bytes
-    def __init__(self, summary_id: _Optional[str] = ..., text: _Optional[str] = ..., metadata_json: _Optional[bytes] = ...) -> None: ...
+    why_ids: _containers.RepeatedScalarFieldContainer[str]
+    how_ids: _containers.RepeatedScalarFieldContainer[str]
+    hop_targets: _containers.RepeatedScalarFieldContainer[str]
+    connected: _containers.RepeatedCompositeFieldContainer[ConnectedRecord]
+    def __init__(self, summary_id: _Optional[str] = ..., text: _Optional[str] = ..., metadata_json: _Optional[bytes] = ..., why_ids: _Optional[_Iterable[str]] = ..., how_ids: _Optional[_Iterable[str]] = ..., hop_targets: _Optional[_Iterable[str]] = ..., connected: _Optional[_Iterable[_Union[ConnectedRecord, _Mapping]]] = ...) -> None: ...
+
+class ConnectedRecord(_message.Message):
+    __slots__ = ("record_id", "text", "depth", "edge_weight", "edge_type")
+    RECORD_ID_FIELD_NUMBER: _ClassVar[int]
+    TEXT_FIELD_NUMBER: _ClassVar[int]
+    DEPTH_FIELD_NUMBER: _ClassVar[int]
+    EDGE_WEIGHT_FIELD_NUMBER: _ClassVar[int]
+    EDGE_TYPE_FIELD_NUMBER: _ClassVar[int]
+    record_id: str
+    text: str
+    depth: int
+    edge_weight: float
+    edge_type: str
+    def __init__(self, record_id: _Optional[str] = ..., text: _Optional[str] = ..., depth: _Optional[int] = ..., edge_weight: _Optional[float] = ..., edge_type: _Optional[str] = ...) -> None: ...
 
 class QueryRawSessionResponse(_message.Message):
     __slots__ = ("messages",)

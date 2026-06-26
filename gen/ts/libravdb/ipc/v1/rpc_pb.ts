@@ -2735,6 +2735,13 @@ export class ExpandSummaryRequest extends Message<ExpandSummaryRequest> {
    */
   maxDepth = 0;
 
+  /**
+   * Graph mode: walk causal edges from this record ID.
+   *
+   * @generated from field: string record_id = 4;
+   */
+  recordId = "";
+
   constructor(data?: PartialMessage<ExpandSummaryRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -2746,6 +2753,7 @@ export class ExpandSummaryRequest extends Message<ExpandSummaryRequest> {
     { no: 1, name: "session_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "summary_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "max_depth", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 4, name: "record_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ExpandSummaryRequest {
@@ -5560,6 +5568,28 @@ export class ExpandSummaryResponse extends Message<ExpandSummaryResponse> {
    */
   metadataJson = new Uint8Array(0);
 
+  /**
+   * Graph mode fields (populated when record_id is set):
+   *
+   * @generated from field: repeated string why_ids = 4;
+   */
+  whyIds: string[] = [];
+
+  /**
+   * @generated from field: repeated string how_ids = 5;
+   */
+  howIds: string[] = [];
+
+  /**
+   * @generated from field: repeated string hop_targets = 6;
+   */
+  hopTargets: string[] = [];
+
+  /**
+   * @generated from field: repeated libravdb.ipc.v1.ConnectedRecord connected = 7;
+   */
+  connected: ConnectedRecord[] = [];
+
   constructor(data?: PartialMessage<ExpandSummaryResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -5571,6 +5601,10 @@ export class ExpandSummaryResponse extends Message<ExpandSummaryResponse> {
     { no: 1, name: "summary_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "text", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "metadata_json", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 4, name: "why_ids", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 5, name: "how_ids", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 6, name: "hop_targets", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 7, name: "connected", kind: "message", T: ConnectedRecord, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ExpandSummaryResponse {
@@ -5587,6 +5621,69 @@ export class ExpandSummaryResponse extends Message<ExpandSummaryResponse> {
 
   static equals(a: ExpandSummaryResponse | PlainMessage<ExpandSummaryResponse> | undefined, b: ExpandSummaryResponse | PlainMessage<ExpandSummaryResponse> | undefined): boolean {
     return proto3.util.equals(ExpandSummaryResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message libravdb.ipc.v1.ConnectedRecord
+ */
+export class ConnectedRecord extends Message<ConnectedRecord> {
+  /**
+   * @generated from field: string record_id = 1;
+   */
+  recordId = "";
+
+  /**
+   * @generated from field: string text = 2;
+   */
+  text = "";
+
+  /**
+   * @generated from field: int32 depth = 3;
+   */
+  depth = 0;
+
+  /**
+   * @generated from field: double edge_weight = 4;
+   */
+  edgeWeight = 0;
+
+  /**
+   * "why_ids", "how_ids", or "hop_targets"
+   *
+   * @generated from field: string edge_type = 5;
+   */
+  edgeType = "";
+
+  constructor(data?: PartialMessage<ConnectedRecord>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "libravdb.ipc.v1.ConnectedRecord";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "record_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "text", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "depth", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 4, name: "edge_weight", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
+    { no: 5, name: "edge_type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ConnectedRecord {
+    return new ConnectedRecord().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ConnectedRecord {
+    return new ConnectedRecord().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ConnectedRecord {
+    return new ConnectedRecord().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ConnectedRecord | PlainMessage<ConnectedRecord> | undefined, b: ConnectedRecord | PlainMessage<ConnectedRecord> | undefined): boolean {
+    return proto3.util.equals(ConnectedRecord, a, b);
   }
 }
 

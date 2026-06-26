@@ -1,5 +1,5 @@
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { proto3 } from "@bufbuild/protobuf";
+import { Message, proto3 } from "@bufbuild/protobuf";
 /**
  * IngestMode controls whether a call replaces all existing nodes for the source_doc
  * or appends/merges them without deleting anything.
@@ -1527,6 +1527,12 @@ export declare class ExpandSummaryRequest extends Message<ExpandSummaryRequest> 
      * @generated from field: int32 max_depth = 3;
      */
     maxDepth: number;
+    /**
+     * Graph mode: walk causal edges from this record ID.
+     *
+     * @generated from field: string record_id = 4;
+     */
+    recordId: string;
     constructor(data?: PartialMessage<ExpandSummaryRequest>);
     static readonly runtime: typeof proto3;
     static readonly typeName = "libravdb.ipc.v1.ExpandSummaryRequest";
@@ -3028,6 +3034,24 @@ export declare class ExpandSummaryResponse extends Message<ExpandSummaryResponse
      * @generated from field: bytes metadata_json = 3;
      */
     metadataJson: Uint8Array<ArrayBuffer>;
+    /**
+     * Graph mode fields (populated when record_id is set):
+     *
+     * @generated from field: repeated string why_ids = 4;
+     */
+    whyIds: string[];
+    /**
+     * @generated from field: repeated string how_ids = 5;
+     */
+    howIds: string[];
+    /**
+     * @generated from field: repeated string hop_targets = 6;
+     */
+    hopTargets: string[];
+    /**
+     * @generated from field: repeated libravdb.ipc.v1.ConnectedRecord connected = 7;
+     */
+    connected: ConnectedRecord[];
     constructor(data?: PartialMessage<ExpandSummaryResponse>);
     static readonly runtime: typeof proto3;
     static readonly typeName = "libravdb.ipc.v1.ExpandSummaryResponse";
@@ -3036,6 +3060,41 @@ export declare class ExpandSummaryResponse extends Message<ExpandSummaryResponse
     static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ExpandSummaryResponse;
     static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ExpandSummaryResponse;
     static equals(a: ExpandSummaryResponse | PlainMessage<ExpandSummaryResponse> | undefined, b: ExpandSummaryResponse | PlainMessage<ExpandSummaryResponse> | undefined): boolean;
+}
+/**
+ * @generated from message libravdb.ipc.v1.ConnectedRecord
+ */
+export declare class ConnectedRecord extends Message<ConnectedRecord> {
+    /**
+     * @generated from field: string record_id = 1;
+     */
+    recordId: string;
+    /**
+     * @generated from field: string text = 2;
+     */
+    text: string;
+    /**
+     * @generated from field: int32 depth = 3;
+     */
+    depth: number;
+    /**
+     * @generated from field: double edge_weight = 4;
+     */
+    edgeWeight: number;
+    /**
+     * "why_ids", "how_ids", or "hop_targets"
+     *
+     * @generated from field: string edge_type = 5;
+     */
+    edgeType: string;
+    constructor(data?: PartialMessage<ConnectedRecord>);
+    static readonly runtime: typeof proto3;
+    static readonly typeName = "libravdb.ipc.v1.ConnectedRecord";
+    static readonly fields: FieldList;
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ConnectedRecord;
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ConnectedRecord;
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ConnectedRecord;
+    static equals(a: ConnectedRecord | PlainMessage<ConnectedRecord> | undefined, b: ConnectedRecord | PlainMessage<ConnectedRecord> | undefined): boolean;
 }
 /**
  * @generated from message libravdb.ipc.v1.QueryRawSessionResponse

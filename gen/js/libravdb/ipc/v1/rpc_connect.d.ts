@@ -1,4 +1,5 @@
 import { AfterTurnKernelRequest, AfterTurnKernelResponse, AssembleContextInternalRequest, AssembleContextInternalResponse, BeforeTurnKernelRequest, BeforeTurnKernelResponse, BootstrapSessionKernelRequest, BootstrapSessionKernelResponse, BumpAccessCountsRequest, BumpAccessCountsResponse, CognitiveMetricsRequest, CognitiveMetricsResponse, CompactSessionRequest, CompactSessionResponse, DaemonStatusRequest, DaemonStatusResponse, DeleteAuthoredDocumentRequest, DeleteAuthoredDocumentResponse, DeleteBatchRequest, DeleteBatchResponse, DeleteRequest, DeleteResponse, DreamPromotionResponse, EnsureCollectionsRequest, EnsureCollectionsResponse, EvictTenantRequest, EvictTenantResponse, ExpandSummaryRequest, ExpandSummaryResponse, ExportMemoryRequest, ExportMemoryResponse, FlushNamespaceRequest, FlushNamespaceResponse, FlushRequest, FlushResponse, GatingScalarRequest, GatingScalarResponse, GetUserCardRequest, GetUserCardResponse, HealthRequest, HealthResponse, IngestMarkdownDocumentRequest, IngestMarkdownDocumentResponse, IngestMessageKernelRequest, IngestMessageKernelResponse, InsertSessionTurnRequest, InsertSessionTurnResponse, InsertTextRequest, InsertTextResponse, ListByMetaRequest, ListByMetaResponse, ListCollectionRequest, ListCollectionResponse, ListLifecycleJournalRequest, ListLifecycleJournalResponse, MarkMemorySupersededRequest, MarkMemorySupersededResponse, MemoryStatusRequest, MemoryStatusResponse, PromoteDreamEntriesRequest, QueryRawSessionRequest, QueryRawSessionResponse, RankCandidatesRequest, RankCandidatesResponse, RebuildIndexRequest, RebuildIndexResponse, ReindexAuthoredDocumentRequest, ReindexAuthoredDocumentResponse, SearchTextCollectionsRequest, SearchTextRequest, SearchTextResponse, SessionLifecycleHintRequest, SessionLifecycleHintResponse, SummarizeMessagesRequest, SummarizeMessagesResponse, UpsertUserCardRequest, UpsertUserCardResponse } from "./rpc_pb.js";
+import { MethodKind } from "@bufbuild/protobuf";
 /**
  * @generated from service libravdb.ipc.v1.LibravDB
  */
@@ -14,7 +15,7 @@ export declare const LibravDB: {
             readonly name: "Health";
             readonly I: typeof HealthRequest;
             readonly O: typeof HealthResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * @generated from rpc libravdb.ipc.v1.LibravDB.Status
@@ -23,7 +24,7 @@ export declare const LibravDB: {
             readonly name: "Status";
             readonly I: typeof MemoryStatusRequest;
             readonly O: typeof MemoryStatusResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * @generated from rpc libravdb.ipc.v1.LibravDB.DaemonStatus
@@ -32,7 +33,7 @@ export declare const LibravDB: {
             readonly name: "DaemonStatus";
             readonly I: typeof DaemonStatusRequest;
             readonly O: typeof DaemonStatusResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * @generated from rpc libravdb.ipc.v1.LibravDB.EvictTenant
@@ -41,7 +42,7 @@ export declare const LibravDB: {
             readonly name: "EvictTenant";
             readonly I: typeof EvictTenantRequest;
             readonly O: typeof EvictTenantResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * @generated from rpc libravdb.ipc.v1.LibravDB.Flush
@@ -50,7 +51,7 @@ export declare const LibravDB: {
             readonly name: "Flush";
             readonly I: typeof FlushRequest;
             readonly O: typeof FlushResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * @generated from rpc libravdb.ipc.v1.LibravDB.SessionLifecycleHint
@@ -59,7 +60,7 @@ export declare const LibravDB: {
             readonly name: "SessionLifecycleHint";
             readonly I: typeof SessionLifecycleHintRequest;
             readonly O: typeof SessionLifecycleHintResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * @generated from rpc libravdb.ipc.v1.LibravDB.ListLifecycleJournal
@@ -68,7 +69,7 @@ export declare const LibravDB: {
             readonly name: "ListLifecycleJournal";
             readonly I: typeof ListLifecycleJournalRequest;
             readonly O: typeof ListLifecycleJournalResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * Collections
@@ -79,7 +80,7 @@ export declare const LibravDB: {
             readonly name: "EnsureCollections";
             readonly I: typeof EnsureCollectionsRequest;
             readonly O: typeof EnsureCollectionsResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * Ingest
@@ -90,7 +91,7 @@ export declare const LibravDB: {
             readonly name: "IngestMarkdownDocument";
             readonly I: typeof IngestMarkdownDocumentRequest;
             readonly O: typeof IngestMarkdownDocumentResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * @generated from rpc libravdb.ipc.v1.LibravDB.PromoteDreamEntries
@@ -99,7 +100,7 @@ export declare const LibravDB: {
             readonly name: "PromoteDreamEntries";
             readonly I: typeof PromoteDreamEntriesRequest;
             readonly O: typeof DreamPromotionResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * @generated from rpc libravdb.ipc.v1.LibravDB.ReindexAuthoredDocument
@@ -108,7 +109,7 @@ export declare const LibravDB: {
             readonly name: "ReindexAuthoredDocument";
             readonly I: typeof ReindexAuthoredDocumentRequest;
             readonly O: typeof ReindexAuthoredDocumentResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * @generated from rpc libravdb.ipc.v1.LibravDB.DeleteAuthoredDocument
@@ -117,7 +118,7 @@ export declare const LibravDB: {
             readonly name: "DeleteAuthoredDocument";
             readonly I: typeof DeleteAuthoredDocumentRequest;
             readonly O: typeof DeleteAuthoredDocumentResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * @generated from rpc libravdb.ipc.v1.LibravDB.MarkMemorySuperseded
@@ -126,7 +127,7 @@ export declare const LibravDB: {
             readonly name: "MarkMemorySuperseded";
             readonly I: typeof MarkMemorySupersededRequest;
             readonly O: typeof MarkMemorySupersededResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * Insert
@@ -137,7 +138,7 @@ export declare const LibravDB: {
             readonly name: "InsertText";
             readonly I: typeof InsertTextRequest;
             readonly O: typeof InsertTextResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * @generated from rpc libravdb.ipc.v1.LibravDB.InsertSessionTurn
@@ -146,7 +147,7 @@ export declare const LibravDB: {
             readonly name: "InsertSessionTurn";
             readonly I: typeof InsertSessionTurnRequest;
             readonly O: typeof InsertSessionTurnResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * Ranking and gating
@@ -157,7 +158,7 @@ export declare const LibravDB: {
             readonly name: "GatingScalar";
             readonly I: typeof GatingScalarRequest;
             readonly O: typeof GatingScalarResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * @generated from rpc libravdb.ipc.v1.LibravDB.SearchText
@@ -166,7 +167,7 @@ export declare const LibravDB: {
             readonly name: "SearchText";
             readonly I: typeof SearchTextRequest;
             readonly O: typeof SearchTextResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * @generated from rpc libravdb.ipc.v1.LibravDB.SearchTextCollections
@@ -175,7 +176,7 @@ export declare const LibravDB: {
             readonly name: "SearchTextCollections";
             readonly I: typeof SearchTextCollectionsRequest;
             readonly O: typeof SearchTextResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * @generated from rpc libravdb.ipc.v1.LibravDB.BumpAccessCounts
@@ -184,7 +185,7 @@ export declare const LibravDB: {
             readonly name: "BumpAccessCounts";
             readonly I: typeof BumpAccessCountsRequest;
             readonly O: typeof BumpAccessCountsResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * Query
@@ -195,7 +196,7 @@ export declare const LibravDB: {
             readonly name: "ListCollection";
             readonly I: typeof ListCollectionRequest;
             readonly O: typeof ListCollectionResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * @generated from rpc libravdb.ipc.v1.LibravDB.ListByMeta
@@ -204,7 +205,7 @@ export declare const LibravDB: {
             readonly name: "ListByMeta";
             readonly I: typeof ListByMetaRequest;
             readonly O: typeof ListByMetaResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * Memory
@@ -215,7 +216,7 @@ export declare const LibravDB: {
             readonly name: "ExportMemory";
             readonly I: typeof ExportMemoryRequest;
             readonly O: typeof ExportMemoryResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * @generated from rpc libravdb.ipc.v1.LibravDB.FlushNamespace
@@ -224,7 +225,7 @@ export declare const LibravDB: {
             readonly name: "FlushNamespace";
             readonly I: typeof FlushNamespaceRequest;
             readonly O: typeof FlushNamespaceResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * Delete
@@ -235,7 +236,7 @@ export declare const LibravDB: {
             readonly name: "Delete";
             readonly I: typeof DeleteRequest;
             readonly O: typeof DeleteResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * @generated from rpc libravdb.ipc.v1.LibravDB.DeleteBatch
@@ -244,7 +245,7 @@ export declare const LibravDB: {
             readonly name: "DeleteBatch";
             readonly I: typeof DeleteBatchRequest;
             readonly O: typeof DeleteBatchResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * Session
@@ -255,7 +256,7 @@ export declare const LibravDB: {
             readonly name: "CompactSession";
             readonly I: typeof CompactSessionRequest;
             readonly O: typeof CompactSessionResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * @generated from rpc libravdb.ipc.v1.LibravDB.SummarizeMessages
@@ -264,7 +265,7 @@ export declare const LibravDB: {
             readonly name: "SummarizeMessages";
             readonly I: typeof SummarizeMessagesRequest;
             readonly O: typeof SummarizeMessagesResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * @generated from rpc libravdb.ipc.v1.LibravDB.ExpandSummary
@@ -273,7 +274,7 @@ export declare const LibravDB: {
             readonly name: "ExpandSummary";
             readonly I: typeof ExpandSummaryRequest;
             readonly O: typeof ExpandSummaryResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * @generated from rpc libravdb.ipc.v1.LibravDB.QueryRawSession
@@ -282,7 +283,7 @@ export declare const LibravDB: {
             readonly name: "QueryRawSession";
             readonly I: typeof QueryRawSessionRequest;
             readonly O: typeof QueryRawSessionResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * Index
@@ -293,7 +294,7 @@ export declare const LibravDB: {
             readonly name: "RebuildIndex";
             readonly I: typeof RebuildIndexRequest;
             readonly O: typeof RebuildIndexResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * Kernel
@@ -304,7 +305,7 @@ export declare const LibravDB: {
             readonly name: "BootstrapSessionKernel";
             readonly I: typeof BootstrapSessionKernelRequest;
             readonly O: typeof BootstrapSessionKernelResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * @generated from rpc libravdb.ipc.v1.LibravDB.IngestMessageKernel
@@ -313,7 +314,7 @@ export declare const LibravDB: {
             readonly name: "IngestMessageKernel";
             readonly I: typeof IngestMessageKernelRequest;
             readonly O: typeof IngestMessageKernelResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * @generated from rpc libravdb.ipc.v1.LibravDB.BeforeTurnKernel
@@ -322,7 +323,7 @@ export declare const LibravDB: {
             readonly name: "BeforeTurnKernel";
             readonly I: typeof BeforeTurnKernelRequest;
             readonly O: typeof BeforeTurnKernelResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * @generated from rpc libravdb.ipc.v1.LibravDB.AfterTurnKernel
@@ -331,7 +332,7 @@ export declare const LibravDB: {
             readonly name: "AfterTurnKernel";
             readonly I: typeof AfterTurnKernelRequest;
             readonly O: typeof AfterTurnKernelResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * User Card
@@ -342,7 +343,7 @@ export declare const LibravDB: {
             readonly name: "UpsertUserCard";
             readonly I: typeof UpsertUserCardRequest;
             readonly O: typeof UpsertUserCardResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * @generated from rpc libravdb.ipc.v1.LibravDB.GetUserCard
@@ -351,7 +352,7 @@ export declare const LibravDB: {
             readonly name: "GetUserCard";
             readonly I: typeof GetUserCardRequest;
             readonly O: typeof GetUserCardResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * @generated from rpc libravdb.ipc.v1.LibravDB.AssembleContextInternal
@@ -360,7 +361,7 @@ export declare const LibravDB: {
             readonly name: "AssembleContextInternal";
             readonly I: typeof AssembleContextInternalRequest;
             readonly O: typeof AssembleContextInternalResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * Ranking
@@ -371,7 +372,7 @@ export declare const LibravDB: {
             readonly name: "RankCandidates";
             readonly I: typeof RankCandidatesRequest;
             readonly O: typeof RankCandidatesResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
         /**
          * Cognitive
@@ -382,7 +383,7 @@ export declare const LibravDB: {
             readonly name: "CognitiveMetrics";
             readonly I: typeof CognitiveMetricsRequest;
             readonly O: typeof CognitiveMetricsResponse;
-            readonly kind: any;
+            readonly kind: MethodKind.Unary;
         };
     };
 };
